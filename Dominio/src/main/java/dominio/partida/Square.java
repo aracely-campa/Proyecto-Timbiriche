@@ -4,10 +4,16 @@
  */
 package dominio.partida;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.w3c.dom.Node;
+
 /**
  *
  * @author arace
  */
-public class Cuadro {
+public class Square {
+ 
+    private Player player;
     
 }
