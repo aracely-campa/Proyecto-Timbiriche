@@ -8,19 +8,19 @@ package dominio.jugador;
  *
  * @author arace
  */
-public class Jugador {
-    String nombre;
+public class Player {
+    String name;
     int score;
 
-    public Jugador() {
+    public Player() {
     }
 
     public String getNombre() {
-        return nombre;
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String name) {
+        this.name = name;
     }
 
     public int getScore() {
@@ -33,7 +33,7 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "Jugador{" + "nombre=" + nombre + ", score=" + score + '}';
+        return "Jugador{" + "nombre=" + name + ", score=" + score + '}';
     }
     
     

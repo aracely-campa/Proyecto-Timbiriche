@@ -4,6 +4,7 @@
  */
 package dominio.partida;
 
+import dominio.jugador.Player;
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Node;

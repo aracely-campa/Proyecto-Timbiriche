@@ -4,6 +4,8 @@
  */
 package dominio.grafo;
 
+import dominio.jugador.Player;
+
 /**
  *
  * @author HP 240 G8
