@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dominio.partida;
+package domain.game;
 
+import domain.graph.Node;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,6 @@ public class Board {
     private List<Node> nodeList = new ArrayList();
     private NodeBuilder nodeBuilder = new NodeBuilder();
     private GraphManager graphManager = new GraphManager();
-    private EdgeBuilder edgeBuilder = new EdgeBuilder();
 
     public void createSmallBoard() {
 
@@ -94,6 +94,4 @@ public class Board {
     public Square[][] getBoardArray() {
         return boardArray;
     }
-
-    
 }

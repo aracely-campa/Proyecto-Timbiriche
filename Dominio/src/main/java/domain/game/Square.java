@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dominio.partida;
+package domain.game;
 
-import dominio.jugador.Player;
+import domain.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Node;
@@ -16,5 +16,15 @@ import org.w3c.dom.Node;
 public class Square {
  
     private Player player;
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+    
+    
     
 }
