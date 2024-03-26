@@ -4,6 +4,8 @@
  */
 package ui.frm;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author arace
@@ -68,7 +70,12 @@ public class FrmLobby extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        // TODO add your handling code here:
+       int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (exit == JOptionPane.YES_OPTION) {
+            FrmWelcome v = new FrmWelcome();
+            v.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnReturnActionPerformed
 
     /**

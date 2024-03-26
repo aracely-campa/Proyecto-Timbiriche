@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/Application.java to edit this template
- */
+
 package ui.frm;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
@@ -15,7 +16,10 @@ public class FrmWelcome extends javax.swing.JFrame {
      */
     public FrmWelcome() {
         initComponents();
+       
+      
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,60 +30,74 @@ public class FrmWelcome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background = new javax.swing.JPanel();
         btnJoinGame = new javax.swing.JButton();
         btnCreateGame = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Timbiriche");
+        setAlwaysOnTop(true);
+        setEnabled(false);
+        setMaximumSize(new java.awt.Dimension(720, 576));
+        setMinimumSize(new java.awt.Dimension(720, 576));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnJoinGame.setText("Join Game");
+        btnJoinGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/btnJoinGame.png"))); // NOI18N
+        btnJoinGame.setBorderPainted(false);
+        btnJoinGame.setContentAreaFilled(false);
+        btnJoinGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJoinGameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnJoinGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 210, 210));
 
-        btnCreateGame.setText("Create Game");
+        btnCreateGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/btnCreateGame.png"))); // NOI18N
+        btnCreateGame.setBorderPainted(false);
+        btnCreateGame.setContentAreaFilled(false);
+        btnCreateGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateGameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCreateGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 210, 210));
 
-        btnExit.setText("X");
+        btnExit.setBorderPainted(false);
+        btnExit.setContentAreaFilled(false);
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 110, 70));
 
-        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
-        background.setLayout(backgroundLayout);
-        backgroundLayout.setHorizontalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnJoinGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreateGame, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnExit)))
-                .addContainerGap(129, Short.MAX_VALUE))
-        );
-        backgroundLayout.setVerticalGroup(
-            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(btnJoinGame)
-                .addGap(31, 31, 31)
-                .addComponent(btnCreateGame)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(btnExit)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnJoinGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinGameActionPerformed
+        Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("/sources/btnCreateGame.png")).getImage());
+//        System.getProperty("user.dir")+("\\src\\main\\java\\sources\\btnCreateGame.png"
+        btnJoinGame.setIcon(icon);
+        FrmJoinGame v = new FrmJoinGame();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnJoinGameActionPerformed
+
+    private void btnCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateGameActionPerformed
+        Icon icon1 = new ImageIcon(new ImageIcon(getClass().getResource("/sources/btnJoinGame.png")).getImage());
+        btnCreateGame.setIcon(icon1);
+        FrmCreateGame v = new FrmCreateGame();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCreateGameActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,10 +135,14 @@ public class FrmWelcome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel background;
     private javax.swing.JButton btnCreateGame;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnJoinGame;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 
 }

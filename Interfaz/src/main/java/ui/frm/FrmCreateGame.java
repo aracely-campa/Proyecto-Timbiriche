@@ -4,6 +4,8 @@
  */
 package ui.frm;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author arace
@@ -34,13 +36,33 @@ public class FrmCreateGame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnReturn.setText("<-");
+        btnReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnActionPerformed(evt);
+            }
+        });
 
         btnTwoPlayers.setText("2");
         btnTwoPlayers.setToolTipText("");
+        btnTwoPlayers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTwoPlayersActionPerformed(evt);
+            }
+        });
 
         btnThreePlayers.setText("3");
+        btnThreePlayers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThreePlayersActionPerformed(evt);
+            }
+        });
 
         btnFourPlayers.setText("4");
+        btnFourPlayers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFourPlayersActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -51,9 +73,9 @@ public class FrmCreateGame extends javax.swing.JFrame {
                 .addComponent(btnReturn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(51, 51, 51)
                 .addComponent(btnTwoPlayers)
-                .addGap(116, 116, 116)
+                .addGap(118, 118, 118)
                 .addComponent(btnThreePlayers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(btnFourPlayers)
@@ -62,23 +84,45 @@ public class FrmCreateGame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTwoPlayers)
-                        .addGap(117, 117, 117))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnFourPlayers)
-                            .addComponent(btnThreePlayers))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)))
+                .addGap(127, 127, 127)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFourPlayers)
+                    .addComponent(btnThreePlayers)
+                    .addComponent(btnTwoPlayers))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(btnReturn)
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void showForm(Class<? extends JFrame> formClass) {
+        JFrame form = null;
+        try {
+            form = formClass.getDeclaredConstructor().newInstance();
+            form.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            System.err.println("Error al crear la ventana: " + e.getMessage());
+
+        }
+    }
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        showForm(FrmWelcome.class);
+    }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void btnTwoPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwoPlayersActionPerformed
+        showForm(FrmLobby.class);
+
+    }//GEN-LAST:event_btnTwoPlayersActionPerformed
+
+    private void btnThreePlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThreePlayersActionPerformed
+        showForm(FrmLobby.class);
+    }//GEN-LAST:event_btnThreePlayersActionPerformed
+
+    private void btnFourPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFourPlayersActionPerformed
+        showForm(FrmLobby.class);
+    }//GEN-LAST:event_btnFourPlayersActionPerformed
 
     /**
      * @param args the command line arguments
