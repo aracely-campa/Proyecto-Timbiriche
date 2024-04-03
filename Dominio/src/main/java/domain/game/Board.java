@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author arace
  */
-public class Board {
+public class Board extends Game{
     
     private Square[][] boardArray;
     private List<Node> nodeList = new ArrayList();
