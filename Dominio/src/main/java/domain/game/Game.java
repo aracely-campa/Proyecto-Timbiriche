@@ -69,7 +69,7 @@ public class Game {
 
     private void startGame() throws GameException {
         if (inGame) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         this.setGameIntoElements();
@@ -85,13 +85,13 @@ public class Game {
     private void setGameIntoPlayers() throws GameException {
 
         if (this.players == null || this.players.length < 1) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         for (Player player : players) {
 
             if (player == null) {
-                throw new GameException("Trono juego jjjj");
+                throw new GameException("Tronó juego jijijij");
             }
 
             player.setGame(this);
@@ -102,7 +102,7 @@ public class Game {
     private void setGameIntoBoard() throws GameException {
 
         if (this.board == null) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         board.setGame(game);
@@ -123,7 +123,7 @@ public class Game {
         int nextTurn;
 
         if (playerIndexTurn == -1) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         if (playerIndexTurn == (this.players.length - 1)) {
@@ -136,15 +136,15 @@ public class Game {
 
     public void addPlayer(Player player) throws GameException {
         if (isInGame()) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         if (player == null) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         if (isMatchFull()) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         addPlayerToMatch(player);
@@ -190,11 +190,11 @@ public class Game {
 
     public void deletePlayer(Player player) throws GameException {
         if (isInGame()) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("v");
         }
 
         if (player == null) {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
 
         int foundIndex = findPlayerIndex(player);
@@ -202,7 +202,7 @@ public class Game {
         if (foundIndex != -1) {
             shiftPlayers(foundIndex);
         } else {
-            throw new GameException("Trono juego jjjj");
+            throw new GameException("Tronó juego jijijij");
         }
     }
 
