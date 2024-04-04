@@ -1,13 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package exceptions;
 
 /**
  *
  * @author arace
  */
-public class PlayerException {
-    
+public class PlayerException extends Exception {
+
+    public PlayerException() {
+    }
+
+    public PlayerException(String msg) {
+        super(msg);
+    }
+
+    public PlayerException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
