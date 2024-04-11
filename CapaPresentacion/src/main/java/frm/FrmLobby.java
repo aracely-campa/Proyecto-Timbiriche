@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form FrmLobby
@@ -18,7 +19,9 @@ public class FrmLobby extends javax.swing.JFrame {
     public FrmLobby() {
         initComponents();
     }
-
+public void showNamePlayer(){
+   
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +33,7 @@ public class FrmLobby extends javax.swing.JFrame {
 
         btnStartGame = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        lblNamePlayer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +51,8 @@ public class FrmLobby extends javax.swing.JFrame {
             }
         });
 
+        lblNamePlayer.setText("Name player:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,13 +64,18 @@ public class FrmLobby extends javax.swing.JFrame {
                         .addComponent(btnReturn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(btnStartGame)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                        .addComponent(btnStartGame))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(lblNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(lblNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(btnStartGame)
                 .addGap(29, 29, 29)
                 .addComponent(btnReturn)
@@ -81,6 +92,7 @@ public class FrmLobby extends javax.swing.JFrame {
             v.setVisible(true);
             this.dispose();
         }
+        
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
@@ -125,5 +137,6 @@ public class FrmLobby extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnStartGame;
+    private javax.swing.JLabel lblNamePlayer;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
  */
 public class FrmPersonalization extends javax.swing.JFrame {
 
+    private String namePlayer;//Lo vamos a cambiar cuando tengamos el componente del player
+
     /**
      * Creates new form FrmPersonalization
      */
@@ -31,8 +33,10 @@ public class FrmPersonalization extends javax.swing.JFrame {
         btnReturn = new javax.swing.JButton();
         btnJoin = new javax.swing.JButton();
         txtNamePlayer = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Personalization");
 
         btnReturn.setText("<-");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +58,8 @@ public class FrmPersonalization extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("name");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,13 +75,18 @@ public class FrmPersonalization extends javax.swing.JFrame {
                         .addComponent(btnReturn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
-                        .addComponent(btnJoin)))
+                        .addComponent(btnJoin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(txtNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(btnJoin)
@@ -97,13 +108,19 @@ public class FrmPersonalization extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
-      FrmJoinGame v = new FrmJoinGame();
-      v.setVisible(true);
-      this.dispose();
+        namePlayer = txtNamePlayer.getText();//Lo vamos a cambiar despues
+        if (namePlayer.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo nombre está vacío");
+        } else {
+            FrmLobby v = new FrmLobby();
+            v.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnJoinActionPerformed
 
     private void txtNamePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamePlayerActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_txtNamePlayerActionPerformed
 
     /**
@@ -144,6 +161,7 @@ public class FrmPersonalization extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnJoin;
     private javax.swing.JButton btnReturn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtNamePlayer;
     // End of variables declaration//GEN-END:variables
 }

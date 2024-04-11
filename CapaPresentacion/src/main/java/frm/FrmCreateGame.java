@@ -85,7 +85,7 @@ public class FrmCreateGame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTwoPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwoPlayersActionPerformed
-        showForm(FrmLobby.class);
+        showForm(FrmPersonalization.class);
     }//GEN-LAST:event_btnTwoPlayersActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
@@ -93,11 +93,11 @@ public class FrmCreateGame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnThreePlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThreePlayersActionPerformed
-        showForm(FrmLobby.class);
+        showForm(FrmPersonalization.class);
     }//GEN-LAST:event_btnThreePlayersActionPerformed
 
     private void btnFourPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFourPlayersActionPerformed
-        showForm(FrmLobby.class);
+        showForm(FrmPersonalization.class);
     }//GEN-LAST:event_btnFourPlayersActionPerformed
 
     /**
