@@ -2,20 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ui.frm;
-
-import javax.swing.JOptionPane;
+package frm;
 
 /**
  *
  * @author arace
  */
-public class FrmLobby extends javax.swing.JFrame {
+public class FrmJoinGame extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmLobby
+     * Creates new form FrmJoinGame
      */
-    public FrmLobby() {
+    public FrmJoinGame() {
         initComponents();
     }
 
@@ -28,10 +26,15 @@ public class FrmLobby extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtCode = new javax.swing.JTextField();
+        btnJoin = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
-        btnStartGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtCode.setText("***");
+
+        btnJoin.setText("Join");
 
         btnReturn.setText("<-");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -39,8 +42,6 @@ public class FrmLobby extends javax.swing.JFrame {
                 btnReturnActionPerformed(evt);
             }
         });
-
-        btnStartGame.setText("Start Game");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,30 +53,31 @@ public class FrmLobby extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnReturn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(btnStartGame)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                        .addGap(159, 159, 159)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnJoin))))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
-                .addComponent(btnStartGame)
-                .addGap(29, 29, 29)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
+                .addComponent(btnJoin)
+                .addGap(18, 18, 18)
                 .addComponent(btnReturn)
-                .addGap(20, 20, 20))
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-       int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (exit == JOptionPane.YES_OPTION) {
-            FrmWelcome v = new FrmWelcome();
-            v.setVisible(true);
-            this.dispose();
-        }
+        FrmWelcome v = new FrmWelcome();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     /**
@@ -95,26 +97,27 @@ public class FrmLobby extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmJoinGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmJoinGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmJoinGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmJoinGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmLobby().setVisible(true);
+                new FrmJoinGame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnJoin;
     private javax.swing.JButton btnReturn;
-    private javax.swing.JButton btnStartGame;
+    private javax.swing.JTextField txtCode;
     // End of variables declaration//GEN-END:variables
 }
