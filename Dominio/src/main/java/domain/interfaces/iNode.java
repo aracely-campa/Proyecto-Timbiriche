@@ -6,10 +6,6 @@ package domain.interfaces;
 
 import domain.graph.Edge;
 
-/**
- *
- * @author HP 240 G8
- */
 public interface iNode {
     
     public int getId();

@@ -67,6 +67,10 @@ public class Node implements iNode{
         this.rightEdge = rightEdge;
     }
 
+    public boolean nodoEstaLleno(){
+        return (getUpperEdge() != null || getDownEdge() != null || getLeftEdge() != null || getRightEdge() != null);
+    }
+
     @Override
     public String toString() {
         return "Node{" + "id=" + id + '}';

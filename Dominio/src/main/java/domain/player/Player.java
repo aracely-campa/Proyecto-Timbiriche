@@ -9,32 +9,30 @@ import java.awt.Image;
  */
 public class Player extends Game {
 
-    private Image avatar; // La imagen del avatar del jugador
     private String name; // El nombre del jugador
     int score; // El puntaje del jugador
-    int id; // El identificador del jugador
-    private boolean isTurn; // El turno del jugador
+    Integer id; // El identificador del jugador
+    private boolean turnoJugador; // El turno del jugador
 
-    /**
-     * Constructor de la clase Player.
-     *
-     * @param avatar La imagen del avatar del jugador.
-     * @param name El nombre del jugador.
-     * @param score El puntaje del jugador.
-     * @param id El identificador del jugador.
-     */
-    public Player(Image avatar, String name, int score, int id) {
-        this.avatar = avatar;
-        this.name = name;
-        this.score = score;
-        this.id = id;
-       
-    }
 
     /**
      * Constructor por defecto de la clase Player.
      */
     public Player() {
+    }
+
+    /**
+     * Constructor de la clase Player.
+     *
+     * @param name El nombre del jugador.
+     * @param score El puntaje del jugador.
+     * @param id El identificador del jugador.
+     */
+    public Player( String name, int score, int id) {
+        this.name = name;
+        this.score = score;
+        this.id = id;
+       
     }
 
     /**
@@ -74,24 +72,6 @@ public class Player extends Game {
     }
 
     /**
-     * Obtiene la imagen del avatar del jugador.
-     *
-     * @return La imagen del avatar del jugador.
-     */
-    public Image getAvatar() {
-        return avatar;
-    }
-
-    /**
-     * Establece la imagen del avatar del jugador.
-     *
-     * @param avatar La imagen del avatar del jugador.
-     */
-    public void setAvatar(Image avatar) {
-        this.avatar = avatar;
-    }
-
-    /**
      * Obtiene el identificador del jugador.
      *
      * @return El identificador del jugador.
@@ -112,10 +92,10 @@ public class Player extends Game {
     /**
      * Establece el turno del jugador.
      *
-     * @param isTurn El turno del jugador.
+     * @param turnoJugador El turno del jugador.
      */
-    public void setTurn(boolean isTurn) {
-        this.isTurn = isTurn;
+    public void setTurn(boolean turnoJugador) {
+        this.turnoJugador = turnoJugador;
     }
 
     /**
@@ -123,8 +103,8 @@ public class Player extends Game {
      *
      * @return El turno del jugador.
      */
-    public boolean isTurn() {
-        return isTurn;
+    public boolean haveTurn() {
+        return turnoJugador;
     }
 
     /**
@@ -134,6 +114,6 @@ public class Player extends Game {
      */
     @Override
     public String toString() {
-        return "Player{" + "avatar=" + avatar + ", name=" + name + ", score=" + score + ", id=" + id + '}';
+        return "Player{" + ", name=" + name + ", score=" + score + ", id=" + id + '}';
     }
 }

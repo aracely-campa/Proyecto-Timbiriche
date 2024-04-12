@@ -4,7 +4,11 @@
  */
 package domain.game;
 
-import domain.graph.Node;
+import Builder.NodeBuilder;
+import Utilities.GraphManager;
+import Graph.Node;
+import exceptions.NodoException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +89,28 @@ public class Board extends Game{
             }
 
         }
+    }
+
+    public Node comprobarNodoEnLista(Node nodo){
+
+        for (int i = 0; i < nodeList.size(); i++){
+            Node nodoActual = nodeList.get(i);
+            if(nodoActual == nodo){
+          //      if(nodoActual.nodo)
+            }
+        }
+
+        return null;
+    }
+
+    public Node cambiarEstadoDeUsoNodo(Node nodo) throws NodoException {
+        if(comprobarNodoEnLista(nodo) != null){
+            //logica
+            return nodo;
+        }else{
+            throw new NodoException("Nodo inexistente");
+        }
+
     }
 
     public List getBoardNodes() {

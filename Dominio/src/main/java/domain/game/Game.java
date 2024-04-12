@@ -18,12 +18,15 @@ public class Game {
     private boolean inGame = false;
     private Game game;
 
+    private Integer tamanoDePartida;
+
     public Game() {
     }
 
-    public Game(Player[] players, Board board) {
+    public Game(Player[] players, Board board, Integer tamanoDePartida) {
         this.players = players;
         this.board = board;
+        this.tamanoDePartida = tamanoDePartida;
 
     }
 
@@ -69,7 +72,7 @@ public class Game {
 
     private void startGame() throws GameException {
         if (inGame) {
-            throw new GameException("Tronó juego jijijij");
+            throw new GameException("El juego ya estaba iniciado, no se puede volver a iniciar.");
         }
 
         this.setGameIntoElements();
@@ -79,72 +82,31 @@ public class Game {
 
     private void setGameIntoElements() throws GameException {
         setGameIntoBoard();
-        setGameIntoPlayers();
-    }
-
-    private void setGameIntoPlayers() throws GameException {
-
-        if (this.players == null || this.players.length < 1) {
-            throw new GameException("Tronó juego jijijij");
-        }
-
-        for (Player player : players) {
-
-            if (player == null) {
-                throw new GameException("Tronó juego jijijij");
-            }
-
-            player.setGame(this);
-        }
-
     }
 
     private void setGameIntoBoard() throws GameException {
 
         if (this.board == null) {
-            throw new GameException("Tronó juego jijijij");
+            throw new GameException("El tablero no esta inicializado.");
         }
 
         board.setGame(game);
     }
 
-    private int getPlayerIndexTurn() {
-        for (int i = 0; i < this.players.length; i++) {
-            Player playerSelected = this.players[i];
-            if (playerSelected != null && playerSelected.isTurn()) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
-    private void passTurn() throws GameException {
-        int playerIndexTurn = this.getPlayerIndexTurn();
-        int nextTurn;
 
-        if (playerIndexTurn == -1) {
-            throw new GameException("Tronó juego jijijij");
-        }
-
-        if (playerIndexTurn == (this.players.length - 1)) {
-            nextTurn = 0;
-        } else {
-            nextTurn = playerIndexTurn + 1;
-        }
-
-    }
 
     public void addPlayer(Player player) throws GameException {
         if (isInGame()) {
-            throw new GameException("Tronó juego jijijij");
+            throw new GameException("El juego aun no ha comenzado, no se pueden agregar jugadores todavia.");
         }
 
         if (player == null) {
-            throw new GameException("Tronó juego jijijij");
+            throw new GameException("El Jugador ingresado es nuelo");
         }
 
         if (isMatchFull()) {
-            throw new GameException("Tronó juego jijijij");
+            throw new GameException("La partida esta llena, ya no recibe mas jugadores");
         }
 
         addPlayerToMatch(player);
@@ -155,14 +117,16 @@ public class Game {
     }
 
     private void addPlayerToMatch(Player player) {
-        for (int i = 0; i < 4; i++) {
-            if (players[i] == null) {
+        for (int i = 0; i < tamanoDePartida; i++) {
+            if (comprobarEspacioEnPartida()) {
                 players[i] = player;
                 return;
             }
         }
     }
-
+    public boolean comprobarEspacioEnPartida(){
+        return !(players.length > tamanoDePartida);
+    }
     private boolean isMatchFull() {
         for (Player player : players) {
             if (player == null) {
@@ -190,11 +154,11 @@ public class Game {
 
     public void deletePlayer(Player player) throws GameException {
         if (isInGame()) {
-            throw new GameException("v");
+            throw new GameException("El juego no esta iniciado todavia, no puedes eliminar el jugador.");
         }
 
         if (player == null) {
-            throw new GameException("Tronó juego jijijij");
+            throw new GameException("El jugador que se esta intentando eliminar no existe o es nulo.");
         }
 
         int foundIndex = findPlayerIndex(player);
