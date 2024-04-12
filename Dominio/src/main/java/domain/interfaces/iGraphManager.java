@@ -18,4 +18,5 @@ public interface iGraphManager {
     public void fixLastRow(Node node);
     public void fixFirstColumn(Node node);
     public void fixLastColumn(Node node);
+    public Node createNode();
 }

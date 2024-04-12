@@ -15,6 +15,7 @@ public class GraphManager implements iGraphManager{
     
     
     EdgeBuilder edgeBuilder = new EdgeBuilder();
+    NodeBuilder nodeBuilder = new NodeBuilder();
 
     @Override
     public void joinVerticalNodes(Node nodeBeggining, Node nodeEnding) {
@@ -83,6 +84,16 @@ public class GraphManager implements iGraphManager{
         //edgeBuilder.reset();    
         
         node.setRightEdge(null);
+    }
+
+    @Override
+    public Node createNode() {
+
+        nodeBuilder.setID();
+        Node node=nodeBuilder.getProduct();
+        nodeBuilder.reset();
+        return node;
+
     }
     
 }

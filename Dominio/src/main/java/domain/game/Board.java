@@ -4,6 +4,7 @@
  */
 package domain.game;
 
+import Services.GraphManager;
 import domain.graph.Node;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,6 @@ public class Board extends Game{
     
     private Square[][] boardArray;
     private List<Node> nodeList = new ArrayList();
-    private NodeBuilder nodeBuilder = new NodeBuilder();
     private GraphManager graphManager = new GraphManager();
 
     public void createSmallBoard() {
@@ -39,10 +39,8 @@ public class Board extends Game{
 
         for (int i = 0; i < boardArray.length; i++) {
             for (int j = 0; j < boardArray[0].length; j++) {
-                nodeBuilder.setID();
-                nodeList.add(nodeBuilder.getProduct());
+                nodeList.add(graphManager.createNode());
                 //System.out.println("ID:"+nodeBuilder.getProduct().getId());
-                nodeBuilder.reset();
             }
         }
 
