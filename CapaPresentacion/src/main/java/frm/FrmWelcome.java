@@ -1,9 +1,8 @@
-
-package ui.frm;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/Application.java to edit this template
+ */
+package frm;
 
 /**
  *
@@ -16,10 +15,7 @@ public class FrmWelcome extends javax.swing.JFrame {
      */
     public FrmWelcome() {
         initComponents();
-       
-      
     }
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,63 +29,50 @@ public class FrmWelcome extends javax.swing.JFrame {
         btnJoinGame = new javax.swing.JButton();
         btnCreateGame = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Timbiriche");
+        setTitle("Timbiriche game");
         setAlwaysOnTop(true);
-        setEnabled(false);
-        setMaximumSize(new java.awt.Dimension(720, 576));
-        setMinimumSize(new java.awt.Dimension(720, 576));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusCycleRoot(false);
+        setForeground(new java.awt.Color(255, 255, 255));
+        setName("Inicio"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnJoinGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/btnJoinGame.png"))); // NOI18N
-        btnJoinGame.setBorderPainted(false);
-        btnJoinGame.setContentAreaFilled(false);
+        btnJoinGame.setText("join game");
         btnJoinGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnJoinGameActionPerformed(evt);
             }
         });
-        getContentPane().add(btnJoinGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 210, 210));
+        getContentPane().add(btnJoinGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
-        btnCreateGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sources/btnCreateGame.png"))); // NOI18N
-        btnCreateGame.setBorderPainted(false);
-        btnCreateGame.setContentAreaFilled(false);
+        btnCreateGame.setText("Create game");
         btnCreateGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateGameActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCreateGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 210, 210));
+        getContentPane().add(btnCreateGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
 
-        btnExit.setBorderPainted(false);
-        btnExit.setContentAreaFilled(false);
+        btnExit.setText("exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 110, 70));
-
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 560));
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJoinGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinGameActionPerformed
-        Icon icon = new ImageIcon(new ImageIcon(getClass().getResource("/sources/btnCreateGame.png")).getImage());
-//        System.getProperty("user.dir")+("\\src\\main\\java\\sources\\btnCreateGame.png"
-        btnJoinGame.setIcon(icon);
         FrmJoinGame v = new FrmJoinGame();
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnJoinGameActionPerformed
 
     private void btnCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateGameActionPerformed
-        Icon icon1 = new ImageIcon(new ImageIcon(getClass().getResource("/sources/btnJoinGame.png")).getImage());
-        btnCreateGame.setIcon(icon1);
         FrmCreateGame v = new FrmCreateGame();
         v.setVisible(true);
         this.dispose();
@@ -138,11 +121,6 @@ public class FrmWelcome extends javax.swing.JFrame {
     private javax.swing.JButton btnCreateGame;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnJoinGame;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-
-    
-
-    
 
 }

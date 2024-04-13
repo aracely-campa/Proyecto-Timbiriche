@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ui.frm;
+package frm;
 
 import javax.swing.JOptionPane;
 
@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form FrmLobby
@@ -18,7 +19,9 @@ public class FrmLobby extends javax.swing.JFrame {
     public FrmLobby() {
         initComponents();
     }
-
+public void showNamePlayer(){
+   
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,10 +31,18 @@ public class FrmLobby extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnReturn = new javax.swing.JButton();
         btnStartGame = new javax.swing.JButton();
+        btnReturn = new javax.swing.JButton();
+        lblNamePlayer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnStartGame.setText("Start Game");
+        btnStartGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartGameActionPerformed(evt);
+            }
+        });
 
         btnReturn.setText("<-");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
@@ -40,7 +51,7 @@ public class FrmLobby extends javax.swing.JFrame {
             }
         });
 
-        btnStartGame.setText("Start Game");
+        lblNamePlayer.setText("Name player:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,13 +64,18 @@ public class FrmLobby extends javax.swing.JFrame {
                         .addComponent(btnReturn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(152, 152, 152)
-                        .addComponent(btnStartGame)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                        .addComponent(btnStartGame))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(lblNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(lblNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(btnStartGame)
                 .addGap(29, 29, 29)
                 .addComponent(btnReturn)
@@ -70,13 +86,18 @@ public class FrmLobby extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-       int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (exit == JOptionPane.YES_OPTION) {
             FrmWelcome v = new FrmWelcome();
             v.setVisible(true);
             this.dispose();
         }
+        
     }//GEN-LAST:event_btnReturnActionPerformed
+
+    private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
+    
+    }//GEN-LAST:event_btnStartGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,5 +137,6 @@ public class FrmLobby extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnStartGame;
+    private javax.swing.JLabel lblNamePlayer;
     // End of variables declaration//GEN-END:variables
 }
