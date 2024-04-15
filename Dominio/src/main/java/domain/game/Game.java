@@ -1,25 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain.game;
 
 import domain.player.Player;
 import exceptions.GameException;
 
-/*
- *
- * @author arace
- */
 public class Game {
 
     private Player[] players;
+    
     private Board board;
-    private boolean inGame = false;
+    
+    private boolean gameStarted = false;
+    
     private Game game;
-
+    
     private Integer tamanoDePartida;
 
+    //Constructor por default
     public Game() {
     }
 
@@ -30,53 +26,13 @@ public class Game {
 
     }
 
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    public boolean isInGame() {
-        return inGame;
-    }
-
-    public void setInGame(boolean inGame) {
-        this.inGame = inGame;
-    }
-
-    public Player[] getPlayer() {
-        return players;
-    }
-
-    public void setPlayer(Player[] player) {
-        this.players = player;
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
-    }
-
-    public boolean isInGame(boolean inGame) {
-        return inGame;
-    }
-
-    public void setInGame() {
-        this.inGame = inGame;
-    }
-
     private void startGame() throws GameException {
-        if (inGame) {
+        if (gameStarted) {
             throw new GameException("El juego ya estaba iniciado, no se puede volver a iniciar.");
         }
 
         this.setGameIntoElements();
-        this.setInGame(true);
+        this.setGameStarted();
 
     }
 
@@ -93,11 +49,8 @@ public class Game {
         board.setGame(game);
     }
 
-
-
-
     public void addPlayer(Player player) throws GameException {
-        if (isInGame()) {
+        if (isGameStarted()) {
             throw new GameException("El juego aun no ha comenzado, no se pueden agregar jugadores todavia.");
         }
 
@@ -111,7 +64,7 @@ public class Game {
 
         addPlayerToMatch(player);
 
-        if (isMatchFull()) {
+        if (matchCanStart()) {
             startGame();
         }
     }
@@ -120,6 +73,7 @@ public class Game {
         for (int i = 0; i < tamanoDePartida; i++) {
             if (comprobarEspacioEnPartida()) {
                 players[i] = player;
+                players[i].setId(i);
                 return;
             }
         }
@@ -145,29 +99,63 @@ public class Game {
         return -1;
     }
 
-    private void shiftPlayers(int index) {
-        for (int i = index; i < 3; i++) {
-            this.players[i] = this.players[i + 1];
-        }
-        this.players[3] = null;
-    }
-
     public void deletePlayer(Player player) throws GameException {
-        if (isInGame()) {
-            throw new GameException("El juego no esta iniciado todavia, no puedes eliminar el jugador.");
-        }
 
         if (player == null) {
             throw new GameException("El jugador que se esta intentando eliminar no existe o es nulo.");
         }
 
-        int foundIndex = findPlayerIndex(player);
-
-        if (foundIndex != -1) {
-            shiftPlayers(foundIndex);
-        } else {
-            throw new GameException("Tronó juego jijijij");
+        for (int i = 0; i < 4; i++) {
+            if (this.players[i] == player) {
+                this.players[i] = null;
+            }
         }
+
+    }
+
+        
+    public boolean matchCanStart(){
+        return isMatchFull();
+    }
+    
+    public void setGameFinished(){
+        this.gameStarted = false;
+    }
+
+    public void setGameStarted(){
+        this.gameStarted = true;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public boolean getGameStarted() {
+        return gameStarted;
+    }
+
+    public Player[] getPlayer() {
+        return players;
+    }
+
+    public void setPlayersWithList(Player[] player) {
+        this.players = player;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public boolean isGameStarted() {
+        return gameStarted;
     }
 
     @Override

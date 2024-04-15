@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain.game;
 
 import Services.GraphManager;
@@ -9,10 +5,6 @@ import domain.graph.Node;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author arace
- */
 public class Board extends Game{
     
     private Square[][] boardArray;
@@ -20,7 +12,6 @@ public class Board extends Game{
     private GraphManager graphManager = new GraphManager();
 
     public void createSmallBoard() {
-
         createSmallBoardArray();
         createSmallBoardGraph();
     }
@@ -36,11 +27,9 @@ public class Board extends Game{
     }
 
     public void createSmallBoardGraph() {
-
         for (int i = 0; i < boardArray.length; i++) {
             for (int j = 0; j < boardArray[0].length; j++) {
                 nodeList.add(graphManager.createNode());
-                //System.out.println("ID:"+nodeBuilder.getProduct().getId());
             }
         }
 
