@@ -20,13 +20,11 @@ public class Game {
     public Game() {
     }
 
-    public Game(Player[] players, Board board, Integer tamanoDePartida) {
-        this.players = players;
+    public Game(Board board, Integer tamanoDePartida) {
         this.board = board;
         this.tamanoDePartida = tamanoDePartida;
-
     }
-
+    
     private void startGame() throws GameException {
         if (gameStatus) {
             throw new GameException("El juego ya estaba iniciado, no se puede volver a iniciar.");
@@ -42,6 +40,15 @@ public class Game {
         }
         removeGameElements();
         this.setGameFinished();
+    }
+    
+    public Player[] createPlayerListWithSize(Integer tamanoInteger) throws GameException{
+        
+        if(this.players != null){
+            throw new GameException("La lista ya esta instanciada, no se puede añadir");
+        }
+        
+       return this.players = new Player[tamanoInteger];
     }
     
     private void setGameIntoElements() throws GameException {
@@ -98,9 +105,11 @@ public class Game {
             }
         }
     }
+    
     public boolean comprobarEspacioEnPartida(){
         return !(players.length > tamanoDePartida);
     }
+    
     private boolean isMatchFull() {
         for (Player player : players) {
             if (player == null) {
