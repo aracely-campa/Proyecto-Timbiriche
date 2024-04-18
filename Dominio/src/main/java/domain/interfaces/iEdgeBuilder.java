@@ -6,7 +6,7 @@ package domain.interfaces;
 
 import domain.graph.Edge;
 import domain.graph.Node;
-import domain.player.Player;
+import domain.game.Player;
 
 /**
  *

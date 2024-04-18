@@ -4,7 +4,6 @@
  */
 package domain.game;
 
-import domain.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Node;

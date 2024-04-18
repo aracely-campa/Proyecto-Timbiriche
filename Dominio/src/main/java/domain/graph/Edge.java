@@ -4,7 +4,7 @@
  */
 package domain.graph;
 
-import domain.player.Player;
+import domain.game.Player;
 
 /**
  *

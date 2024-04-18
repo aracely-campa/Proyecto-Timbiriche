@@ -7,7 +7,7 @@ package Services;
 import domain.graph.Edge;
 import domain.graph.Node;
 import domain.interfaces.iEdgeBuilder;
-import domain.player.Player;
+import domain.game.Player;
 
 /**
  *
