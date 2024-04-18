@@ -1,0 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mvc.player;
+
+/**
+ *
+ * @author luis-
+ */
+public class PlayerComponent {
+    
+    private PlayerController playerController;
+    private PlayerModel playerModel;
+    private PlayerView playerView;
+    
+    
+}

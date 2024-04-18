@@ -4,7 +4,10 @@
  */
 package frm;
 
+import domain.game.Board;
+import domain.game.Game;
 import javax.swing.JFrame;
+import mvc.game.GameModel;
 
 /**
  *
@@ -12,11 +15,29 @@ import javax.swing.JFrame;
  */
 public class FrmCreateGame extends javax.swing.JFrame {
 
+    private GameModel gameModel;
+
     /**
      * Creates new form FrmCreateGame
      */
-    public FrmCreateGame() {
+    public FrmCreateGame(GameModel gameModel) {
         initComponents();
+    }
+
+    public void createGame() {
+        GameModel gameModel = new GameModel();
+        gameModel.setTamanoDePartida(getPlayerGameSize());
+        gameModel.setGame(new Game(new Board(), getPlayerGameSize()));
+    }
+
+    public int getPlayerGameSize() {
+        if (btnTwoPlayers.isSelected()) {
+            return 2;
+        } else if (btnThreePlayers.isSelected()) {
+            return 3;
+        } else {
+            return 4;
+        }
     }
 
     private void showForm(Class<? extends JFrame> formClass) {

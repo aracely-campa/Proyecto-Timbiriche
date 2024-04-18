@@ -7,7 +7,7 @@ import java.awt.Image;
  *
  * @author arace La clase Player representa a un jugador en un juego.
  */
-public class Player extends Game {
+public class Player {
 
     private String name; // El nombre del jugador
     int score; // El puntaje del jugador
