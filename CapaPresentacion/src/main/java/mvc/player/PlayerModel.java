@@ -4,10 +4,59 @@
  */
 package mvc.player;
 
+import domain.game.Player;
+import enums.ImagesSourcers;
+
 /**
  *
  * @author luis-
  */
 public class PlayerModel {
-    
+     private Player player;
+    private String avatarPath;
+
+    private String name;
+
+    public int turn;
+
+    public PlayerModel(Player player, String avatarSelected) {
+        this.player = player;
+        this.name = avatarSelected;
+        this.avatarPath = getAvatarImage(this.name);
+
+    }
+
+    public static String getAvatarImage(String name) {
+        return switch (name) {
+            case "Among_us_Blue" ->
+                ImagesSourcers.getAvatarBlue();
+            case "Among_us_Red" ->
+                ImagesSourcers.getAvatarRed();
+            case "Among_us_Green" ->
+                ImagesSourcers.getAvatarGreen();
+            case "Among_us_Yellow" ->
+                ImagesSourcers.getAvatarYellow();
+            default ->
+                null;
+        };
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerModel{" + "player=" + player + ", avatarPath=" + avatarPath + ", name=" + name + ", turn=" + turn + '}';
+    }
+
 }
+
