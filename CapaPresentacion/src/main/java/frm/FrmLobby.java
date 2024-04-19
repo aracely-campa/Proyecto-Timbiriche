@@ -5,6 +5,7 @@
 package frm;
 
 import javax.swing.JOptionPane;
+import mvc.player.PlayerModel;
 
 /**
  *
@@ -12,11 +13,12 @@ import javax.swing.JOptionPane;
  */
 public class FrmLobby extends javax.swing.JFrame {
     
+    PlayerModel playerModel;
 
     /**
      * Creates new form FrmLobby
      */
-    public FrmLobby() {
+    public FrmLobby(PlayerModel playerModel) {
         initComponents();
     }
 public void showNamePlayer(){

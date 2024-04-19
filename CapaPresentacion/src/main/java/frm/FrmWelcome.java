@@ -4,6 +4,9 @@
  */
 package frm;
 
+import factory.GameFactory;
+import mvc.game.GameModel;
+
 /**
  *
  * @author arace
@@ -83,9 +86,10 @@ public class FrmWelcome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJoinGameActionPerformed
 
     private void btnCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateGameActionPerformed
-        FrmCreateGame v = new FrmCreateGame();
-        v.setVisible(true);
-        this.dispose();
+         GameModel gameModel = new GameModel(); // Supongamos que aquí tienes una instancia de GameModel
+    FrmCreateGame v = GameFactory.createFrmCreateGame(gameModel);
+    v.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_btnCreateGameActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

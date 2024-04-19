@@ -17,6 +17,14 @@ public class ImagesSourcers {
 
     public ImagesSourcers() {
     }
+    
+     public static String[] getAvatarImages() {
+        return new String[] { avatarBlue, avatarRed, avatarGreen, avatarYellow };
+    }
+
+    public static String[] getFormImages() {
+        return new String[] { imgFrmLobby, imgFrmWelcome, imgFrmJoinGame };
+    }
 
     public static String getAvatarBlue() {
         return avatarBlue;

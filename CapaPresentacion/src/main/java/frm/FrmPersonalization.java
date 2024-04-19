@@ -4,7 +4,11 @@
  */
 package frm;
 
+import enums.ImagesSourcers;
+import factory.PlayerFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import mvc.player.PlayerModel;
 
 /**
  *
@@ -13,12 +17,19 @@ import javax.swing.JOptionPane;
 public class FrmPersonalization extends javax.swing.JFrame {
 
     private String namePlayer;//Lo vamos a cambiar cuando tengamos el componente del player
+    private PlayerModel playerModel;
+    private String avatar;
+    private String[] avatarPaths; // Arreglo de rutas de imágenes de avatares
+    private int currentIndex = 0; // Índice de la imagen actual
 
     /**
      * Creates new form FrmPersonalization
      */
-    public FrmPersonalization() {
+    public FrmPersonalization(PlayerModel playerModel) {
         initComponents();
+        avatarPaths = ImagesSourcers.getAvatarImages();
+        // Muestra la primera imagen al cargar el formulario
+        displayCurrentAvatar();
     }
 
     /**
@@ -34,6 +45,10 @@ public class FrmPersonalization extends javax.swing.JFrame {
         btnJoin = new javax.swing.JButton();
         txtNamePlayer = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        rightButton = new javax.swing.JButton();
+        avatarButton = new javax.swing.JButton();
+        leftButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Personalization");
@@ -60,44 +75,107 @@ public class FrmPersonalization extends javax.swing.JFrame {
 
         jLabel1.setText("name");
 
+        jLabel2.setText("Avatar");
+
+        rightButton.setText("-->");
+        rightButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightButtonActionPerformed(evt);
+            }
+        });
+
+        avatarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/avatar/avatarBlue.png"))); // NOI18N
+
+        leftButton.setText("<--");
+        leftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leftButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
-                .addComponent(txtNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(122, 122, 122))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(btnReturn))
+                        .addGap(127, 127, 127)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabel2))
+                            .addComponent(txtNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(btnReturn)
+                        .addGap(136, 136, 136)
                         .addComponent(btnJoin))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(90, 90, 90)
+                        .addComponent(leftButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(avatarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rightButton)))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(txtNamePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(btnJoin)
-                .addGap(27, 27, 27)
-                .addComponent(btnReturn)
-                .addGap(26, 26, 26))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(avatarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(leftButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rightButton)
+                        .addGap(39, 39, 39)))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReturn)
+                    .addComponent(btnJoin))
+                .addGap(17, 17, 17))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    // Método para mostrar la imagen actual en el avatarButton
+    private void displayCurrentAvatar() {
+        if (currentIndex >= 0 && currentIndex < avatarPaths.length) {
+            ImageIcon icon = new ImageIcon(avatarPaths[currentIndex]);
+            avatarButton.setIcon(icon);
+        }
+    }
+
+    // Método para moverse a la imagen anterior
+    private void showPreviousAvatar() {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = avatarPaths.length - 1;
+        }
+        displayCurrentAvatar();
+    }
+
+    // Método para moverse a la siguiente imagen
+    private void showNextAvatar() {
+        currentIndex++;
+        if (currentIndex >= avatarPaths.length) {
+            currentIndex = 0;
+        }
+        displayCurrentAvatar();
+    }
+
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
         int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
@@ -110,10 +188,11 @@ public class FrmPersonalization extends javax.swing.JFrame {
 
     private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
         namePlayer = txtNamePlayer.getText();//Lo vamos a cambiar despues
+        playerModel.setAvatarPath(avatarButton.getIcon().toString());
         if (namePlayer.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo nombre está vacío");
         } else {
-            FrmLobby v = new FrmLobby();
+            FrmLobby v = PlayerFactory.frmLobby(playerModel);
             v.setVisible(true);
             this.dispose();
         }
@@ -123,6 +202,16 @@ public class FrmPersonalization extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_txtNamePlayerActionPerformed
+
+    private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
+        // TODO add your handling code here:
+        showPreviousAvatar();
+    }//GEN-LAST:event_leftButtonActionPerformed
+
+    private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
+        // TODO add your handling code here:
+        showNextAvatar();
+    }//GEN-LAST:event_rightButtonActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -160,9 +249,13 @@ public class FrmPersonalization extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton avatarButton;
     private javax.swing.JButton btnJoin;
     private javax.swing.JButton btnReturn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton leftButton;
+    private javax.swing.JButton rightButton;
     private javax.swing.JTextField txtNamePlayer;
     // End of variables declaration//GEN-END:variables
 }

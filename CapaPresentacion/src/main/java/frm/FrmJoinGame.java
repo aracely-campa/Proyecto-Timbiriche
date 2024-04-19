@@ -86,9 +86,9 @@ public class FrmJoinGame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El código debe tener 4 letras");
             return;
         } else {
-            FrmPersonalization v = new FrmPersonalization();
-            v.setVisible(true);
-            this.dispose();
+//            FrmPersonalization v = new FrmPersonalization();
+//            v.setVisible(true);
+//            this.dispose();
         }
 
     }//GEN-LAST:event_btnJoinActionPerformed

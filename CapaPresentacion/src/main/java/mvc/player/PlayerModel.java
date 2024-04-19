@@ -12,12 +12,16 @@ import enums.ImagesSourcers;
  * @author luis-
  */
 public class PlayerModel {
-     private Player player;
-    private String avatarPath;
 
+    private Player player;
+    private String avatarPath;
+    
     private String name;
 
     public int turn;
+
+    public PlayerModel() {
+    }
 
     public PlayerModel(Player player, String avatarSelected) {
         this.player = player;
@@ -49,8 +53,20 @@ public class PlayerModel {
         this.player = player;
     }
 
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
     public String getAvatarPath() {
         return avatarPath;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -59,4 +75,3 @@ public class PlayerModel {
     }
 
 }
-

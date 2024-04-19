@@ -6,8 +6,10 @@ package frm;
 
 import domain.game.Board;
 import domain.game.Game;
+import factory.PlayerFactory;
 import javax.swing.JFrame;
 import mvc.game.GameModel;
+import mvc.player.PlayerModel;
 
 /**
  *
@@ -20,14 +22,19 @@ public class FrmCreateGame extends javax.swing.JFrame {
     /**
      * Creates new form FrmCreateGame
      */
-    public FrmCreateGame(GameModel gameModel) {
+    public FrmCreateGame(GameModel gameModel){
         initComponents();
+        this.gameModel=gameModel;
     }
 
     public void createGame() {
-        GameModel gameModel = new GameModel();
+        try{
         gameModel.setTamanoDePartida(getPlayerGameSize());
         gameModel.setGame(new Game(new Board(), getPlayerGameSize()));
+        }catch(Exception e){
+            e.getMessage();
+        }
+        
     }
 
     public int getPlayerGameSize() {
@@ -41,15 +48,21 @@ public class FrmCreateGame extends javax.swing.JFrame {
     }
 
     private void showForm(Class<? extends JFrame> formClass) {
-        JFrame form = null;
-        try {
+         JFrame form = null;
+    try {
+        if (formClass == FrmPersonalization.class) {
+            // Crear un PlayerModel vacío o inicializado según sea necesario
+            PlayerModel playerModel = new PlayerModel();
+            // Utilizar PlayerFactory para crear una instancia de FrmPersonalization
+            form = PlayerFactory.frmPersonalization(playerModel);
+        } else {
             form = formClass.getDeclaredConstructor().newInstance();
-            form.setVisible(true);
-            this.dispose();
-        } catch (Exception e) {
-            System.err.println("Error al crear la ventana: " + e.getMessage());
-
         }
+        form.setVisible(true);
+        this.dispose();
+    } catch (Exception e) {
+        System.err.println("Error al crear la ventana: " + e.getMessage());
+    }
     }
 
     /**
