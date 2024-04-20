@@ -4,7 +4,7 @@
  */
 package frm;
 
-import factory.GameFactory;
+import factory.MVCFactory;
 import mvc.game.GameModel;
 
 /**
@@ -12,12 +12,15 @@ import mvc.game.GameModel;
  * @author arace
  */
 public class FrmWelcome extends javax.swing.JFrame {
-
+    
+    private MVCFactory mvcfactory;
+    
     /**
      * Creates new form FrmWelcome
      */
     public FrmWelcome() {
         initComponents();
+        this.mvcfactory= MVCFactory.getInstance() ;
     }
 
     /**
@@ -86,8 +89,8 @@ public class FrmWelcome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJoinGameActionPerformed
 
     private void btnCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateGameActionPerformed
-         GameModel gameModel = new GameModel(); // Supongamos que aquí tienes una instancia de GameModel
-    FrmCreateGame v = GameFactory.createFrmCreateGame(gameModel);
+    
+    FrmCreateGame v = new FrmCreateGame(MVCFactory.getInstance().instanceGameComponent());
     v.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_btnCreateGameActionPerformed

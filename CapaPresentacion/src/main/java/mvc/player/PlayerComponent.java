@@ -9,10 +9,14 @@ package mvc.player;
  * @author luis-
  */
 public class PlayerComponent {
-    
+
     private PlayerController playerController;
     private PlayerModel playerModel;
     private PlayerView playerView;
+    private static PlayerComponent playerComponent;
+    
+    public PlayerComponent() {
+    }
 
     public PlayerComponent(PlayerController playerController, PlayerModel playerModel, PlayerView playerView) {
         this.playerController = playerController;
@@ -43,11 +47,17 @@ public class PlayerComponent {
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
     }
+    
+    public static PlayerComponent getInstance(){
+        if(playerComponent == null){
+            playerComponent = new PlayerComponent();
+        }
+        return playerComponent;
+    }
 
     @Override
     public String toString() {
         return "PlayerComponent{" + "playerController=" + playerController + ", playerModel=" + playerModel + ", playerView=" + playerView + '}';
     }
-    
-    
+
 }

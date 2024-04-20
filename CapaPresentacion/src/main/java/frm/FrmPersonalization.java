@@ -5,7 +5,7 @@
 package frm;
 
 import enums.ImagesSourcers;
-import factory.PlayerFactory;
+import factory.MVCFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerModel;
@@ -21,6 +21,7 @@ public class FrmPersonalization extends javax.swing.JFrame {
     private String avatar;
     private String[] avatarPaths; // Arreglo de rutas de imágenes de avatares
     private int currentIndex = 0; // Índice de la imagen actual
+    
 
     /**
      * Creates new form FrmPersonalization
@@ -192,7 +193,7 @@ public class FrmPersonalization extends javax.swing.JFrame {
         if (namePlayer.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo nombre está vacío");
         } else {
-            FrmLobby v = PlayerFactory.frmLobby(playerModel);
+            FrmLobby v = new FrmLobby(MVCFactory.getInstance().instancePlayerComponent().getPlayerModel());
             v.setVisible(true);
             this.dispose();
         }

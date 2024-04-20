@@ -8,7 +8,8 @@ import java.awt.Image;
  * @author arace La clase Player representa a un jugador en un juego.
  */
 public class Player {
-
+    
+    private static Player player;
     private String name; // El nombre del jugador
     int score; // El puntaje del jugador
     Integer id; // El identificador del jugador
@@ -106,7 +107,15 @@ public class Player {
     public boolean haveTurn() {
         return turnoJugador;
     }
-
+    
+    public static Player getInstance(){
+        if(player == null){
+            player = new Player();
+        }
+        return player;
+    }
+    
+    
     /**
      * Devuelve una representación en cadena de texto del objeto Player.
      *

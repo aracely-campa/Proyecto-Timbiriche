@@ -10,6 +10,7 @@ public class Board extends Game{
     private Square[][] boardArray;
     private List<Node> nodeList = new ArrayList();
     private GraphManager graphManager = new GraphManager();
+    private static Board board;
 
     public void createSmallBoard() {
         createSmallBoardArray();
@@ -81,4 +82,12 @@ public class Board extends Game{
     public Square[][] getBoardArray() {
         return boardArray;
     }
+    
+    public static Board getInstance(){
+        if(board == null){
+            board = new Board();
+        }
+        return board;
+    }
+    
 }

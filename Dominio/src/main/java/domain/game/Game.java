@@ -3,8 +3,8 @@ package domain.game;
 import exceptions.GameException;
 
 public class Game {
-
-    private Game game;
+    
+    private static Game game;
     
     private Board board;
     
@@ -15,7 +15,7 @@ public class Game {
     private boolean gameStatus;
     
     private Integer tamanoDePartida;
-
+    
     //Constructor por default
     public Game() {
     }
@@ -98,7 +98,7 @@ public class Game {
 
     private void addPlayerToMatch(Player player) {
         for (int i = 0; i < tamanoDePartida; i++) {
-            if (comprobarEspacioEnPartida()) {
+            if (comprovePlayersInGame()) {
                 players[i] = player;
                 players[i].setId(i);
                 return;
@@ -106,7 +106,7 @@ public class Game {
         }
     }
     
-    public boolean comprobarEspacioEnPartida(){
+    public boolean comprovePlayersInGame(){
         return !(players.length > tamanoDePartida);
     }
     
@@ -189,6 +189,13 @@ public class Game {
 
     public boolean isGameStarted() {
         return gameStatus;
+    }
+    
+    public static Game getInstance(){
+        if(game == null){
+            game = new Game();
+        }
+        return game;
     }
 
     @Override

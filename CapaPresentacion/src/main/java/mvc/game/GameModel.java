@@ -7,45 +7,51 @@ package mvc.game;
 import domain.game.Board;
 import domain.game.Game;
 import domain.game.Player;
-
+import domainClasses.DomainBoard;
+import domainClasses.DomainGame;
 
 /**
  *
  * @author luis-
  */
 public class GameModel {
-    
-    private Game game;
-        
-    private Board board;
-    
-    private boolean gameStarted=false;
-    
+
+    private DomainGame domainGame;
+
+    private DomainBoard domainBoard;
+
+    private boolean gameStarted = false;
+
     private Integer tamanoDePartida;
-    
-    
-    public GameModel(Game game, Board board, Player[] players, Integer tamanoDePartida) {
-        this.game = new Game();
-        this.board = board;
+
+    public GameModel(Integer tamanoDePartida) {
+        this.domainGame = new DomainGame();
+        this.domainBoard = domainBoard;
         this.tamanoDePartida = tamanoDePartida;
     }
-    
+
     public GameModel() {
     }
-    
-    public void createGame(){
-        this.game=game;
-    }
-    
-    
-    public Game getGame() {
-        return game;
+
+    public void createGame() {
+        this.domainGame=domainGame;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public DomainGame getDomainGame() {
+        return domainGame;
     }
 
+    public void setDomainGame(DomainGame domainGame) {
+        this.domainGame = domainGame;
+    }
+
+    public DomainBoard getDomainBoard() {
+        return domainBoard;
+    }
+
+    public void setDomainBoard(DomainBoard domainBoard) {
+        this.domainBoard = domainBoard;
+    }
 
     public boolean isGameStarted() {
         return gameStarted;
@@ -65,11 +71,7 @@ public class GameModel {
 
     @Override
     public String toString() {
-        return "GameModel{" + "game=" + game  + ", gameStarted=" + gameStarted + ", tamanoDePartida=" + tamanoDePartida + '}';
+        return "GameModel{" + ", gameStarted=" + gameStarted + ", tamanoDePartida=" + tamanoDePartida + '}';
     }
-    
-    
-    
-    
-    
+
 }

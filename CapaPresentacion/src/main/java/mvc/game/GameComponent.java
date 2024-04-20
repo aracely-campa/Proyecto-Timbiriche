@@ -13,7 +13,9 @@ public class GameComponent {
     private GameController gameController;
     private GameModel gameModel;
     private GameView gameView;
-
+    private static GameComponent gameComponent;
+    
+    
     public GameComponent() {
     }
     
@@ -47,7 +49,12 @@ public class GameComponent {
         this.gameView = gameView;
     }
     
-    
+    public static GameComponent getInstance(){
+        if(gameComponent == null){
+            gameComponent = new GameComponent();
+        }
+        return gameComponent;
+    }
     
     
 

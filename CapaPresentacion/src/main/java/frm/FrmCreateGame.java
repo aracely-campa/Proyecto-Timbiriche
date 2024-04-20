@@ -4,10 +4,10 @@
  */
 package frm;
 
-import domain.game.Board;
-import domain.game.Game;
-import factory.PlayerFactory;
+
+import factory.MVCFactory;
 import javax.swing.JFrame;
+import mvc.game.GameComponent;
 import mvc.game.GameModel;
 import mvc.player.PlayerModel;
 
@@ -17,20 +17,22 @@ import mvc.player.PlayerModel;
  */
 public class FrmCreateGame extends javax.swing.JFrame {
 
-    private GameModel gameModel;
+    private GameComponent gameComponent;
+    private MVCFactory mvcfactory;
 
     /**
      * Creates new form FrmCreateGame
      */
-    public FrmCreateGame(GameModel gameModel){
+    public FrmCreateGame(GameComponent gameComponent){
         initComponents();
-        this.gameModel=gameModel;
+        this.gameComponent=gameComponent;
     }
 
     public void createGame() {
         try{
-        gameModel.setTamanoDePartida(getPlayerGameSize());
-        gameModel.setGame(new Game(new Board(), getPlayerGameSize()));
+        this.gameComponent.getGameModel().setTamanoDePartida(getPlayerGameSize());
+         this.gameComponent.getGameModel().createGame();
+        //gameModel.setGame(new Game(new Board(), getPlayerGameSize()));
         }catch(Exception e){
             e.getMessage();
         }
@@ -47,22 +49,14 @@ public class FrmCreateGame extends javax.swing.JFrame {
         }
     }
 
-    private void showForm(Class<? extends JFrame> formClass) {
-         JFrame form = null;
-    try {
-        if (formClass == FrmPersonalization.class) {
-            // Crear un PlayerModel vacío o inicializado según sea necesario
-            PlayerModel playerModel = new PlayerModel();
-            // Utilizar PlayerFactory para crear una instancia de FrmPersonalization
-            form = PlayerFactory.frmPersonalization(playerModel);
-        } else {
-            form = formClass.getDeclaredConstructor().newInstance();
-        }
-        form.setVisible(true);
-        this.dispose();
-    } catch (Exception e) {
-        System.err.println("Error al crear la ventana: " + e.getMessage());
+    private void showPersonalizationFrm() {
+     FrmPersonalization v = new FrmPersonalization(mvcfactory.instancePlayerComponent().getPlayerModel());
+     v.setVisible(true);
     }
+    
+    private void showWelcomeFrm(){
+        FrmWelcome v = new FrmWelcome();
+     v.setVisible(true);
     }
 
     /**
@@ -121,19 +115,19 @@ public class FrmCreateGame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTwoPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTwoPlayersActionPerformed
-        showForm(FrmPersonalization.class);
+       showPersonalizationFrm();
     }//GEN-LAST:event_btnTwoPlayersActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        showForm(FrmWelcome.class);
+        showWelcomeFrm();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnThreePlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThreePlayersActionPerformed
-        showForm(FrmPersonalization.class);
+        showPersonalizationFrm();
     }//GEN-LAST:event_btnThreePlayersActionPerformed
 
     private void btnFourPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFourPlayersActionPerformed
-        showForm(FrmPersonalization.class);
+        showPersonalizationFrm();
     }//GEN-LAST:event_btnFourPlayersActionPerformed
 
 //    /**
