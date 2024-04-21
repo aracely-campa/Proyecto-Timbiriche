@@ -12,18 +12,21 @@ import mvc.player.PlayerModel;
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
-    
-    PlayerModel playerModel;
+    String namePlayer, avatar;
+    private PlayerModel playerModel;
 
     /**
      * Creates new form FrmLobby
      */
-    public FrmLobby(PlayerModel playerModel) {
-        initComponents();
+    public FrmLobby(PlayerModel playerModel, String namePlayer) {
+    initComponents();
+    this.playerModel = playerModel;
+    this.namePlayer = namePlayer;
+    this.avatar = avatar;
+    // Actualiza la vista del nombre del jugador y la imagen del avatar
+    lblNamePlayer.setText(namePlayer);
+//    displayAvatar();
     }
-public void showNamePlayer(){
-   
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,4 +128,8 @@ public void showNamePlayer(){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblNamePlayer;
     // End of variables declaration//GEN-END:variables
+
+//    private void displayAvatar() {
+//       
+//    }
 }

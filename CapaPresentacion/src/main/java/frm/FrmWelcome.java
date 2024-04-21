@@ -5,7 +5,6 @@
 package frm;
 
 import factory.MVCFactory;
-import mvc.game.GameModel;
 
 /**
  *
