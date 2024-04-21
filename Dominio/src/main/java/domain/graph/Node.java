@@ -4,6 +4,8 @@
  */
 package domain.graph;
 
+import Services.CoordsDTO;
+import domain.game.Game;
 import domain.interfaces.iNode;
 
 /**
@@ -67,8 +69,15 @@ public class Node implements iNode{
         this.rightEdge = rightEdge;
     }
 
-    public boolean nodoEstaLleno(){
+    public boolean nodoEstaLleno() {
         return (getUpperEdge() != null || getDownEdge() != null || getLeftEdge() != null || getRightEdge() != null);
+    }
+
+    public CoordsDTO getCoords() {
+        
+        int x=(this.id-1)%Game.tamanoDePartida;
+        int y = (int) Math.floor((this.id-1)/Game.tamanoDePartida);
+        return new CoordsDTO(x,y);
     }
 
     @Override
@@ -76,3 +85,4 @@ public class Node implements iNode{
         return "Node{" + "id=" + id + '}';
     }
 }
+ 

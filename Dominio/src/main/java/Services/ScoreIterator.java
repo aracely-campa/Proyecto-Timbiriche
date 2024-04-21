@@ -16,7 +16,7 @@ public class ScoreIterator implements iGraphIterator {
 
     private Node startingNode;
     private Node currentNode;
-    int step;
+    private int step;
 
     public ScoreIterator() {
 
@@ -51,9 +51,14 @@ public class ScoreIterator implements iGraphIterator {
 
     }
 
+    @Override
     public void setStartingNode(Node node) {
         startingNode = node;
         currentNode = node;
         step = 1;
+    }
+    
+    public int getStep(){
+        return step;
     }
 }

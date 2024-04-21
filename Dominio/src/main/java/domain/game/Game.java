@@ -14,7 +14,7 @@ public class Game {
     // Ture == "Juego en curso", False == "Juego no en curso";
     private boolean gameStatus;
     
-    private Integer tamanoDePartida;
+    static public Integer tamanoDePartida;
 
     //Constructor por default
     public Game() {
