@@ -4,6 +4,7 @@
  */
 package frm;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerModel;
 
@@ -12,20 +13,33 @@ import mvc.player.PlayerModel;
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
-    String namePlayer, avatar;
-    private PlayerModel playerModel;
+     private PlayerModel playerModel;
+    private String namePlayer;
+    private String avatarPath;
 
     /**
      * Creates new form FrmLobby
+     * @param playerModel
+     * @param namePlayer
      */
-    public FrmLobby(PlayerModel playerModel, String namePlayer) {
-    initComponents();
-    this.playerModel = playerModel;
-    this.namePlayer = namePlayer;
-    this.avatar = avatar;
-    // Actualiza la vista del nombre del jugador y la imagen del avatar
-    lblNamePlayer.setText(namePlayer);
-//    displayAvatar();
+   public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
+        initComponents();
+        this.playerModel = playerModel;
+        this.namePlayer = namePlayer;
+        this.avatarPath = avatarPath;
+
+        // Mostrar el nombre del jugador y la imagen del avatar
+        lblNamePlayer.setText(namePlayer);
+        displayAvatar(); // Método para mostrar la imagen del avatar
+    }
+   private void displayAvatar() {
+        if (avatarPath != null && !avatarPath.isEmpty()) {
+            ImageIcon icon = new ImageIcon(avatarPath);
+            lblAvatar.setIcon(icon); 
+        } else {
+            System.err.println("Error: Avatar path is null or empty");
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +52,7 @@ public class FrmLobby extends javax.swing.JFrame {
 
         btnStartGame = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        lblAvatar = new javax.swing.JLabel();
         lblNamePlayer = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -62,6 +77,7 @@ public class FrmLobby extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
+        getContentPane().add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 210, 250));
 
         lblNamePlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lbl/lblPlayerName.png"))); // NOI18N
         getContentPane().add(lblNamePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 370, 90));
@@ -126,6 +142,7 @@ public class FrmLobby extends javax.swing.JFrame {
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnStartGame;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblNamePlayer;
     // End of variables declaration//GEN-END:variables
 

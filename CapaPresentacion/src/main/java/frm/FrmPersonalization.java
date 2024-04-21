@@ -16,6 +16,7 @@ public class FrmPersonalization extends javax.swing.JFrame {
     private String namePlayer;
     private final String[] avatarPaths;
     private int currentIndex = 0;
+    private String selectedAvatarPath;
 
     /**
      * Creates new form FrmPersonalization
@@ -165,21 +166,21 @@ public class FrmPersonalization extends javax.swing.JFrame {
         }
     }
 
-    // Método para moverse a la imagen anterior
     private void showPreviousAvatar() {
         currentIndex--;
         if (currentIndex < 0) {
             currentIndex = avatarPaths.length - 1;
         }
+        selectedAvatarPath = avatarPaths[currentIndex]; // Actualiza la ruta del avatar seleccionado
         displayCurrentAvatar();
     }
 
-    // Método para moverse a la siguiente imagen
     private void showNextAvatar() {
         currentIndex++;
         if (currentIndex >= avatarPaths.length) {
             currentIndex = 0;
         }
+        selectedAvatarPath = avatarPaths[currentIndex]; // Actualiza la ruta del avatar seleccionado
         displayCurrentAvatar();
     }
 
@@ -201,12 +202,11 @@ public class FrmPersonalization extends javax.swing.JFrame {
         if (namePlayer == null || namePlayer.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo nombre está vacío");
         } else {
-            // Crear el siguiente frame y pasarle el nombre del jugador
-            FrmLobby v = new FrmLobby(MVCFactory.getInstance().instancePlayerComponent().getPlayerModel(), namePlayer);
+            // Crear el siguiente frame y pasarle el nombre del jugador y la ruta del avatar seleccionado
+            FrmLobby v = new FrmLobby(MVCFactory.getInstance().instancePlayerComponent().getPlayerModel(), namePlayer, selectedAvatarPath);
             v.setVisible(true);
             this.dispose();
         }
-
 
     }                                       
 
