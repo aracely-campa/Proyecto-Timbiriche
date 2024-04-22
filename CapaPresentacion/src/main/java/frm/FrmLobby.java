@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package frm;
 
 import javax.swing.ImageIcon;
@@ -13,31 +10,25 @@ import mvc.player.PlayerModel;
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
-     private PlayerModel playerModel;
-    private String namePlayer;
-    private String avatarPath;
+    private final String avatarPath;
 
     /**
      * Creates new form FrmLobby
      * @param playerModel
      * @param namePlayer
+     * @param avatarPath
      */
    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
         initComponents();
-        this.playerModel = playerModel;
-        this.namePlayer = namePlayer;
         this.avatarPath = avatarPath;
-
-        // Mostrar el nombre del jugador y la imagen del avatar
         lblNamePlayer.setText(namePlayer);
-        displayAvatar(); // Método para mostrar la imagen del avatar
+        displayAvatar(); 
     }
    private void displayAvatar() {
         if (avatarPath != null && !avatarPath.isEmpty()) {
             ImageIcon icon = new ImageIcon(avatarPath);
             lblAvatar.setIcon(icon); 
-        } else {
-            System.err.println("Error: Avatar path is null or empty");
+        
         }
         
     }
@@ -50,6 +41,7 @@ public class FrmLobby extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
         lblAvatar = new javax.swing.JLabel();
@@ -60,6 +52,9 @@ public class FrmLobby extends javax.swing.JFrame {
         setTitle("Lobby");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lbl/lblLobby.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+
         btnStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botones/btnStart.png"))); // NOI18N
         btnStartGame.setContentAreaFilled(false);
         btnStartGame.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +62,7 @@ public class FrmLobby extends javax.swing.JFrame {
                 btnStartGameActionPerformed(evt);
             }
         });
-        getContentPane().add(btnStartGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 180, 110));
+        getContentPane().add(btnStartGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 180, 110));
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botones/btnExit (1).png"))); // NOI18N
         btnReturn.setContentAreaFilled(false);
@@ -77,10 +72,12 @@ public class FrmLobby extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
-        getContentPane().add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 210, 250));
+        getContentPane().add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 210, 250));
 
-        lblNamePlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lbl/lblPlayerName.png"))); // NOI18N
-        getContentPane().add(lblNamePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 370, 90));
+        lblNamePlayer.setFont(new java.awt.Font("Yu Gothic Light", 0, 36)); // NOI18N
+        lblNamePlayer.setForeground(new java.awt.Color(255, 255, 255));
+        lblNamePlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lbl/lblGetPlayerName.png"))); // NOI18N
+        getContentPane().add(lblNamePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 370, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desingFrm/lobbyT.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 580));
@@ -103,50 +100,15 @@ public class FrmLobby extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btnStartGameActionPerformed
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FrmLobby().setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnStartGame;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblNamePlayer;
     // End of variables declaration//GEN-END:variables
 
-//    private void displayAvatar() {
-//       
-//    }
 }

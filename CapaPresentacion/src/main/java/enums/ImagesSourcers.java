@@ -13,17 +13,23 @@ public class ImagesSourcers {
     private static final String imgFrmLobby = "src/main/resources/desingFrm/lobbyT.png";
     private static final String imgFrmWelcome = "src/main/resources/desingFrm/frmWelcome.png";
     private static final String imgFrmJoinGame = "src/main/resources/desingFrm/frmJoinGame.png";
-    
+    private static final String imgFrmCreateGame = "src/main/resources/desingFrm/frmCreateGame.png";
+    private static final String imgFrmPersonalization = "src/main/resources/desingFrm/frmPersonalization.png";
+    private static final String imgBtnTwoPlayers = "src/main/resources/botones/btntwoplayers.png";
 
     public ImagesSourcers() {
     }
-    
-     public static String[] getAvatarImages() {
-        return new String[] { avatarBlue, avatarRed, avatarGreen, avatarYellow };
+
+    public static String[] getAvatarImages() {
+        return new String[]{avatarBlue, avatarRed, avatarGreen, avatarYellow};
     }
 
     public static String[] getFormImages() {
-        return new String[] { imgFrmLobby, imgFrmWelcome, imgFrmJoinGame };
+        return new String[]{imgFrmLobby, imgFrmWelcome, imgFrmJoinGame, imgFrmCreateGame, imgFrmPersonalization};
+    }
+
+    public static String[] getBtnImages() {
+        return new String[]{imgBtnTwoPlayers};
     }
 
     public static String getAvatarBlue() {
@@ -52,6 +58,18 @@ public class ImagesSourcers {
 
     public static String getImgFrmJoinGame() {
         return imgFrmJoinGame;
+    }
+
+    public static String getImgFrmCreateGame() {
+        return imgFrmCreateGame;
+    }
+
+    public static String getImgFrmPersonalization() {
+        return imgFrmPersonalization;
+    }
+
+    public static String getImgBtnTwoPlayers() {
+        return imgBtnTwoPlayers;
     }
 
 }
