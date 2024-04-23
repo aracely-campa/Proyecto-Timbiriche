@@ -10,29 +10,33 @@ import mvc.player.PlayerModel;
  */
 public class FrmLobby extends javax.swing.JFrame {
 
+    
     private final String avatarPath;
+    private final String namePlayer;
 
     /**
      * Creates new form FrmLobby
-     *
-     * @param playerModel
-     * @param namePlayer
-     * @param avatarPath
      */
-    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
+    public FrmLobby() {
+        this.avatarPath = null;
+        this.namePlayer = null;
         initComponents();
-        this.avatarPath = avatarPath;
-        lblNamePlayer.setText(namePlayer);
-        displayAvatar();
     }
-
+    
+    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
+    this.avatarPath = avatarPath;
+    this.namePlayer = namePlayer;
+    initComponents();
+    lblNamePlayer.setText(namePlayer); 
+    displayAvatar(); 
+    setVisible(true); 
+}
+    
     private void displayAvatar() {
         if (avatarPath != null && !avatarPath.isEmpty()) {
             ImageIcon icon = new ImageIcon(avatarPath);
             lblAvatar.setIcon(icon);
-
         }
-
     }
 
     private void showWelcomeFrm() {
