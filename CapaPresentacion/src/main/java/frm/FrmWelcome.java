@@ -1,21 +1,17 @@
-
 package frm;
 
 import factory.MVCFactory;
 
-
 public class FrmWelcome extends javax.swing.JFrame {
-    
-    
+
     /**
      * Creates new form FrmWelcome
      */
     public FrmWelcome() {
         initComponents();
-        MVCFactory.getInstance() ;
+        MVCFactory.getInstance();
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,10 +73,9 @@ public class FrmWelcome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJoinGameActionPerformed
 
     private void btnCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateGameActionPerformed
-    
-    FrmCreateGame v = new FrmCreateGame(MVCFactory.getInstance().instanceGameComponent());
-    v.setVisible(true);
-    this.dispose();
+        FrmCreateGame v = new FrmCreateGame(MVCFactory.getInstance().instanceGameComponent());
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCreateGameActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

@@ -1,4 +1,3 @@
-
 package frm;
 
 import enums.ImagesSourcers;
@@ -13,51 +12,89 @@ import mvc.player.PlayerModel;
  */
 public class FrmPersonalization extends javax.swing.JFrame {
 
-    private String namePlayer;
-    private final String[] avatarPaths;
-    private int currentIndex = 0;
+    private PlayerModel playerModel;
     private String selectedAvatarPath;
 
-    /**
-     * Creates new form FrmPersonalization
-     *
-     * @param playerModel
-     */
     public FrmPersonalization(PlayerModel playerModel) {
         initComponents();
-        avatarPaths = ImagesSourcers.getAvatarImages();
+        this.playerModel = playerModel;
+        displayCurrentAvatar();
+    }
+
+    private void displayCurrentAvatar() {
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
         if (avatarPaths != null && avatarPaths.length > 0) {
-            displayCurrentAvatar();
+            ImageIcon icon = new ImageIcon(avatarPaths[0]); 
+            avatarButton.setIcon(icon);
+            selectedAvatarPath = avatarPaths[0];
         } else {
             System.err.println("Error: avatarPaths is null or empty");
         }
     }
 
-    private void displayCurrentAvatar() {
-        if (avatarPaths != null && currentIndex >= 0 && currentIndex < avatarPaths.length) {
-            ImageIcon icon = new ImageIcon(avatarPaths[currentIndex]);
+    private void showPreviousAvatar() {
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+        if (avatarPaths != null && avatarPaths.length > 0) {
+            int currentIndex = getSelectedAvatarIndex(avatarPaths);
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = avatarPaths.length - 1;
+            }
+            selectedAvatarPath = avatarPaths[currentIndex];
+            ImageIcon icon = new ImageIcon(selectedAvatarPath);
             avatarButton.setIcon(icon);
         } else {
-            System.err.println("Error: avatarPaths is null or currentIndex is out of bounds");
+            System.err.println("Error: avatarPaths is null or empty");
         }
-    }
-
-    private void showPreviousAvatar() {
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = avatarPaths.length - 1;
-        }
-        selectedAvatarPath = avatarPaths[currentIndex];
-        displayCurrentAvatar();
     }
 
     private void showNextAvatar() {
-        currentIndex++;
-        if (currentIndex >= avatarPaths.length) {
-            currentIndex = 0;
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+        if (avatarPaths != null && avatarPaths.length > 0) {
+            int currentIndex = getSelectedAvatarIndex(avatarPaths);
+            currentIndex++;
+            if (currentIndex >= avatarPaths.length) {
+                currentIndex = 0;
+            }
+            selectedAvatarPath = avatarPaths[currentIndex];
+            ImageIcon icon = new ImageIcon(selectedAvatarPath);
+            avatarButton.setIcon(icon);
+        } else {
+            System.err.println("Error: avatarPaths is null or empty");
         }
-        selectedAvatarPath = avatarPaths[currentIndex];
-        displayCurrentAvatar();
+    }
+
+    private int getSelectedAvatarIndex(String[] avatarPaths) {
+        for (int i = 0; i < avatarPaths.length; i++) {
+            if (avatarPaths[i].equals(selectedAvatarPath)) {
+                return i;
+            }
+        }
+        return -1; 
+    }
+
+    public void btnReturn() {
+        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (exit == JOptionPane.YES_OPTION) {
+            FrmWelcome v = new FrmWelcome();
+            v.setVisible(true);
+            this.dispose();
+        }
+
+    }
+
+    public void btnJoin() {
+        String namePlayer = txtNamePlayer.getText();
+        namePlayer = txtNamePlayer.getText();
+
+        if (namePlayer == null || namePlayer.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "The text field is empty.");
+        } else {
+
+            FrmLobby v = new FrmLobby(MVCFactory.getInstance().instancePlayerComponent().getPlayerModel(), namePlayer, selectedAvatarPath);
+            v.setVisible(true);
+            this.dispose();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -76,6 +113,7 @@ public class FrmPersonalization extends javax.swing.JFrame {
         lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Personalization");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtNamePlayer.addActionListener(new java.awt.event.ActionListener() {
@@ -145,9 +183,11 @@ public class FrmPersonalization extends javax.swing.JFrame {
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 570));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNamePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamePlayerActionPerformed
+        String namePlayer = txtNamePlayer.getText();
         namePlayer = txtNamePlayer.getText();
     }//GEN-LAST:event_txtNamePlayerActionPerformed
 
@@ -156,25 +196,11 @@ public class FrmPersonalization extends javax.swing.JFrame {
     }//GEN-LAST:event_avatarButtonActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (exit == JOptionPane.YES_OPTION) {
-            FrmWelcome v = new FrmWelcome();
-            v.setVisible(true);
-            this.dispose();
-        }
+        btnReturn();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
-        namePlayer = txtNamePlayer.getText();
-
-        if (namePlayer == null || namePlayer.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El campo nombre está vacío");
-        } else {
-
-            FrmLobby v = new FrmLobby(MVCFactory.getInstance().instancePlayerComponent().getPlayerModel(), namePlayer, selectedAvatarPath);
-            v.setVisible(true);
-            this.dispose();
-        }
+        btnJoin();
     }//GEN-LAST:event_btnJoinActionPerformed
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed

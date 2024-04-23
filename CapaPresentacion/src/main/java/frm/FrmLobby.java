@@ -1,4 +1,3 @@
-
 package frm;
 
 import javax.swing.ImageIcon;
@@ -10,28 +9,41 @@ import mvc.player.PlayerModel;
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
+
     private final String avatarPath;
 
     /**
      * Creates new form FrmLobby
+     *
      * @param playerModel
      * @param namePlayer
      * @param avatarPath
      */
-   public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
+    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
         initComponents();
         this.avatarPath = avatarPath;
         lblNamePlayer.setText(namePlayer);
-        displayAvatar(); 
+        displayAvatar();
     }
-   private void displayAvatar() {
+
+    private void displayAvatar() {
         if (avatarPath != null && !avatarPath.isEmpty()) {
             ImageIcon icon = new ImageIcon(avatarPath);
-            lblAvatar.setIcon(icon); 
-        
+            lblAvatar.setIcon(icon);
+
         }
-        
+
     }
+
+    private void showWelcomeFrm() {
+        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (exit == JOptionPane.YES_OPTION) {
+            FrmWelcome v = new FrmWelcome();
+            v.setVisible(true);
+            this.dispose();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +84,7 @@ public class FrmLobby extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
-        getContentPane().add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 210, 250));
+        getContentPane().add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 210, 290));
 
         lblNamePlayer.setFont(new java.awt.Font("Yu Gothic Light", 0, 36)); // NOI18N
         lblNamePlayer.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,19 +99,13 @@ public class FrmLobby extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (exit == JOptionPane.YES_OPTION) {
-            FrmWelcome v = new FrmWelcome();
-            v.setVisible(true);
-            this.dispose();
-        }
-        
+        showWelcomeFrm();
+
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
-    
-    }//GEN-LAST:event_btnStartGameActionPerformed
 
+    }//GEN-LAST:event_btnStartGameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
