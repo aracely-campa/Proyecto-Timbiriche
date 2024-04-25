@@ -115,6 +115,9 @@ public class Player {
         return player;
     }
     
+    public void addScore(Integer puntos){
+        this.score += puntos;
+    }
     
     /**
      * Devuelve una representación en cadena de texto del objeto Player.

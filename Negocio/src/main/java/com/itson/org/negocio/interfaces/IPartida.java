@@ -9,6 +9,6 @@ public interface IPartida {
     
     Player eliminarJugadorDeLaLista(Player player) throws PartidaException;
     
-    Player anadirPuntoAJugador(Player player) throws PartidaException;
+    Player anadirPuntoAJugador(Player player, Integer puntos) throws PartidaException;
     
 }

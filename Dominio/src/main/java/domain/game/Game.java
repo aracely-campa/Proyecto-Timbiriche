@@ -3,19 +3,19 @@ package domain.game;
 import exceptions.GameException;
 
 public class Game {
-    
+
     private static Game game;
-    
+
     private Board board;
-    
+
     private Player[] players;
-    
+
     //Esto especifica si el jugador esta iniciado o no,
     // Ture == "Juego en curso", False == "Juego no en curso";
     private boolean gameStatus;
-    
+
     private Integer tamanoDePartida;
-    
+
     //Constructor por default
     public Game() {
     }
@@ -24,29 +24,29 @@ public class Game {
         this.board = board;
         this.tamanoDePartida = tamanoDePartida;
     }
-    
+
     private void startGame() {
         this.setGameIntoElements();
         this.setGameStarted();
     }
-    
-    private void finishGame(){
+
+    private void finishGame() {
         removeGameElements();
         this.setGameFinished();
     }
-    
-    public Player[] createPlayerListWithSize(Integer tamanoInteger){
-       return this.players = new Player[tamanoInteger];
+
+    public Player[] createPlayerListWithSize(Integer tamanoInteger) {
+        return this.players = new Player[tamanoInteger];
     }
-    
+
     private void setGameIntoElements() {
         setGameIntoBoard();
     }
-    
-    private void removeGameElements(){
+
+    private void removeGameElements() {
         removeBoardOfGame();
     }
-    
+
     private void removeBoardOfGame() {
         board.setBoard(null);
     }
@@ -56,7 +56,7 @@ public class Game {
     }
 
     public void addPlayer(Player player) {
-    
+
         addPlayerToMatch(player);
 
         if (matchCanStart()) {
@@ -73,15 +73,15 @@ public class Game {
             }
         }
     }
-    
-    public boolean comprovePlayersInGame(){
+
+    public boolean comprovePlayersInGame() {
         return !(players.length > tamanoDePartida);
     }
-    
-    public boolean canAddAPlayerToGame(){
+
+    public boolean canAddAPlayerToGame() {
         return comprovePlayersInGame();
     }
-    
+
     private boolean isMatchFull() {
         for (Player player : players) {
             if (player == null) {
@@ -91,40 +91,49 @@ public class Game {
         return true;
     }
 
-    private int findPlayerIndex(Player player) {  
-         for (Player players : this.players) {
-             if(players == player){
-                 return players.getId();
-             }
+    private int findPlayerIndex(Player player) {
+        for (Player players : this.players) {
+            if (players == player) {
+                return players.getId();
+            }
         }
-        
-        
+
         return -1;
     }
 
-    public int getGamePlayerListSize(){
+    public int getGamePlayerListSize() {
         return tamanoDePartida;
     }
-    
+
     public void deletePlayer(Player player) {
         for (int i = 0; i < players.length; i++) {
             if (this.players[i] == player) {
                 this.players[i] = null;
+
             }
         }
 
     }
 
-        
-    public boolean matchCanStart(){
+    public Player getPlayerOfList(Player player) {
+        for (Player playerList : this.players) {
+            if (player == playerList) {
+             return playerList;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean matchCanStart() {
         return isMatchFull();
     }
-    
-    public void setGameFinished(){
+
+    public void setGameFinished() {
         this.gameStatus = false;
     }
 
-    public void setGameStarted(){
+    public void setGameStarted() {
         this.gameStatus = true;
     }
 
@@ -144,6 +153,16 @@ public class Game {
         return players;
     }
 
+    public boolean playerExistOnTheList(Player player) {
+        for (Player playerList : this.players) {
+            if (player == playerList) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void setPlayersWithList(Player[] player) {
         this.players = player;
     }
@@ -159,9 +178,9 @@ public class Game {
     public boolean isGameStarted() {
         return gameStatus;
     }
-    
-    public static Game getInstance(){
-        if(game == null){
+
+    public static Game getInstance() {
+        if (game == null) {
             game = new Game();
         }
         return game;
