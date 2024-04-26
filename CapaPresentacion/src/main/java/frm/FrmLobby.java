@@ -10,34 +10,22 @@ import mvc.player.PlayerModel;
  */
 public class FrmLobby extends javax.swing.JFrame {
 
-    
     private final String avatarPath;
     private final String namePlayer;
 
-    /**
-     * Creates new form FrmLobby
-     */
-    public FrmLobby() {
-        this.avatarPath = null;
-        this.namePlayer = null;
+    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath, ImageIcon selectedAvatarIcon) {
+        this.avatarPath = avatarPath;
+        this.namePlayer = namePlayer;
         initComponents();
+        lblNamePlayer.setText(namePlayer);
+        lblAvatar.setIcon(selectedAvatarIcon);
+
+        setVisible(true);
+
+        System.out.println("Avatar path received in FrmLobby: " + selectedAvatarIcon); // Mensaje de depuración
     }
-    
-    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
-    this.avatarPath = avatarPath;
-    this.namePlayer = namePlayer;
-    initComponents();
-    lblNamePlayer.setText(namePlayer); 
-    displayAvatar(); 
-    setVisible(true); 
-}
-    
-    private void displayAvatar() {
-        if (avatarPath != null && !avatarPath.isEmpty()) {
-            ImageIcon icon = new ImageIcon(avatarPath);
-            lblAvatar.setIcon(icon);
-        }
-    }
+
+
 
     private void showWelcomeFrm() {
         int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);

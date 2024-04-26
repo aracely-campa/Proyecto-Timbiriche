@@ -56,7 +56,7 @@ public class FrmWelcome extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 90, 70));
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 120, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desingFrm/frmWelcome.png"))); // NOI18N
         jLabel1.setText("jLabel1");

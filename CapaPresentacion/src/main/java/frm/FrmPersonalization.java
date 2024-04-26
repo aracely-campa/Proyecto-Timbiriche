@@ -23,10 +23,7 @@ public class FrmPersonalization extends javax.swing.JFrame {
     }
 
     private void displayCurrentAvatar() {
-        if (playerModel == null) {
-
-            return;
-        }
+     
 
         String[] avatarPaths = ImagesSourcers.getAvatarImages();
         if (avatarPaths != null && avatarPaths.length > 0) {
@@ -73,11 +70,16 @@ public class FrmPersonalization extends javax.swing.JFrame {
 
     private int getSelectedAvatarIndex(String[] avatarPaths) {
         for (int i = 0; i < avatarPaths.length; i++) {
-            if (avatarPaths[i].equals(selectedAvatarPath)) {
+            if (avatarPaths[0].equals(selectedAvatarPath)) {
+                return i;
+            }else{
+                if (avatarPaths[i].equals(selectedAvatarPath)) {
                 return i;
             }
         }
-        return -1;
+      
+    }
+          return -1;
     }
 
     public void btnReturn() {
@@ -98,8 +100,8 @@ public class FrmPersonalization extends javax.swing.JFrame {
         }
 
         PlayerComponent.getInstance().updatePlayerInfo(namePlayer, selectedAvatarPath);
-
-        FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath);
+         ImageIcon icon = new ImageIcon(selectedAvatarPath);
+        FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath, icon);
         v.setVisible(true);
         this.dispose();
     }
