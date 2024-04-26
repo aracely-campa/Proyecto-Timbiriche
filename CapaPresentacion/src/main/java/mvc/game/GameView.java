@@ -10,6 +10,24 @@ package mvc.game;
  */
 public class GameView {
     
+    private GameModel gameModel;
+
+    public GameView(GameModel gameModel) {
+        this.gameModel = gameModel;
+    }
+    
+    private void loadGame(){
+        
+    }
+
+    public GameModel getGameModel() {
+        return gameModel;
+    }
+
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
+    }
+    
     
     
 }

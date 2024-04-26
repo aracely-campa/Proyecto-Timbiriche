@@ -5,12 +5,15 @@ import domain.graph.Node;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board extends Game{
-    
+public class Board extends Game {
+
     private Square[][] boardArray;
     private List<Node> nodeList = new ArrayList();
     private GraphManager graphManager = new GraphManager();
     private static Board board;
+
+    public Board() {
+    }
 
     public void createSmallBoard() {
         createSmallBoardArray();
@@ -41,7 +44,7 @@ public class Board extends Game{
                 //J = X Coords
                 //N = boardArray.length
                 //X+NY+1 = Index
-                System.out.println("\nI: "+i+"J: "+j);
+                System.out.println("\nI: " + i + "J: " + j);
                 //Sets then upper node to null if the tempNode belongs to the first row
                 if (i == 0) {
                     //i+(n*(j-1))+1 gives the index of the item in the row below
@@ -51,10 +54,10 @@ public class Board extends Game{
                     //i+3*j+1 gives the index of the item in the upper row
                     //i+2*j+1 gives the index of the item in the row below
                     graphManager.joinVerticalNodes(nodeList.get(j + boardArray.length * (i - 1)), nodeList.get(j + boardArray.length * i));
-                    if (i==boardArray[0].length-1){
-                    graphManager.fixLastRow(nodeList.get(j + boardArray.length * i));
+                    if (i == boardArray[0].length - 1) {
+                        graphManager.fixLastRow(nodeList.get(j + boardArray.length * i));
                     }
-                     
+
                 }
                 //Sets then Left node to null if the tempNode belongs to the first column
                 if (j == 0) {
@@ -64,9 +67,9 @@ public class Board extends Game{
                 } else {
                     //i+4*j gives the index of the previous item
                     //i+4*j+2 gives the index of the previous item
-                    graphManager.joinHorizontalNodes(nodeList.get(j + boardArray.length * i-1), nodeList.get(j + boardArray.length * i));
-                    if(j==boardArray[0].length-1){
-                    graphManager.fixLastColumn(nodeList.get(j + boardArray.length * i));
+                    graphManager.joinHorizontalNodes(nodeList.get(j + boardArray.length * i - 1), nodeList.get(j + boardArray.length * i));
+                    if (j == boardArray[0].length - 1) {
+                        graphManager.fixLastColumn(nodeList.get(j + boardArray.length * i));
                     }
                 }
                 //nodeList.set(i + 4 * j + 1, tempNode);
@@ -82,12 +85,12 @@ public class Board extends Game{
     public Square[][] getBoardArray() {
         return boardArray;
     }
-    
-    public static Board getInstance(){
-        if(board == null){
+
+    public static Board getInstance() {
+        if (board == null) {
             board = new Board();
         }
         return board;
     }
-    
+
 }

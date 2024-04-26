@@ -14,21 +14,17 @@ import mvc.player.PlayerView;
  * @author luis-
  */
 public class GameController {
-    
-   
+
     private GameModel gameModel;
     private GameView gameView;
-
-    public GameController() {
-    }
-    
-    public void createGame(){
-        this.gameModel = new GameModel();
-    }
 
     public GameController(GameModel gameModel, GameView gameView) {
         this.gameModel = gameModel;
         this.gameView = gameView;
+    }
+
+    public void createGame() {
+        this.gameModel = new GameModel();
     }
 
     public GameModel getGameModel() {
@@ -52,8 +48,4 @@ public class GameController {
         return "GameController{" + "gameModel=" + gameModel + ", gameView=" + gameView + '}';
     }
 
-    
-    
-    
-    
 }

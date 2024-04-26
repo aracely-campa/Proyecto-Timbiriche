@@ -9,12 +9,12 @@ package mvc.board;
  * @author luis-
  */
 public class BoardComponent {
-    
-    private BoardController boardController;
-    private BoardModel boardModel;
-    private BoardView boardView;
+
+    private BoardModel boardModel = new BoardModel();
+    private BoardView boardView = new BoardView(boardModel);
+    private BoardController boardController = new BoardController(boardView, boardModel);
     private static BoardComponent boardComponent;
-    
+
     public BoardComponent() {
     }
 
@@ -47,12 +47,12 @@ public class BoardComponent {
     public void setBoardView(BoardView boardView) {
         this.boardView = boardView;
     }
-    
-    public static BoardComponent getInstance(){
-        if(boardComponent == null){
+
+    public static BoardComponent getInstance() {
+        if (boardComponent == null) {
             boardComponent = new BoardComponent();
         }
         return boardComponent;
     }
-    
+
 }

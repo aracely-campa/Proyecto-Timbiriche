@@ -9,12 +9,13 @@ package mvc.player;
  * @author luis-
  */
 public class PlayerController {
- private PlayerController playerController;
- private PlayerModel playerModel;
- private PlayerView playerView;
-private PlayerComponent playerComponent;
-    public PlayerController(PlayerController playerController, PlayerModel playerModel, PlayerView playerView) {
-        this.playerController = playerController;
+
+    private PlayerController playerController;
+    private PlayerModel playerModel;
+    private PlayerView playerView;
+    private PlayerComponent playerComponent;
+
+    public PlayerController(PlayerModel playerModel, PlayerView playerView) {
         this.playerModel = playerModel;
         this.playerView = playerView;
     }
@@ -42,7 +43,8 @@ private PlayerComponent playerComponent;
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
     }
- public PlayerController() {
+
+    public PlayerController() {
         this.playerComponent = PlayerComponent.getInstance();
     }
 
