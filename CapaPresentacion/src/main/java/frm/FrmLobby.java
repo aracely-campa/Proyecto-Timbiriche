@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package frm;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerModel;
 
@@ -12,18 +9,33 @@ import mvc.player.PlayerModel;
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
-    
-    PlayerModel playerModel;
 
-    /**
-     * Creates new form FrmLobby
-     */
-    public FrmLobby(PlayerModel playerModel) {
+    private final String avatarPath;
+    private final String namePlayer;
+
+    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath, ImageIcon selectedAvatarIcon) {
+        this.avatarPath = avatarPath;
+        this.namePlayer = namePlayer;
         initComponents();
+        lblNamePlayer.setText(namePlayer);
+        lblAvatar.setIcon(selectedAvatarIcon);
+
+        setVisible(true);
+
+        System.out.println("Avatar path received in FrmLobby: " + selectedAvatarIcon); // Mensaje de depuración
     }
-public void showNamePlayer(){
-   
-}
+
+
+
+    private void showWelcomeFrm() {
+        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (exit == JOptionPane.YES_OPTION) {
+            FrmWelcome v = new FrmWelcome();
+            v.setVisible(true);
+            this.dispose();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,14 +45,19 @@ public void showNamePlayer(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         btnStartGame = new javax.swing.JButton();
         btnReturn = new javax.swing.JButton();
+        lblAvatar = new javax.swing.JLabel();
         lblNamePlayer = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lobby");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lbl/lblLobby.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
 
         btnStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botones/btnStart.png"))); // NOI18N
         btnStartGame.setContentAreaFilled(false);
@@ -49,7 +66,7 @@ public void showNamePlayer(){
                 btnStartGameActionPerformed(evt);
             }
         });
-        getContentPane().add(btnStartGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 180, 110));
+        getContentPane().add(btnStartGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 180, 110));
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botones/btnExit (1).png"))); // NOI18N
         btnReturn.setContentAreaFilled(false);
@@ -59,9 +76,12 @@ public void showNamePlayer(){
             }
         });
         getContentPane().add(btnReturn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
+        getContentPane().add(lblAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 210, 290));
 
-        lblNamePlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lbl/lblPlayerName.png"))); // NOI18N
-        getContentPane().add(lblNamePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 370, 90));
+        lblNamePlayer.setFont(new java.awt.Font("Yu Gothic Light", 0, 36)); // NOI18N
+        lblNamePlayer.setForeground(new java.awt.Color(255, 255, 255));
+        lblNamePlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lbl/lblGetPlayerName.png"))); // NOI18N
+        getContentPane().add(lblNamePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 370, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desingFrm/lobbyT.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 580));
@@ -71,58 +91,22 @@ public void showNamePlayer(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (exit == JOptionPane.YES_OPTION) {
-            FrmWelcome v = new FrmWelcome();
-            v.setVisible(true);
-            this.dispose();
-        }
-        
+        showWelcomeFrm();
+
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
-    
+
     }//GEN-LAST:event_btnStartGameActionPerformed
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FrmLobby.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FrmLobby().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
     private javax.swing.JButton btnStartGame;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblNamePlayer;
     // End of variables declaration//GEN-END:variables
+
 }

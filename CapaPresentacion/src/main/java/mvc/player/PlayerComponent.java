@@ -4,6 +4,8 @@
  */
 package mvc.player;
 
+import domain.game.Player;
+
 /**
  *
  * @author luis-
@@ -14,7 +16,7 @@ public class PlayerComponent {
     private PlayerModel playerModel;
     private PlayerView playerView;
     private static PlayerComponent playerComponent;
-    
+
     public PlayerComponent() {
     }
 
@@ -47,12 +49,20 @@ public class PlayerComponent {
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
     }
-    
-    public static PlayerComponent getInstance(){
-        if(playerComponent == null){
+
+    public static PlayerComponent getInstance() {
+        if (playerComponent == null) {
             playerComponent = new PlayerComponent();
         }
         return playerComponent;
+    }
+   public void updatePlayerInfo(String name, String avatarPath) {
+        if (playerModel == null) {
+            playerModel = new PlayerModel(new Player(), avatarPath, name, 0);
+        } else {
+            playerModel.setName(name);
+            playerModel.setAvatarPath(playerModel.getPlayer(), avatarPath); // Asegúrate de ajustar si el setter cambia.
+        }
     }
 
     @Override

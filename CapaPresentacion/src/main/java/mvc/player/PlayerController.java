@@ -12,7 +12,7 @@ public class PlayerController {
  private PlayerController playerController;
  private PlayerModel playerModel;
  private PlayerView playerView;
-
+private PlayerComponent playerComponent;
     public PlayerController(PlayerController playerController, PlayerModel playerModel, PlayerView playerView) {
         this.playerController = playerController;
         this.playerModel = playerModel;
@@ -42,5 +42,11 @@ public class PlayerController {
     public void setPlayerView(PlayerView playerView) {
         this.playerView = playerView;
     }
- 
+ public PlayerController() {
+        this.playerComponent = PlayerComponent.getInstance();
+    }
+
+    public void updatePlayerDetails(String name, String avatarPath) {
+        playerComponent.updatePlayerInfo(name, avatarPath);
+    }
 }

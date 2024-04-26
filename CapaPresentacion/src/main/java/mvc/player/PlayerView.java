@@ -15,21 +15,39 @@ import javax.imageio.ImageIO;
  */
 public class PlayerView {
 
-    Image poolImage;
-    PlayerModel playerModel;
+    private PlayerController playerController;
+    private Image poolImage;
+    private PlayerModel playerModel;
 
-    public PlayerView(PlayerModel playerModel) {
+    public PlayerView(PlayerModel playerModel, PlayerController playerController) {
         this.playerModel = playerModel;
+        this.playerController = playerController;
         loadPlayerImage();
     }
 
     private void loadPlayerImage() {
         try {
-            poolImage = ImageIO.read(new File(playerModel.getAvatarPath()));
-
+            if (playerModel.getAvatarPath() != null && new File(playerModel.getAvatarPath()).exists()) {
+                poolImage = ImageIO.read(new File(playerModel.getAvatarPath()));
+            } else {
+                System.err.println("Error: Avatar image file not found or path is null.");
+            }
         } catch (IOException e) {
-            e.printStackTrace(); // Manejar la excepción de manera adecuada         
-
+            e.printStackTrace();
+            System.err.println("Error loading avatar image: " + e.getMessage());
         }
+    }
+
+    public void updateAvatar(String newAvatarPath) {
+        playerModel.setAvatarPath(playerModel.getPlayer(), newAvatarPath);
+        loadPlayerImage();
+    }
+
+    public Image getPoolImage() {
+        return poolImage;
+    }
+
+    public void setPoolImage(Image poolImage) {
+        this.poolImage = poolImage;
     }
 }
