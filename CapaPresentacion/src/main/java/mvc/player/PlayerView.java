@@ -19,9 +19,9 @@ public class PlayerView {
     private Image poolImage;
     private PlayerModel playerModel;
 
-    public PlayerView(PlayerModel playerModel, PlayerController playerController) {
+    public PlayerView(PlayerModel playerModel) {
         this.playerModel = playerModel;
-        this.playerController = playerController;
+
         loadPlayerImage();
     }
 

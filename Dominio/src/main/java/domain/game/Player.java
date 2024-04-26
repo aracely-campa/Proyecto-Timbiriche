@@ -104,6 +104,10 @@ public class Player {
         return turnoJugador;
     }
 
+    public void addScore(Integer score){
+        this.score += score;
+    }
+    
     public static Player getInstance() {
         if (player == null) {
             player = new Player();

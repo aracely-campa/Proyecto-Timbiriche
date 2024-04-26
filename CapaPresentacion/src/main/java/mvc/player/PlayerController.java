@@ -13,8 +13,7 @@ public class PlayerController {
  private PlayerModel playerModel;
  private PlayerView playerView;
 private PlayerComponent playerComponent;
-    public PlayerController(PlayerController playerController, PlayerModel playerModel, PlayerView playerView) {
-        this.playerController = playerController;
+    public PlayerController( PlayerModel playerModel, PlayerView playerView) {
         this.playerModel = playerModel;
         this.playerView = playerView;
     }
