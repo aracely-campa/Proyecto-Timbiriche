@@ -127,7 +127,7 @@ public class Partida implements IPartida {
         } catch (AnadirPuntoAJugador e) {
             throw new PartidaException(e.getMessage());
         }
-        
+
         return player;
     }
 
