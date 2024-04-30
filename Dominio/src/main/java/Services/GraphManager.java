@@ -11,7 +11,10 @@ import domain.graph.Node;
 import domain.interfaces.iGraphIterator;
 import domain.interfaces.iGraphManager;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -23,8 +26,7 @@ public class GraphManager implements iGraphManager{
     EdgeBuilder edgeBuilder = new EdgeBuilder();
     NodeBuilder nodeBuilder = new NodeBuilder();
     ScoreIterator scoreIterator = new ScoreIterator();
-    HorizontalIterator horizontalIterator= new HorizontalIterator();
-    VerticalIterator verticalIterator= new VerticalIterator();
+    SingleSquareIterator verticalIterator= new SingleSquareIterator();
 
     @Override
     public void joinVerticalNodes(Node nodeBeggining, Node nodeEnding) {
@@ -122,7 +124,7 @@ public class GraphManager implements iGraphManager{
     //spoiler, I'm almost certain it does not make no sense at all)
     
     @Override
-    public List <CoordsDTO> getScoredSquaresCoords(Node node, int boardSize) throws Exception{
+    public List <CoordsDTO> getScoredSquaresCoords(Node node) throws Exception{
         
         scoreIterator.setStartingNode(node);
         List coordsList = new ArrayList<CoordsDTO>();
@@ -130,26 +132,41 @@ public class GraphManager implements iGraphManager{
         
         while (scoreIterator.hasNext()){
             Edge edge= scoreIterator.getNext();
-            if(edge.getPlayer()==null){
+            if(edge!=null&&edge.getPlayer()==null){
                 playerIsScoringSoFar = false;
             }
             if (scoreIterator.getStep() % 4 == 0 && playerIsScoringSoFar) {
-                
+
                 CoordsDTO coords = null;
-                                
-                switch(scoreIterator.getStep()/4){
+
+                switch (scoreIterator.getStep() / 4) {
                     //Gets the upper left node of the iteration whose coordinates happen to be the same of the square we are iterating
                     //So we are pretty much getting those coordinates this way
-                    
-                    case 1: coords = edge.getBegginingNode().getCoords(); break;
-                    case 2: coords = edge.getBegginingNode().getUpperEdge().getBegginingNode().getCoords(); break;
-                    case 3: coords = edge.getBegginingNode().getLeftEdge().getBegginingNode().getCoords(); break;
-                    case 4: coords = edge.getBegginingNode().getCoords(); break;
-                    default: throw new Exception("wtf");
+
+                    case 1:
+                        if (edge.getBegginingNode() != null&&edge.getBegginingNode().getUpperEdge()!=null) {
+                            coords = edge.getBegginingNode().getUpperEdge().getBegginingNode().getCoords();
+                        }
+                        break;
+                    case 2:
+                        if (edge.getBegginingNode() != null&&edge.getBegginingNode().getLeftEdge()!=null) {
+                        coords = edge.getBegginingNode().getLeftEdge().getBegginingNode().getCoords();
+                        }
+                        break;
+                    case 3:
+                        if (edge.getBegginingNode() != null&&edge.getBegginingNode().getLeftEdge()!=null) {
+                        coords = edge.getBegginingNode().getCoords();
+                        }
+                        break;
+                    case 4:
+                        if (edge.getBegginingNode() != null&&edge.getBegginingNode().getUpperEdge()!=null) {
+                        coords = edge.getBegginingNode().getCoords();
+                        }
+                        break;
+                    default:
+                        throw new Exception("wtf");
                 }
-                
-                
-                
+
                 //((node.getId()) % (boardSize + 1), (node.getId()) % (boardSize));
                 coordsList.add(coords);
             }
@@ -157,70 +174,43 @@ public class GraphManager implements iGraphManager{
         return coordsList;
     }
 
-    public PlayerTracesDTO getPlayerTraces(Player player, List<Node> nodeList, int boardSize) {
-        List horizontalNodes = getHorizontalEdgesMadeByPlayer(player, nodeList);
-        List verticalNodes = getVerticalEdgesMadeByPlayer(player, nodeList);
-        List coordsList = getAffectedSquares(horizontalNodes, verticalNodes, boardSize);
+    public PlayerTracesDTO getPlayerTraces(Player player, List<Node> nodeList, int length) throws Exception {
 
-        return new PlayerTracesDTO(coordsList, verticalNodes, horizontalNodes);
+        Set<CoordsDTO> squaresCoordsSet = new HashSet<>();
+        Set<Node> verticalEdgesSet = new HashSet<>();
+        Set<Node> horizontalEdgesSet = new HashSet<>();
 
+        for (Node node : nodeList) {
+
+            if (node.getUpperEdge() != null && node.getUpperEdge().getPlayer() == player) {
+                verticalEdgesSet.add(node.getUpperEdge().getBegginingNode());
+            }
+            if (node.getLeftEdge() != null && node.getLeftEdge().getPlayer() == player) {
+                horizontalEdgesSet.add(node.getLeftEdge().getBegginingNode());
+            }
+            if (node.getDownEdge() != null && node.getDownEdge().getPlayer() == player) {
+                verticalEdgesSet.add(node);
+            }
+            if (node.getRightEdge() != null && node.getRightEdge().getPlayer() == player) {
+                horizontalEdgesSet.add(node);
+            }
+
+            List <CoordsDTO> tempList=getAllSquaresAffectedByPlayer(player,nodeList);
+            
+            tempList.removeIf(Objects::isNull);
+            
+            squaresCoordsSet.addAll(tempList);
+
+        }
+        return new PlayerTracesDTO(new ArrayList<CoordsDTO>(squaresCoordsSet), new ArrayList<Node>(verticalEdgesSet),new ArrayList<Node>(horizontalEdgesSet));
     }
 
-    public List<CoordsDTO> getAffectedSquares(List<Node> horizontalNodes, List<Node> verticalNodes, int boardSize) {
+    private List<CoordsDTO> getAllSquaresAffectedByPlayer(Player player, List<Node> nodeList ) {
 
-        List coordsList = new ArrayList<CoordsDTO>();
-
-        for (Node node : horizontalNodes) {
+        for (Node node: nodeList){
             
         }
 
-        for (Node node : verticalNodes) {
 
-        }
-        return coordsList;
-    }
-
-    public List<Node> getVerticalEdgesMadeByPlayer(Player player, List<Node> nodeList) {
-        List verticalNodes = new ArrayList<Node>();
-
-        //Math.sqrt(nodeList.size() = cantidad de nodos por row/column
-        for (int i = 0; i < (int) Math.sqrt(nodeList.size()); i++) {
-
-            //Math.sqrt(nodeList.size() = cantidad de nodos por row/column
-            //Math.sqrt(nodeList.size()*i = current column's number
-            //1+(int) Math.sqrt(nodeList.size()*i) = ID del primer nodo de la fila
-            verticalIterator.setStartingNode(nodeList.get(1 + ((int) Math.sqrt(nodeList.size()) * i)));
-
-            while (verticalIterator.hasNext()) {
-                Edge edge = verticalIterator.getNext();
-                if (edge.getPlayer() == player) {
-                    verticalNodes.add(edge.getBegginingNode());
-                }
-            }
-        }
-
-        return verticalNodes;
-    }
-
-    public List<Node> getHorizontalEdgesMadeByPlayer(Player player, List<Node> nodeList) {
-
-        List horizontalNodes = new ArrayList<Node>();
-
-        //Math.sqrt(nodeList.size() = cantidad de nodos por row/column
-        for (int i = 0; i < (int) Math.sqrt(nodeList.size()); i++) {
-            
-            //Math.sqrt(nodeList.size() = cantidad de nodos por row/column
-            //Math.sqrt(nodeList.size()*i = current row's number
-            //1+(int) Math.sqrt(nodeList.size()*i) = ID del primer nodo de la fila
-            horizontalIterator.setStartingNode(nodeList.get(1 + ((int) Math.sqrt(nodeList.size()) * i)));
-
-            while (horizontalIterator.hasNext()) {
-                Edge edge = horizontalIterator.getNext();
-                if (edge.getPlayer() == player) {
-                    horizontalNodes.add(edge.getBegginingNode());
-                }
-            }
-        }
-        return horizontalNodes;
     }
 }

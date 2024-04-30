@@ -5,6 +5,7 @@
 package domain.graph;
 
 import Services.CoordsDTO;
+import domain.game.Board;
 import domain.game.Game;
 import domain.interfaces.iNode;
 
@@ -75,8 +76,8 @@ public class Node implements iNode{
 
     public CoordsDTO getCoords() {
         
-        int x=(this.id-1)%Game.tamanoDePartida;
-        int y = (int) Math.floor((this.id-1)/Game.tamanoDePartida);
+        int x=(this.id-1)%Board.size;
+        int y = (int) Math.floor((this.id-1)/Board.size);
         return new CoordsDTO(x,y);
     }
 

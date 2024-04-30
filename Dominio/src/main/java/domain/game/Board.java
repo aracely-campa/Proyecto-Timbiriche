@@ -14,6 +14,7 @@ public class Board extends Game{
     private Square[][] boardArray;
     private List<Node> nodeList = new ArrayList();
     private GraphManager graphManager = new GraphManager();
+    public static int size=5;
 
     public void createSmallBoard() {
         createSmallBoardArray();
@@ -126,7 +127,7 @@ public class Board extends Game{
     
     public boolean setPlayerToSquares(Player player, Node nodeBegining, Node nodeEnding) throws Exception {
 
-        List<CoordsDTO> coordsList = graphManager.getScoredSquaresCoords(nodeBegining, boardArray.length);
+        List<CoordsDTO> coordsList = graphManager.getScoredSquaresCoords(nodeBegining);
         
         if (coordsList.isEmpty()){
             return false;
@@ -141,7 +142,7 @@ public class Board extends Game{
      * 
      * @return true si funcionó, false si valió vrg
      */
-    public boolean deletePlayerTraces(Player player) {
+    public boolean deletePlayerTraces(Player player) throws Exception {
 
         PlayerTracesDTO traces = graphManager.getPlayerTraces(player, nodeList, boardArray.length);
         List<CoordsDTO> coordsList = traces.getSquaresCoords();
@@ -150,17 +151,22 @@ public class Board extends Game{
         
         //DELETE SQUARES
         for (CoordsDTO coords : coordsList) {
+            System.out.println(coordsList);
             if (boardArray[coords.getX()][coords.getY()].getPlayer() != null) {
                 boardArray[coords.getX()][coords.getY()].setPlayer(null);
             }            
         }
         
         for (Node node: horizontalNodes){
-            
+            if (node.getRightEdge().getPlayer()!=null){
+                node.getRightEdge().setPlayer(null);
+            }
         }
         
         for (Node node: verticalNodes){
-            
+            if (node.getDownEdge().getPlayer()!=null){
+                node.getDownEdge().setPlayer(null);
+            }
         }
         
         return true;

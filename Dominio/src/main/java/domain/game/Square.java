@@ -23,6 +23,11 @@ public class Square {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    @Override
+    public String toString() {
+        return "Square{" + "player=" + player + '}';
+    }
     
     
     

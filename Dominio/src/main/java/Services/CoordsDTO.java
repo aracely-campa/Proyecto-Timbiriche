@@ -35,4 +35,9 @@ public class CoordsDTO {
     public void setY(int y) {
         this.y = y;
     }    
+
+    @Override
+    public String toString() {
+        return "CoordsDTO{" + "x=" + x + ", y=" + y + '}';
+    }
 }

@@ -28,6 +28,6 @@ public interface iGraphManager {
 
     public Node createNode();
 
-    public List<CoordsDTO> getScoredSquaresCoords(Node node, int boardSize) throws Exception;
+    public List<CoordsDTO> getScoredSquaresCoords(Node node) throws Exception;
 
     }

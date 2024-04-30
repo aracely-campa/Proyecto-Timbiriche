@@ -12,19 +12,16 @@ import domain.interfaces.iGraphIterator;
  *
  * @author HP 240 G8
  */
-public class ScoreIterator implements iGraphIterator {
+public class SingleSquareIterator implements iGraphIterator {
 
     private Node startingNode;
     private Node currentNode;
     private int step;
 
-    public ScoreIterator() {
-
-    }
-
     @Override
     public Edge getNext() {
-        if (step == 1 || step == 8 || step == 11 || step == 14) {
+
+        if (step == 1 ) {
             if (currentNode.getRightEdge() != null) {
                 currentNode = currentNode.getRightEdge().getEndingNode();
                 step++;
@@ -56,10 +53,10 @@ public class ScoreIterator implements iGraphIterator {
         return null;
     }
 
-    @Override
+       @Override
     public Boolean hasNext() {
 
-        return step <= 16;
+        return step <= 4;
 
     }
 
