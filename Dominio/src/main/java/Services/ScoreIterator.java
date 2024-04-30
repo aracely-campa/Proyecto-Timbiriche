@@ -37,21 +37,21 @@ public class ScoreIterator implements iGraphIterator {
                 step++;
                 return currentNode.getDownEdge();
             }
-            step = step + 4;
+            step = step + 3;
         } else if (step == 3 || step == 6 || step == 9 || step == 16) {
             if (currentNode.getLeftEdge()!= null) {
                 currentNode = currentNode.getLeftEdge().getBegginingNode();
                 step++;
                 return currentNode.getRightEdge();
             }
-            step = step + 4;
+            step = step + 2;
         } else if (step == 4 || step == 7 || step == 10 || step == 13) {
             if (currentNode.getDownEdge()!= null) {
                 currentNode = currentNode.getDownEdge().getEndingNode();
                 step++;
                 return currentNode.getUpperEdge();
             }
-            step = step + 4;
+            step = step + 1;
         }
         return null;
     }

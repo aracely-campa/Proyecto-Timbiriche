@@ -30,7 +30,7 @@ public class Board extends Game{
         }
     }
 
-    public void createSmallBoardGraph() {
+      public void createSmallBoardGraph() {
         for (int i = 0; i <= boardArray.length; i++) {
             for (int j = 0; j <= boardArray[0].length; j++) {
                 nodeList.add(graphManager.createNode());
@@ -48,28 +48,28 @@ public class Board extends Game{
                 //Sets then upper node to null if the tempNode belongs to the first row
                 if (i == 0) {
                     //i+(n*(j-1))+1 gives the index of the item in the row below
-                    graphManager.joinVerticalNodes(null, nodeList.get(j + boardArray.length * i));
+                    graphManager.joinVerticalNodes(null, nodeList.get(j + (boardArray.length+1) * i));
                     graphManager.fixFirstRow(nodeList.get(j + boardArray.length * i));
                 } else {
                     //i+3*j+1 gives the index of the item in the upper row
                     //i+2*j+1 gives the index of the item in the row below
-                    graphManager.joinVerticalNodes(nodeList.get(j + boardArray.length * (i - 1)), nodeList.get(j + boardArray.length * i));
+                    graphManager.joinVerticalNodes(nodeList.get(j + (boardArray.length+1) * (i - 1)), nodeList.get(j + (boardArray.length+1) * i));
                     if (i==boardArray[0].length-1){
-                    graphManager.fixLastRow(nodeList.get(j + boardArray.length * i));
+                    graphManager.fixLastRow(nodeList.get(j + (boardArray.length+1) * i));
                     }
                      
                 }
                 //Sets then Left node to null if the tempNode belongs to the first column
                 if (j == 0) {
                     //i+4*j+2 gives the index of the previous item
-                    graphManager.joinHorizontalNodes(null, nodeList.get(j + boardArray.length * i));
-                    graphManager.fixFirstColumn(nodeList.get(j + boardArray.length * i));
+                    graphManager.joinHorizontalNodes(null, nodeList.get(j + (boardArray.length+1) * i));
+                    graphManager.fixFirstColumn(nodeList.get(j + (boardArray.length+1) * i));
                 } else {
                     //i+4*j gives the index of the previous item
                     //i+4*j+2 gives the index of the previous item
-                    graphManager.joinHorizontalNodes(nodeList.get(j + boardArray.length * i-1), nodeList.get(j + boardArray.length * i));
+                    graphManager.joinHorizontalNodes(nodeList.get(j + (boardArray.length+1) * i-1), nodeList.get(j + (boardArray.length+1) * i));
                     if(j==boardArray[0].length-1){
-                    graphManager.fixLastColumn(nodeList.get(j + boardArray.length * i));
+                    graphManager.fixLastColumn(nodeList.get(j + (boardArray.length+1) * i));
                     }
                 }
                 //nodeList.set(i + 4 * j + 1, tempNode);
@@ -144,20 +144,20 @@ public class Board extends Game{
      */
     public boolean deletePlayerTraces(Player player) throws Exception {
 
-        PlayerTracesDTO traces = graphManager.getPlayerTraces(player, nodeList, boardArray.length);
+        PlayerTracesDTO traces = graphManager.getPlayerTraces(player, nodeList, boardArray.length, boardArray);
         List<CoordsDTO> coordsList = traces.getSquaresCoords();
         List<Node> horizontalNodes = traces.getHorizontalEdgesList();
         List<Node> verticalNodes = traces.getVerticalEdgesList();
-        
+        System.out.print(coordsList);
         //DELETE SQUARES
         for (CoordsDTO coords : coordsList) {
-            System.out.println(coordsList);
-            if (boardArray[coords.getX()][coords.getY()].getPlayer() != null) {
+            if (coords.getX() < boardArray.length && coords.getY() < boardArray[0].length && boardArray[coords.getX()][coords.getY()].getPlayer() != null) {
                 boardArray[coords.getX()][coords.getY()].setPlayer(null);
-            }            
+            }
+
         }
-        
-        for (Node node: horizontalNodes){
+
+        for (Node node : horizontalNodes) {
             if (node.getRightEdge().getPlayer()!=null){
                 node.getRightEdge().setPlayer(null);
             }

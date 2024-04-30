@@ -174,9 +174,8 @@ public class GraphManager implements iGraphManager{
         return coordsList;
     }
 
-    public PlayerTracesDTO getPlayerTraces(Player player, List<Node> nodeList, int length) throws Exception {
+    public PlayerTracesDTO getPlayerTraces(Player player, List<Node> nodeList, int length,Square[][] boardArray) throws Exception {
 
-        Set<CoordsDTO> squaresCoordsSet = new HashSet<>();
         Set<Node> verticalEdgesSet = new HashSet<>();
         Set<Node> horizontalEdgesSet = new HashSet<>();
 
@@ -195,22 +194,47 @@ public class GraphManager implements iGraphManager{
                 horizontalEdgesSet.add(node);
             }
 
-            List <CoordsDTO> tempList=getAllSquaresAffectedByPlayer(player,nodeList);
-            
-            tempList.removeIf(Objects::isNull);
-            
-            squaresCoordsSet.addAll(tempList);
-
         }
-        return new PlayerTracesDTO(new ArrayList<CoordsDTO>(squaresCoordsSet), new ArrayList<Node>(verticalEdgesSet),new ArrayList<Node>(horizontalEdgesSet));
+        return new PlayerTracesDTO(getAllSquaresAffectedByPlayerEasyMode(player,boardArray), new ArrayList<Node>(verticalEdgesSet), new ArrayList<Node>(horizontalEdgesSet));
     }
 
-    private List<CoordsDTO> getAllSquaresAffectedByPlayer(Player player, List<Node> nodeList ) {
-
-        for (Node node: nodeList){
-            
+    public List<CoordsDTO> getAllSquaresAffectedByPlayer(Player player, List<Node> nodeList) {
+        List<CoordsDTO> affectedSquares = new ArrayList<>();
+        
+        for (Node node : nodeList) {
+            // Check if any of the adjacent edges belong to the player
+            if (isAnyEdgeOccupiedByPlayer(node, player)) {
+                // If at least one edge belongs to the player, add the coordinates of the node to the list
+                affectedSquares.add(node.getCoords());
+            }
         }
+        
+        return affectedSquares;
+    }
+    
+    private boolean isAnyEdgeOccupiedByPlayer(Node node, Player player) {
+        // Check if any of the adjacent edges (upper, down, left, right) belong to the player
+        return isEdgeOccupiedByPlayer(node.getUpperEdge(), player)
+                || isEdgeOccupiedByPlayer(node.getDownEdge(), player)
+                || isEdgeOccupiedByPlayer(node.getLeftEdge(), player)
+                || isEdgeOccupiedByPlayer(node.getRightEdge(), player);
+    }
+    
+    private boolean isEdgeOccupiedByPlayer(Edge edge, Player player) {
+        // Check if the edge exists and if its player is the specified player
+        return edge != null && edge.getPlayer() != null && edge.getPlayer().equals(player);
+    }
 
+    public List<CoordsDTO> getAllSquaresAffectedByPlayerEasyMode(Player player, Square[][] boardArray) {
+        List<CoordsDTO> affectedSquares = new ArrayList<>();
+        for (int i = 0; i < boardArray.length; i++) {
+            for (int j = 0; j < boardArray[i].length; j++) {
+                if(boardArray[i][j].getPlayer()!=null&&boardArray[i][j].getPlayer().equals(player)){
+                    affectedSquares.add(new CoordsDTO(i,j));
+                }
+        }
+    }
+                    return affectedSquares;
 
     }
 }
