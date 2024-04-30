@@ -12,9 +12,11 @@ import domain.game.Player;
  */
 public class PlayerComponent {
 
-    private PlayerController playerController;
-    private PlayerModel playerModel;
-    private PlayerView playerView;
+    private PlayerModel playerModel = new PlayerModel();
+    private PlayerView playerView = new PlayerView(playerModel);
+
+    private PlayerController playerController = new PlayerController(playerModel, playerView);
+
     private static PlayerComponent playerComponent;
 
     public PlayerComponent() {
@@ -56,7 +58,8 @@ public class PlayerComponent {
         }
         return playerComponent;
     }
-   public void updatePlayerInfo(String name, String avatarPath) {
+
+    public void updatePlayerInfo(String name, String avatarPath) {
         if (playerModel == null) {
             playerModel = new PlayerModel(new Player(), avatarPath, name, 0);
         } else {

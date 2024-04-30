@@ -1,5 +1,6 @@
 package frm;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerModel;
@@ -13,16 +14,16 @@ public class FrmLobby extends javax.swing.JFrame {
     private final String avatarPath;
     private final String namePlayer;
 
-    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath, ImageIcon selectedAvatarIcon) {
+    public FrmLobby(PlayerModel playerModel, String namePlayer, String avatarPath) {
         this.avatarPath = avatarPath;
         this.namePlayer = namePlayer;
         initComponents();
         lblNamePlayer.setText(namePlayer);
-        lblAvatar.setIcon(selectedAvatarIcon);
+        lblAvatar.setIcon(new ImageIcon(avatarPath));
 
         setVisible(true);
 
-        System.out.println("Avatar path received in FrmLobby: " + selectedAvatarIcon); // Mensaje de depuración
+        System.out.println("Avatar path received in FrmLobby: " + avatarPath); // Mensaje de depuración
     }
 
 
