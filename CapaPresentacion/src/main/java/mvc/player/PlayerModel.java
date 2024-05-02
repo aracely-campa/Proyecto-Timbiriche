@@ -15,7 +15,7 @@ public class PlayerModel {
 
     private Player player;
     private String avatarPath;
-    
+
     private String name;
 
     public int turn;
@@ -34,8 +34,8 @@ public class PlayerModel {
     public PlayerModel(Player player, String avatarSelected) {
         this.player = player;
         this.name = avatarSelected;
-        this.avatarPath = getAvatarImage(this.name);
-
+        //this.avatarPath = getAvatarImage(this.name);
+        this.avatarPath = avatarSelected;
     }
 
     public static String getAvatarImage(String name) {
@@ -61,10 +61,10 @@ public class PlayerModel {
         this.player = player;
     }
 
-    public void setAvatarPath(Player player, String avatarPath) {
+    public void setAvatarPath(String avatarPath) {
         this.avatarPath = avatarPath;
         this.player = player;
-        
+
     }
 
     public String getAvatarPath() {

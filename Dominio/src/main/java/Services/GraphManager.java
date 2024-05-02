@@ -124,7 +124,7 @@ public class GraphManager implements iGraphManager{
     //spoiler, I'm almost certain it does not make no sense at all)
     
     @Override
-    public List <CoordsDTO> getScoredSquaresCoords(Node node) throws Exception{
+    public List <CoordsDTO> getScoredSquaresCoords(Node node) {
         
         scoreIterator.setStartingNode(node);
         List coordsList = new ArrayList<CoordsDTO>();
@@ -164,7 +164,7 @@ public class GraphManager implements iGraphManager{
                         }
                         break;
                     default:
-                        throw new Exception("wtf");
+                        System.out.println("wtf");
                 }
 
                 //((node.getId()) % (boardSize + 1), (node.getId()) % (boardSize));
@@ -174,7 +174,7 @@ public class GraphManager implements iGraphManager{
         return coordsList;
     }
 
-    public PlayerTracesDTO getPlayerTraces(Player player, List<Node> nodeList, int length,Square[][] boardArray) throws Exception {
+    public PlayerTracesDTO getPlayerTraces(Player player, List<Node> nodeList, int length,Square[][] boardArray)   {
 
         Set<Node> verticalEdgesSet = new HashSet<>();
         Set<Node> horizontalEdgesSet = new HashSet<>();

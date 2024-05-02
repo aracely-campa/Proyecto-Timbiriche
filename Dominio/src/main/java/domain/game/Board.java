@@ -15,7 +15,9 @@ public class Board extends Game{
     private List<Node> nodeList = new ArrayList();
     private GraphManager graphManager = new GraphManager();
     public static int size=5;
-
+    
+    private static Board board;
+    
     public void createSmallBoard() {
         createSmallBoardArray();
         createSmallBoardGraph();
@@ -125,7 +127,7 @@ public class Board extends Game{
      * @return true si se formó un cuadro y se seteo el jugador, false si no
      */
     
-    public boolean setPlayerToSquares(Player player, Node nodeBegining, Node nodeEnding) throws Exception {
+    public boolean setPlayerToSquares(Player player, Node nodeBegining, Node nodeEnding)   {
 
         List<CoordsDTO> coordsList = graphManager.getScoredSquaresCoords(nodeBegining);
         
@@ -142,7 +144,7 @@ public class Board extends Game{
      * 
      * @return true si funcionó, false si valió vrg
      */
-    public boolean deletePlayerTraces(Player player) throws Exception {
+    public boolean deletePlayerTraces(Player player) {
 
         PlayerTracesDTO traces = graphManager.getPlayerTraces(player, nodeList, boardArray.length, boardArray);
         List<CoordsDTO> coordsList = traces.getSquaresCoords();
@@ -173,6 +175,11 @@ public class Board extends Game{
     }
     
     
-    
+     public static Board getInstance() {
+        if (board == null) {
+            board = new Board();
+        }
+        return board;
+    }
     
 }

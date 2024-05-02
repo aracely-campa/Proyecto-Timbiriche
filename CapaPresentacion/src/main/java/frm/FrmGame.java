@@ -4,18 +4,44 @@
  */
 package frm;
 
+import enums.ImagesSourcers;
+import factory.MVCFactory;
+import java.awt.Dimension;
+import mvc.player.PlayerComponent;
+import mvc.player.PlayerView;
+
 /**
  *
  * @author arace
  */
 public class FrmGame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmGame
-     */
     public FrmGame() {
         initComponents();
+   pintarJugadorTest();
+        
+        
     }
+    
+    
+public void pintarJugadorTest() {
+    PlayerComponent playerComponent = MVCFactory.instancePlayerComponent();
+    playerComponent.updatePlayerInfo("dick", "src/main/resources/avatar/avatarYellow.png");
+    playerComponent.refresh();
+
+jPanel1.add(playerComponent.getPlayerView(), new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 1010, 110));
+
+    jPanel1.revalidate();
+    jPanel1.repaint();
+
+    System.out.println("PlayerView added with avatar path: " + playerComponent.getPlayerModel().getAvatarPath()); // Agregado para depuración
+    
+    jPanel1.revalidate();
+jPanel1.repaint();
+
+}
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,17 +52,38 @@ public class FrmGame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 714, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 562, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 771, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -78,5 +125,6 @@ public class FrmGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

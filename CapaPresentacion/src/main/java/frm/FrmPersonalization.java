@@ -25,16 +25,16 @@ public class FrmPersonalization extends javax.swing.JFrame {
     private void displayCurrentAvatar() {
 
         String[] avatarPaths = ImagesSourcers.getAvatarImages();
-        
+
         if (avatarPaths != null && avatarPaths.length > 0) {
-            
+
             int index = playerModel.getAvatarPath() != null ? getSelectedAvatarIndex(new String[]{playerModel.getAvatarPath()}) : 0;
-            
+
             ImageIcon icon = new ImageIcon(avatarPaths[index]);
-            
+
             avatarButton.setIcon(icon);
             selectedAvatarPath = avatarPaths[index];
-            
+
         } else {
             System.err.println("Error: avatarPaths is null or empty");
         }
@@ -102,7 +102,7 @@ public class FrmPersonalization extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "The text field is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         PlayerComponent.getInstance().updatePlayerInfo(namePlayer, selectedAvatarPath);
         FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath);
         v.setVisible(true);
