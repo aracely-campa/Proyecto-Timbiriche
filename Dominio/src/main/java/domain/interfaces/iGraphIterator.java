@@ -5,6 +5,7 @@
 package domain.interfaces;
 
 import domain.graph.Edge;
+import domain.graph.Node;
 
 /**
  *
@@ -15,4 +16,7 @@ public interface iGraphIterator {
     public Edge getNext();
 
     public Boolean hasNext();
+    
+    public void setStartingNode(Node node);
+    
 }
