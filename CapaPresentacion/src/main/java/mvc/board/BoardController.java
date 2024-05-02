@@ -10,4 +10,30 @@ package mvc.board;
  */
 public class BoardController {
     
+    private BoardView boardView;
+    private BoardModel boardModel;
+
+    public BoardController(BoardView boardView, BoardModel boardModel) {
+        this.boardView = boardView;
+        this.boardModel = boardModel;
+    }
+
+    public BoardView getBoardView() {
+        return boardView;
+    }
+
+    public void setBoardView(BoardView boardView) {
+        this.boardView = boardView;
+    }
+
+    public BoardModel getBoardModel() {
+        return boardModel;
+    }
+
+    public void setBoardModel(BoardModel boardModel) {
+        this.boardModel = boardModel;
+    }
+    
+    
+    
 }

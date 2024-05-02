@@ -10,15 +10,14 @@ package mvc.game;
  */
 public class GameComponent {
 
-    private GameController gameController;
-    private GameModel gameModel;
-    private GameView gameView;
+    private GameModel gameModel = new GameModel();
+    private GameView gameView = new GameView(gameModel);
+    private GameController gameController = new GameController(gameModel, gameView);
     private static GameComponent gameComponent;
-    
-    
+
     public GameComponent() {
     }
-    
+
     public GameComponent(GameController gameController, GameModel gameModel, GameView gameView) {
         this.gameController = gameController;
         this.gameModel = gameModel;
@@ -48,14 +47,12 @@ public class GameComponent {
     public void setGameView(GameView gameView) {
         this.gameView = gameView;
     }
-    
-    public static GameComponent getInstance(){
-        if(gameComponent == null){
+
+    public static GameComponent getInstance() {
+        if (gameComponent == null) {
             gameComponent = new GameComponent();
         }
         return gameComponent;
     }
-    
-    
 
 }

@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
  * @author luis-
  */
 public class PlayerView {
-
+    
     private PlayerController playerController;
     private Image poolImage;
     private PlayerModel playerModel;
