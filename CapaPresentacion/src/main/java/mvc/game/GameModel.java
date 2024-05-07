@@ -68,6 +68,11 @@ public class GameModel {
     public void setTamanoDePartida(Integer tamanoDePartida) {
         this.tamanoDePartida = tamanoDePartida;
     }
+    
+    
+    public Player[] getPlayersOnGame(){
+        return this.domainGame.getPlayersOnGame();
+    }
 
     @Override
     public String toString() {

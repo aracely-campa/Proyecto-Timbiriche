@@ -6,6 +6,7 @@ package mvc.game;
 
 import domain.game.Board;
 import domain.game.Game;
+import domain.game.Player;
 import mvc.player.PlayerModel;
 import mvc.player.PlayerView;
 
@@ -31,16 +32,12 @@ public class GameController {
         return gameModel;
     }
 
-    public void setGameModel(GameModel gameModel) {
-        this.gameModel = gameModel;
-    }
-
     public GameView getGameView() {
         return gameView;
     }
 
-    public void setGameView(GameView gameView) {
-        this.gameView = gameView;
+    public Player[] getPlayersOnGame() {
+        return this.gameModel.getPlayersOnGame();
     }
 
     @Override
