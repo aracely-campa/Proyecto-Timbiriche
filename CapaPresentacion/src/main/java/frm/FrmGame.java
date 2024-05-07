@@ -31,7 +31,7 @@ public class FrmGame extends javax.swing.JFrame {
     public void paintPoolOnGamePanel() {
         PlayerComponent playerComponent = PlayerComponent.getInstance();
         PlayerView playerView = playerComponent.getPlayerView();
-        jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 120, 150));
+        jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 180, 180));
         playerComponent.refresh();
     }
 

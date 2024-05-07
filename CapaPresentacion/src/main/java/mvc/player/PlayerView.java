@@ -19,7 +19,7 @@ public class PlayerView extends JPanel {
     public PlayerView(PlayerModel playerModel) {
         this.playerModel = playerModel;
         loadBoardImage();
-        setPreferredSize(new Dimension(120, 130));
+        setPreferredSize(new Dimension(120, 150)); 
         setLayout(new FlowLayout());
     }
 
@@ -29,13 +29,13 @@ public class PlayerView extends JPanel {
                 playerImage = ImageIO.read(new File(playerModel.getAvatarPath()));
             } catch (IOException ex) {
                 ex.printStackTrace();
-                // Handle error, perhaps set a default image
+                
             }
         }
     }
 
     public void refresh() {
-        loadBoardImage(); // Reload image from the updated avatar path
+        loadBoardImage(); 
         revalidate();
         repaint();
     }
@@ -48,5 +48,12 @@ public class PlayerView extends JPanel {
         if (playerImage != null) {
             g2d.drawImage(playerImage, 0, 0, 120, 130, this);
         }
+
+        
+        if (playerModel.getName() != null) {
+            g2d.setColor(Color.BLACK); 
+            g2d.drawString(playerModel.getName(), 30, 140);
+        }
     }
 }
+
