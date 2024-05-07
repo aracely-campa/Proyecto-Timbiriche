@@ -63,8 +63,6 @@ public class PlayerModel {
 
     public void setAvatarPath(String avatarPath) {
         this.avatarPath = avatarPath;
-        this.player = player;
-
     }
 
     public String getAvatarPath() {

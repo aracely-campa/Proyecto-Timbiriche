@@ -37,4 +37,8 @@ public class DomainGame {
         game.deletePlayer(player);
     }
 
+    public Player[] getPlayersOnGame(){
+        return this.game.getPlayerList();
+    }
+    
 }

@@ -4,6 +4,10 @@
  */
 package mvc.game;
 
+import domain.game.Player;
+import mvc.board.BoardComponent;
+import mvc.player.PlayerComponent;
+
 /**
  *
  * @author luis-
@@ -14,6 +18,9 @@ public class GameComponent {
     private GameView gameView = new GameView(gameModel);
     private GameController gameController = new GameController(gameModel, gameView);
     private static GameComponent gameComponent;
+
+    private BoardComponent boardComponent;
+    private PlayerComponent playerComponent;
 
     public GameComponent() {
     }
@@ -28,26 +35,32 @@ public class GameComponent {
         return gameController;
     }
 
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
-
     public GameModel getGameModel() {
         return gameModel;
-    }
-
-    public void setGameModel(GameModel gameModel) {
-        this.gameModel = gameModel;
     }
 
     public GameView getGameView() {
         return gameView;
     }
 
-    public void setGameView(GameView gameView) {
-        this.gameView = gameView;
+    public PlayerComponent getPlayerComponent(){
+        return playerComponent;
+    }
+    
+    public BoardComponent getBoardComponent() {
+        return boardComponent;
     }
 
+    public Player[] getPlayersOnGame(){
+      return  this.gameController.getPlayersOnGame();
+    }
+    
+    
+    public void buildGame(){
+        
+    }
+    
+    
     public static GameComponent getInstance() {
         if (gameComponent == null) {
             gameComponent = new GameComponent();

@@ -18,30 +18,23 @@ public class FrmGame extends javax.swing.JFrame {
 
     public FrmGame() {
         initComponents();
-   pintarJugadorTest();
-        
-        
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        paintPoolOnGamePanel();
+
     }
-    
-    
-public void pintarJugadorTest() {
-    PlayerComponent playerComponent = MVCFactory.instancePlayerComponent();
-    playerComponent.updatePlayerInfo("dick", "src/main/resources/avatar/avatarYellow.png");
-    playerComponent.refresh();
 
-jPanel1.add(playerComponent.getPlayerView(), new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 1010, 110));
+    public void pintarJugadorTest() {
 
-    jPanel1.revalidate();
-    jPanel1.repaint();
+    }
 
-    System.out.println("PlayerView added with avatar path: " + playerComponent.getPlayerModel().getAvatarPath()); // Agregado para depuración
-    
-    jPanel1.revalidate();
-jPanel1.repaint();
+    public void paintPoolOnGamePanel() {
+        PlayerComponent playerComponent = MVCFactory.instancePlayerComponent();
+        jPanel1.add(playerComponent.getPlayerView(), new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        playerComponent.refresh();
 
-}
-
-
+        //   gamePanel.setComponentZOrder(this.match.getPoolView(), 0);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,35 +48,30 @@ jPanel1.repaint();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 714, Short.MAX_VALUE)
+            .addGap(0, 1120, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 562, Short.MAX_VALUE)
+            .addGap(0, 790, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(51, 51, 51))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

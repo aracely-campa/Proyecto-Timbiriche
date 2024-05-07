@@ -2,6 +2,7 @@ package mvc.player;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -12,66 +13,37 @@ import javax.swing.JPanel;
 
 public class PlayerView extends JPanel {
 
-    private Image poolImage;
+    private Image playerImage;
     private PlayerModel playerModel;
 
     public PlayerView(PlayerModel playerModel) {
         this.playerModel = playerModel;
-        
-        this.playerModel.setAvatarPath("src/main/resources/avatar/avatarYellow.png");
-        setBackground(Color.blue);
-        setPreferredSize(new Dimension(1010, 110)); // Asegúrate de que esta dimensión es adecuada
-        loadPlayerImage();
-        setVisible(true);  // Asegura que el panel es visible
+        loadBoardImage();
+        setPreferredSize(new Dimension(120, 130));
+        setLayout(new FlowLayout());
+
     }
 
-private void loadPlayerImage() {
-    System.out.println("Attempting to load image with path: " + playerModel.getAvatarPath());  // Depuración
-    try {
-        String avatarPath = playerModel.getAvatarPath();
-        if (avatarPath != null) {
-            File imageFile = new File(avatarPath);
-            if (imageFile.exists()) {
-                poolImage = ImageIO.read(imageFile);
-            } else {
-                System.err.println("Error: Avatar image file not found at " + avatarPath);
-            }
-        } else {
-            System.err.println("Error: Avatar path is null.");
+    private void loadBoardImage() {
+        try {
+            playerImage = ImageIO.read(new File("src/main/resources/avatar/avatarBlue.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
+    }
+
+    public void refresh() {
         revalidate();
         repaint();
-        this.setBackground(Color.RED); // Establece el color de fondo a rojo para pruebas
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        System.err.println("Error loading avatar image: " + e.getMessage());
     }
-}
 
+       @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
 
-
-     public void refresh() {
- 
-            repaint();
-        
+        // Dibuja la imagen en el JPanel
+        g2d.drawImage(playerImage, 0, 0, 120, 130, this);
     }
-    
-
-@Override
-protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
-    if (poolImage != null) {
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.drawImage(poolImage, 0, 0, 100, 100, this);
-        g2d.dispose();
-        
-        System.out.println("Image load status: " + (poolImage != null ? "Success" : "Failed"));
-
-    }
-    
-    System.out.println("Image load status: " + (poolImage != null ? "Success" : "Failed"));
-
-}
 
 }
