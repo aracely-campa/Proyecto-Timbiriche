@@ -64,12 +64,9 @@ public class PlayerComponent {
     }
 
     public void updatePlayerInfo(String name, String avatarPath) {
-        if (playerModel == null) {
-            playerModel = new PlayerModel(new Player(), avatarPath, name, 0);
-        } else {
-            playerModel.setName(name);
-            playerModel.setAvatarPath( avatarPath); // Asegúrate de ajustar si el setter cambia.
-        }
+        playerModel.setName(name);
+        playerModel.setAvatarPath(avatarPath);
+        playerView.refresh();
     }
 
     @Override

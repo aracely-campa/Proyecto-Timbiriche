@@ -29,11 +29,10 @@ public class FrmGame extends javax.swing.JFrame {
     }
 
     public void paintPoolOnGamePanel() {
-        PlayerComponent playerComponent = MVCFactory.instancePlayerComponent();
-        jPanel1.add(playerComponent.getPlayerView(), new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        PlayerComponent playerComponent = PlayerComponent.getInstance();
+        PlayerView playerView = playerComponent.getPlayerView();
+        jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 120, 150));
         playerComponent.refresh();
-
-        //   gamePanel.setComponentZOrder(this.match.getPoolView(), 0);
     }
 
     /**

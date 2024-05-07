@@ -26,8 +26,6 @@ public class FrmLobby extends javax.swing.JFrame {
         System.out.println("Avatar path received in FrmLobby: " + avatarPath); // Mensaje de depuración
     }
 
-
-
     private void showWelcomeFrm() {
         int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (exit == JOptionPane.YES_OPTION) {
@@ -35,6 +33,12 @@ public class FrmLobby extends javax.swing.JFrame {
             v.setVisible(true);
             this.dispose();
         }
+    }
+
+    private void showLobbyFrm() {
+        FrmGame v = new FrmGame();
+        v.setVisible(true);
+        this.dispose();
     }
 
     /**
@@ -97,7 +101,7 @@ public class FrmLobby extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartGameActionPerformed
-
+        showLobbyFrm();
     }//GEN-LAST:event_btnStartGameActionPerformed
 
 

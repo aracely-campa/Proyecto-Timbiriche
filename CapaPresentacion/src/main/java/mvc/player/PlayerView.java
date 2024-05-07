@@ -21,29 +21,32 @@ public class PlayerView extends JPanel {
         loadBoardImage();
         setPreferredSize(new Dimension(120, 130));
         setLayout(new FlowLayout());
-
     }
 
     private void loadBoardImage() {
-        try {
-            playerImage = ImageIO.read(new File("src/main/resources/avatar/avatarBlue.png"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        if (playerModel.getAvatarPath() != null && !playerModel.getAvatarPath().isEmpty()) {
+            try {
+                playerImage = ImageIO.read(new File(playerModel.getAvatarPath()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                // Handle error, perhaps set a default image
+            }
         }
     }
 
     public void refresh() {
+        loadBoardImage(); // Reload image from the updated avatar path
         revalidate();
         repaint();
     }
 
-       @Override
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        // Dibuja la imagen en el JPanel
-        g2d.drawImage(playerImage, 0, 0, 120, 130, this);
+        if (playerImage != null) {
+            g2d.drawImage(playerImage, 0, 0, 120, 130, this);
+        }
     }
-
 }
