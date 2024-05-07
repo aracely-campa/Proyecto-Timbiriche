@@ -1,20 +1,16 @@
 package domain.game;
 
-import domain.game.Game;
-import java.awt.Image;
-
 /**
  *
  * @author arace La clase Player representa a un jugador en un juego.
  */
 public class Player {
-    
+
     private static Player player;
     private String name; // El nombre del jugador
     int score; // El puntaje del jugador
     Integer id; // El identificador del jugador
     private boolean turnoJugador; // El turno del jugador
-
 
     /**
      * Constructor por defecto de la clase Player.
@@ -29,11 +25,11 @@ public class Player {
      * @param score El puntaje del jugador.
      * @param id El identificador del jugador.
      */
-    public Player( String name, int score, int id) {
+    public Player(String name, int score, int id) {
         this.name = name;
         this.score = score;
         this.id = id;
-       
+
     }
 
     /**
@@ -107,15 +103,18 @@ public class Player {
     public boolean haveTurn() {
         return turnoJugador;
     }
+
+    public void addScore(Integer score){
+        this.score += score;
+    }
     
-    public static Player getInstance(){
-        if(player == null){
+    public static Player getInstance() {
+        if (player == null) {
             player = new Player();
         }
         return player;
     }
-    
-    
+
     /**
      * Devuelve una representación en cadena de texto del objeto Player.
      *

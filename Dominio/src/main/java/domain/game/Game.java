@@ -3,19 +3,19 @@ package domain.game;
 import exceptions.GameException;
 
 public class Game {
-    
+
     private static Game game;
-    
+
     private Board board;
-    
+
     private Player[] players;
-    
+
     //Esto especifica si el jugador esta iniciado o no,
     // Ture == "Juego en curso", False == "Juego no en curso";
     private boolean gameStatus;
-    
-    private Integer tamanoDePartida;
-    
+
+    public Integer tamanoDePartida;
+
     //Constructor por default
     public Game() {
     }
@@ -24,70 +24,43 @@ public class Game {
         this.board = board;
         this.tamanoDePartida = tamanoDePartida;
     }
-    
-    private void startGame() throws GameException {
-        if (gameStatus) {
-            throw new GameException("El juego ya estaba iniciado, no se puede volver a iniciar.");
-        }
+
+    private void startGame() {
 
         this.setGameIntoElements();
         this.setGameStarted();
     }
-    
-    private void finishGame() throws GameException{
-        if(!(gameStatus)){
-            throw new GameException("El juego aun no esta iniciado, no se puede terminar.");
-        }
+
+    private void finishGame() {
+
         removeGameElements();
         this.setGameFinished();
     }
-    
-    public Player[] createPlayerListWithSize(Integer tamanoInteger) throws GameException{
-        
-        if(this.players != null){
-            throw new GameException("La lista ya esta instanciada, no se puede añadir");
-        }
-        
-       return this.players = new Player[tamanoInteger];
+
+    public Player[] createPlayerListWithSize(Integer tamanoInteger) {
+
+        return this.players = new Player[tamanoInteger];
     }
-    
-    private void setGameIntoElements() throws GameException {
+
+    private void setGameIntoElements() {
         setGameIntoBoard();
     }
-    
-    private void removeGameElements() throws GameException{
+
+    private void removeGameElements() {
         removeBoardOfGame();
     }
-    
-    private void removeBoardOfGame() throws GameException {
-        if(this.board == null){
-            throw new GameException("No se habia establecido un tablero antes.");
-        }
-        
+
+    private void removeBoardOfGame() {
+
         board.setBoard(null);
     }
 
-    private void setGameIntoBoard() throws GameException {
-
-        if (this.board == null) {
-            throw new GameException("El tablero no esta inicializado.");
-        }
+    private void setGameIntoBoard() {
 
         board.setGame(game);
     }
 
-    public void addPlayer(Player player) throws GameException {
-        if (isGameStarted()) {
-            throw new GameException("El juego aun no ha comenzado, no se pueden agregar jugadores todavia.");
-        }
-
-        if (player == null) {
-            throw new GameException("El Jugador ingresado es nuelo");
-        }
-
-        if (isMatchFull()) {
-            throw new GameException("La partida esta llena, ya no recibe mas jugadores");
-        }
+    public void addPlayer(Player player) {
 
         addPlayerToMatch(player);
 
@@ -98,18 +71,18 @@ public class Game {
 
     private void addPlayerToMatch(Player player) {
         for (int i = 0; i < tamanoDePartida; i++) {
-            if (comprovePlayersInGame()) {
+            if (comprobarEspacioEnPartida()) {
                 players[i] = player;
                 players[i].setId(i);
                 return;
             }
         }
     }
-    
-    public boolean comprovePlayersInGame(){
+
+    public boolean comprobarEspacioEnPartida() {
         return !(players.length > tamanoDePartida);
     }
-    
+
     private boolean isMatchFull() {
         for (Player player : players) {
             if (player == null) {
@@ -119,24 +92,27 @@ public class Game {
         return true;
     }
 
-    private int findPlayerIndex(Player player) {  
-         for (Player players : this.players) {
-             if(players == player){
-                 return players.getId();
-             }
+    private int findPlayerIndex(Player player) {
+        for (Player players : this.players) {
+            if (players == player) {
+                return players.getId();
+            }
         }
-        
-        
+
         return -1;
     }
 
-
-    
-    public void deletePlayer(Player player) throws GameException {
-
-        if (player == null) {
-            throw new GameException("El jugador que se esta intentando eliminar no existe o es nulo.");
+        public Player getPlayerOfList(Player player) {
+        for (Player playerList : this.players) {
+            if (player == playerList) {
+             return playerList;
+            }
         }
+
+        return null;
+    }
+    
+    public void deletePlayer(Player player) {
 
         for (int i = 0; i < players.length; i++) {
             if (this.players[i] == player) {
@@ -146,16 +122,33 @@ public class Game {
 
     }
 
-        
-    public boolean matchCanStart(){
+    public boolean playerExistOnTheList(Player player) {
+        for (Player playerList : this.players) {
+            if (player == playerList) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean canAddAPlayerToGame() {
+        return comprobarEspacioEnPartida();
+    }
+
+    public int getGamePlayerListSize() {
+        return tamanoDePartida;
+    }
+
+    public boolean matchCanStart() {
         return isMatchFull();
     }
-    
-    public void setGameFinished(){
+
+    public void setGameFinished() {
         this.gameStatus = false;
     }
 
-    public void setGameStarted(){
+    public void setGameStarted() {
         this.gameStatus = true;
     }
 
@@ -190,9 +183,9 @@ public class Game {
     public boolean isGameStarted() {
         return gameStatus;
     }
-    
-    public static Game getInstance(){
-        if(game == null){
+
+    public static Game getInstance() {
+        if (game == null) {
             game = new Game();
         }
         return game;

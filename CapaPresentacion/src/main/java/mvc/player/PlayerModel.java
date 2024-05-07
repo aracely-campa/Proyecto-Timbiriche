@@ -15,19 +15,27 @@ public class PlayerModel {
 
     private Player player;
     private String avatarPath;
-    
+
     private String name;
 
     public int turn;
 
     public PlayerModel() {
+        this.player = new Player();
+    }
+
+    public PlayerModel(Player player, String avatarPath, String name, int turn) {
+        this.player = player;
+        this.avatarPath = avatarPath;
+        this.name = name;
+        this.turn = turn;
     }
 
     public PlayerModel(Player player, String avatarSelected) {
         this.player = player;
         this.name = avatarSelected;
-        this.avatarPath = getAvatarImage(this.name);
-
+        //this.avatarPath = getAvatarImage(this.name);
+        this.avatarPath = avatarSelected;
     }
 
     public static String getAvatarImage(String name) {

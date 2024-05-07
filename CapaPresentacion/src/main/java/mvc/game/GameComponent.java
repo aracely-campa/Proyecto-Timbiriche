@@ -4,21 +4,27 @@
  */
 package mvc.game;
 
+import domain.game.Player;
+import mvc.board.BoardComponent;
+import mvc.player.PlayerComponent;
+
 /**
  *
  * @author luis-
  */
 public class GameComponent {
 
-    private GameController gameController;
-    private GameModel gameModel;
-    private GameView gameView;
+    private GameModel gameModel = new GameModel();
+    private GameView gameView = new GameView(gameModel);
+    private GameController gameController = new GameController(gameModel, gameView);
     private static GameComponent gameComponent;
-    
-    
+
+    private BoardComponent boardComponent;
+    private PlayerComponent playerComponent;
+
     public GameComponent() {
     }
-    
+
     public GameComponent(GameController gameController, GameModel gameModel, GameView gameView) {
         this.gameController = gameController;
         this.gameModel = gameModel;
@@ -29,33 +35,37 @@ public class GameComponent {
         return gameController;
     }
 
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
-    }
-
     public GameModel getGameModel() {
         return gameModel;
-    }
-
-    public void setGameModel(GameModel gameModel) {
-        this.gameModel = gameModel;
     }
 
     public GameView getGameView() {
         return gameView;
     }
 
-    public void setGameView(GameView gameView) {
-        this.gameView = gameView;
+    public PlayerComponent getPlayerComponent(){
+        return playerComponent;
     }
     
-    public static GameComponent getInstance(){
-        if(gameComponent == null){
+    public BoardComponent getBoardComponent() {
+        return boardComponent;
+    }
+
+    public Player[] getPlayersOnGame(){
+      return  this.gameController.getPlayersOnGame();
+    }
+    
+    
+    public void buildGame(){
+        
+    }
+    
+    
+    public static GameComponent getInstance() {
+        if (gameComponent == null) {
             gameComponent = new GameComponent();
         }
         return gameComponent;
     }
-    
-    
 
 }

@@ -25,7 +25,7 @@ public class DomainGame {
     }
 
     public void comprobarEspacioEnPartida() throws GameException {
-        game.comprovePlayersInGame();
+        game.comprobarEspacioEnPartida();
 
     }
 
@@ -37,4 +37,8 @@ public class DomainGame {
         game.deletePlayer(player);
     }
 
+    public Player[] getPlayersOnGame(){
+        return this.game.getPlayerList();
+    }
+    
 }

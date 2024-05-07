@@ -16,7 +16,7 @@ public class ScoreIterator implements iGraphIterator {
 
     private Node startingNode;
     private Node currentNode;
-    int step;
+    private int step;
 
     public ScoreIterator() {
 
@@ -25,21 +25,33 @@ public class ScoreIterator implements iGraphIterator {
     @Override
     public Edge getNext() {
         if (step == 1 || step == 8 || step == 11 || step == 14) {
-            currentNode = currentNode.getRightEdge().getEndingNode();
-            step++;
-            return currentNode.getLeftEdge();
+            if (currentNode.getRightEdge() != null) {
+                currentNode = currentNode.getRightEdge().getEndingNode();
+                step++;
+                return currentNode.getLeftEdge();
+            }
+            step = step + 4;
         } else if (step == 2 || step == 5 || step == 12 || step == 15) {
-            currentNode = currentNode.getUpperEdge().getBegginingNode();
-            step++;
-            return currentNode.getDownEdge();
+            if (currentNode.getUpperEdge()!= null) {
+                currentNode = currentNode.getUpperEdge().getBegginingNode();
+                step++;
+                return currentNode.getDownEdge();
+            }
+            step = step + 3;
         } else if (step == 3 || step == 6 || step == 9 || step == 16) {
-            currentNode = currentNode.getLeftEdge().getBegginingNode();
-            step++;
-            return currentNode.getRightEdge();
+            if (currentNode.getLeftEdge()!= null) {
+                currentNode = currentNode.getLeftEdge().getBegginingNode();
+                step++;
+                return currentNode.getRightEdge();
+            }
+            step = step + 2;
         } else if (step == 4 || step == 7 || step == 10 || step == 13) {
-            currentNode = currentNode.getDownEdge().getEndingNode();
-            step++;
-            return currentNode.getUpperEdge();
+            if (currentNode.getDownEdge()!= null) {
+                currentNode = currentNode.getDownEdge().getEndingNode();
+                step++;
+                return currentNode.getUpperEdge();
+            }
+            step = step + 1;
         }
         return null;
     }
@@ -51,9 +63,14 @@ public class ScoreIterator implements iGraphIterator {
 
     }
 
+    @Override
     public void setStartingNode(Node node) {
         startingNode = node;
         currentNode = node;
         step = 1;
+    }
+    
+    public int getStep(){
+        return step;
     }
 }

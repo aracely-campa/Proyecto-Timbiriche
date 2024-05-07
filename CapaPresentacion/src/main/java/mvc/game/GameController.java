@@ -6,6 +6,7 @@ package mvc.game;
 
 import domain.game.Board;
 import domain.game.Game;
+import domain.game.Player;
 import mvc.player.PlayerModel;
 import mvc.player.PlayerView;
 
@@ -14,37 +15,29 @@ import mvc.player.PlayerView;
  * @author luis-
  */
 public class GameController {
-    
-   
+
     private GameModel gameModel;
     private GameView gameView;
-
-    public GameController() {
-    }
-    
-    public void createGame(){
-        this.gameModel = new GameModel();
-    }
 
     public GameController(GameModel gameModel, GameView gameView) {
         this.gameModel = gameModel;
         this.gameView = gameView;
     }
 
-    public GameModel getGameModel() {
-        return gameModel;
+    public void createGame() {
+        this.gameModel = new GameModel();
     }
 
-    public void setGameModel(GameModel gameModel) {
-        this.gameModel = gameModel;
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
     public GameView getGameView() {
         return gameView;
     }
 
-    public void setGameView(GameView gameView) {
-        this.gameView = gameView;
+    public Player[] getPlayersOnGame() {
+        return this.gameModel.getPlayersOnGame();
     }
 
     @Override
@@ -52,8 +45,4 @@ public class GameController {
         return "GameController{" + "gameModel=" + gameModel + ", gameView=" + gameView + '}';
     }
 
-    
-    
-    
-    
 }
