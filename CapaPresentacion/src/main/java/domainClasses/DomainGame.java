@@ -25,7 +25,7 @@ public class DomainGame {
     }
 
     public void comprobarEspacioEnPartida() throws GameException {
-        game.comprovePlayersInGame();
+        game.comprobarEspacioEnPartida();
 
     }
 

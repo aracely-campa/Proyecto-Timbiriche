@@ -14,7 +14,7 @@ public class Game {
     // Ture == "Juego en curso", False == "Juego no en curso";
     private boolean gameStatus;
 
-    private Integer tamanoDePartida;
+    public Integer tamanoDePartida;
 
     //Constructor por default
     public Game() {
@@ -26,16 +26,19 @@ public class Game {
     }
 
     private void startGame() {
+
         this.setGameIntoElements();
         this.setGameStarted();
     }
 
     private void finishGame() {
+
         removeGameElements();
         this.setGameFinished();
     }
 
     public Player[] createPlayerListWithSize(Integer tamanoInteger) {
+
         return this.players = new Player[tamanoInteger];
     }
 
@@ -48,10 +51,12 @@ public class Game {
     }
 
     private void removeBoardOfGame() {
+
         board.setBoard(null);
     }
 
     private void setGameIntoBoard() {
+
         board.setGame(game);
     }
 
@@ -66,7 +71,7 @@ public class Game {
 
     private void addPlayerToMatch(Player player) {
         for (int i = 0; i < tamanoDePartida; i++) {
-            if (comprovePlayersInGame()) {
+            if (comprobarEspacioEnPartida()) {
                 players[i] = player;
                 players[i].setId(i);
                 return;
@@ -74,12 +79,8 @@ public class Game {
         }
     }
 
-    public boolean comprovePlayersInGame() {
+    public boolean comprobarEspacioEnPartida() {
         return !(players.length > tamanoDePartida);
-    }
-
-    public boolean canAddAPlayerToGame() {
-        return comprovePlayersInGame();
     }
 
     private boolean isMatchFull() {
@@ -101,21 +102,7 @@ public class Game {
         return -1;
     }
 
-    public int getGamePlayerListSize() {
-        return tamanoDePartida;
-    }
-
-    public void deletePlayer(Player player) {
-        for (int i = 0; i < players.length; i++) {
-            if (this.players[i] == player) {
-                this.players[i] = null;
-
-            }
-        }
-
-    }
-
-    public Player getPlayerOfList(Player player) {
+        public Player getPlayerOfList(Player player) {
         for (Player playerList : this.players) {
             if (player == playerList) {
              return playerList;
@@ -123,6 +110,34 @@ public class Game {
         }
 
         return null;
+    }
+    
+    public void deletePlayer(Player player) {
+
+        for (int i = 0; i < players.length; i++) {
+            if (this.players[i] == player) {
+                this.players[i] = null;
+            }
+        }
+
+    }
+
+    public boolean playerExistOnTheList(Player player) {
+        for (Player playerList : this.players) {
+            if (player == playerList) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean canAddAPlayerToGame() {
+        return comprobarEspacioEnPartida();
+    }
+
+    public int getGamePlayerListSize() {
+        return tamanoDePartida;
     }
 
     public boolean matchCanStart() {
@@ -153,16 +168,6 @@ public class Game {
         return players;
     }
 
-    public boolean playerExistOnTheList(Player player) {
-        for (Player playerList : this.players) {
-            if (player == playerList) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public void setPlayersWithList(Player[] player) {
         this.players = player;
     }
@@ -185,8 +190,6 @@ public class Game {
         }
         return game;
     }
-    
-
 
     @Override
     public String toString() {

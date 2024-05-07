@@ -13,56 +13,99 @@ import mvc.player.PlayerModel;
  */
 public class FrmPersonalization extends javax.swing.JFrame {
 
+    private PlayerModel playerModel;
     private String selectedAvatarPath;
 
     public FrmPersonalization(PlayerModel playerModel) {
         initComponents();
-        updateAvatarDisplay(0);
+        this.playerModel = playerModel;
+        displayCurrentAvatar();
     }
 
-    private int calculateNewAvatarIndex(String[] avatarPaths, int avatarChange) {
-        int currentIndex = getSelectedAvatarIndex(avatarPaths);
-        return (currentIndex + avatarChange + avatarPaths.length) % avatarPaths.length;
-    }
+    private void displayCurrentAvatar() {
 
-    private void updateAvatarDisplay(int avatarChange) {
         String[] avatarPaths = ImagesSourcers.getAvatarImages();
-        if (avatarPaths == null || avatarPaths.length == 0) {
+
+        if (avatarPaths != null && avatarPaths.length > 0) {
+
+            int index = playerModel.getAvatarPath() != null ? getSelectedAvatarIndex(new String[]{playerModel.getAvatarPath()}) : 0;
+
+            ImageIcon icon = new ImageIcon(avatarPaths[index]);
+
+            avatarButton.setIcon(icon);
+            selectedAvatarPath = avatarPaths[index];
+
+        } else {
             System.err.println("Error: avatarPaths is null or empty");
-            return;
         }
-        int newIndex = calculateNewAvatarIndex(avatarPaths, avatarChange);
-        selectedAvatarPath = avatarPaths[newIndex];
-        avatarButton.setIcon(new ImageIcon(selectedAvatarPath));
+    }
+
+    private void showPreviousAvatar() {
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+        if (avatarPaths != null && avatarPaths.length > 0) {
+            int currentIndex = getSelectedAvatarIndex(avatarPaths);
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = avatarPaths.length - 1;
+            }
+            selectedAvatarPath = avatarPaths[currentIndex];
+            ImageIcon icon = new ImageIcon(selectedAvatarPath);
+            avatarButton.setIcon(icon);
+        } else {
+            System.err.println("Error: avatarPaths is null or empty");
+        }
+    }
+
+    private void showNextAvatar() {
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+        if (avatarPaths != null && avatarPaths.length > 0) {
+            int currentIndex = getSelectedAvatarIndex(avatarPaths);
+            currentIndex++;
+            if (currentIndex >= avatarPaths.length) {
+                currentIndex = 0;
+            }
+            selectedAvatarPath = avatarPaths[currentIndex];
+            ImageIcon icon = new ImageIcon(selectedAvatarPath);
+            avatarButton.setIcon(icon);
+        } else {
+            System.err.println("Error: avatarPaths is null or empty");
+        }
     }
 
     private int getSelectedAvatarIndex(String[] avatarPaths) {
-        if (selectedAvatarPath == null) {
-            return 0; 
-        }
         for (int i = 0; i < avatarPaths.length; i++) {
-            if (avatarPaths[i].equals(selectedAvatarPath)) {
+            if (avatarPaths[0].equals(selectedAvatarPath)) {
                 return i;
+            } else {
+                if (avatarPaths[i].equals(selectedAvatarPath)) {
+                    return i;
+                }
             }
+
         }
-        return -1; 
+        return -1;
     }
 
-    private void btnReturn() {
-        if (JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            new FrmWelcome().setVisible(true);
+    public void btnReturn() {
+        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (exit == JOptionPane.YES_OPTION) {
+            FrmWelcome v = new FrmWelcome();
+            v.setVisible(true);
             this.dispose();
         }
+
     }
 
-    private void btnJoin() {
-        String namePlayer = txtNamePlayer.getText().trim();
-        if (namePlayer.isEmpty()) {
+    public void btnJoin() {
+        String namePlayer = txtNamePlayer.getText();
+        if (namePlayer == null || namePlayer.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "The text field is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         PlayerComponent.getInstance().updatePlayerInfo(namePlayer, selectedAvatarPath);
-        new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath).setVisible(true);
+        FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath);
+        v.setVisible(true);
         this.dispose();
     }
 
@@ -173,11 +216,11 @@ public class FrmPersonalization extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJoinActionPerformed
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
-        updateAvatarDisplay(-1);
+        showNextAvatar();
     }//GEN-LAST:event_rightButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
-        updateAvatarDisplay(1);
+        showPreviousAvatar();
     }//GEN-LAST:event_leftButtonActionPerformed
 
 

@@ -52,6 +52,10 @@ public class PlayerComponent {
         this.playerView = playerView;
     }
 
+    public void refresh() {
+        this.playerController.refresh();
+    }
+
     public static PlayerComponent getInstance() {
         if (playerComponent == null) {
             playerComponent = new PlayerComponent();
@@ -64,7 +68,7 @@ public class PlayerComponent {
             playerModel = new PlayerModel(new Player(), avatarPath, name, 0);
         } else {
             playerModel.setName(name);
-            playerModel.setAvatarPath(playerModel.getPlayer(), avatarPath); // Asegúrate de ajustar si el setter cambia.
+            playerModel.setAvatarPath( avatarPath); // Asegúrate de ajustar si el setter cambia.
         }
     }
 
