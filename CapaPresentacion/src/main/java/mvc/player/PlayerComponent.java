@@ -15,6 +15,7 @@ public class PlayerComponent {
         this.playerModel = new PlayerModel();
         this.playerView = new PlayerView(playerModel);
         this.playerController = new PlayerController(playerModel, playerView);
+        this.playerModel.inicializarValores();
     }
 
     public PlayerController getPlayerController() {
@@ -52,7 +53,7 @@ public class PlayerComponent {
         return playerComponent;
     }
 
-     public void setPlayerInfo(Player player, String avatarPath) {
-        playerComponent.setPlayerInfo(player, avatarPath);
+    public void setPlayerInfo(Player player, String avatarPath) {
+       this.playerController.setPlayerInfo(player, avatarPath);
     }
 }

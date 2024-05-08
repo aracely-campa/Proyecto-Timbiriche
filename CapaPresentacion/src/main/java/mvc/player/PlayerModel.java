@@ -28,11 +28,11 @@ public class PlayerModel {
     private Integer coordenadaNombreX;
 
     private Integer coordenadaNombreY;
-    
+
     private Integer anchoImagenJugador;
-    
+
     private Integer largoImagenJugador;
-    
+
     public PlayerModel() {
         this.player = new Player();
     }
@@ -47,8 +47,19 @@ public class PlayerModel {
         this.coordenadaNombreY = coordenadaNombreY;
         this.anchoImagenJugador = anchoImagenJugador;
         this.largoImagenJugador = largoImagenJugador;
+        
     }
+public void inicializarValores() {
 
+    this.anchoImagenJugador = 100;
+    this.largoImagenJugador =100;
+    
+    this.coordenadaX =50;
+    this.coordenadaY =  80;
+    this.coordenadaNombreX = 100;
+    this.coordenadaNombreY = 50;
+   
+}
     public static String getAvatarImage(String name) {
         return switch (name) {
             case "Among_us_Blue" ->
@@ -160,11 +171,5 @@ public class PlayerModel {
         this.largoImagenJugador = largoImagenJugador;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "PlayerModel{" + "player=" + player + ", avatarPath=" + playerAvatarPath + ", name=" + playerName + ", turn=" + playerTurn + '}';
-    }
-
+    
 }
