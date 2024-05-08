@@ -4,15 +4,19 @@
  */
 package mvc.node;
 
+import domain.graph.Node;
+
 /**
  *
  * @author arace
  */
 public class NodeView {
-  private  NodeModel nodeModel;
+
+    private NodeModel nodeModel;
+    private Node node;
 
     public NodeView(NodeModel nodeModel) {
         this.nodeModel = nodeModel;
-    }  
-    
+    }
+
 }

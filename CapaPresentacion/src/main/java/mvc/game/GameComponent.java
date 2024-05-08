@@ -2,6 +2,7 @@ package mvc.game;
 
 import domain.game.Player;
 import mvc.board.BoardComponent;
+import mvc.node.NodeComponent;
 import mvc.player.PlayerComponent;
 
 public class GameComponent {
@@ -13,13 +14,13 @@ public class GameComponent {
 
     private BoardComponent boardComponent;
     private PlayerComponent playerComponent;
+    private NodeComponent nodeComponent;
 
     public GameComponent() {
         this.gameModel = new GameModel();
         this.gameView = new GameView(gameModel);
         this.gameController = new GameController(gameModel, gameView);
     }
-
 
     public GameController getGameController() {
         return gameController;
@@ -47,6 +48,10 @@ public class GameComponent {
 
     public void buildGame() {
 
+    }
+
+    public NodeComponent getNodeComponent() {
+        return nodeComponent;
     }
 
     public static GameComponent getInstance() {
