@@ -9,5 +9,5 @@ package events;
  * @author arace
  */
 public enum NodeEvents {
-     LEFT_CLICK_ON_POOL_EVENT, RIGHT_CLICK_ON_POOL_EVENT
+     LEFT_CLICK_ON_NODE_EVENT, RIGHT_CLICK_ON_NODE_EVENT
 }

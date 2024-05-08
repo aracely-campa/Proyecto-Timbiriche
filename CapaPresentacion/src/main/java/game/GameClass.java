@@ -1,7 +1,7 @@
-
 package game;
 
 import domain.game.Player;
+import domain.graph.Node;
 import events.BoardEvents;
 import events.NodeEvents;
 import events.PlayerEvents;
@@ -16,14 +16,13 @@ import mvc.player.PlayerView;
 public class GameClass implements MatchObserver {
 
     public GameComponent gameComponent;
-
+    private Node node;
     private Player player;
 
     public GameClass(Player player) {
         this.player = player;
         this.gameComponent = new GameComponent();
     }
-
 
     public Player[] getPlayersOnGame() {
         return this.gameComponent.getPlayersOnGame();
@@ -44,16 +43,21 @@ public class GameClass implements MatchObserver {
 
     @Override
     public void eventOnNodeUpdate(NodeEvents evt) {
-        
+        if (NodeEvents.LEFT_CLICK_ON_NODE_EVENT.equals(evt)) {
+
+        }
     }
 
     @Override
     public void eventOnBoardUpdate(BoardEvents evt) {
-        
+
     }
 
     @Override
     public void eventOnPlayerUpdate(PlayerEvents evt) {
-        
+        if (PlayerEvents.LEFT_CLICK_ON_PLAYER_EVENT.equals(evt)) {
+            JOptionPane.showMessageDialog(null, "Seleccionaste una linea ");
+
+        }
     }
 }

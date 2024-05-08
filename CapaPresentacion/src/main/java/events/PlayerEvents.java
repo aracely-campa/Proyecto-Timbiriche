@@ -9,5 +9,7 @@ package events;
  * @author arace
  */
 public enum PlayerEvents {
-     LEFT_CLICK_ON_PLAYER_EVENT, RIGHT_CLICK_ON_PLAYER_EVENT
+     LEFT_CLICK_ON_PLAYER_EVENT, RIGHT_CLICK_ON_PLAYER_EVENT;
+
+    
 }
