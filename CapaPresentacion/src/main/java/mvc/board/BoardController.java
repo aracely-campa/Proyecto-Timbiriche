@@ -34,6 +34,10 @@ public class BoardController {
         this.boardModel = boardModel;
     }
     
+    public void refreshBoard(){
+        this.boardView.repaint();
+    }
+    
     
     
 }

@@ -53,6 +53,6 @@ public class PlayerComponent {
     }
 
      public void setPlayerInfo(Player player, String avatarPath) {
-        playerComponent.setPlayerInfo(player, avatarPath);
+        playerController.setPlayerInfo(player, avatarPath);
     }
 }

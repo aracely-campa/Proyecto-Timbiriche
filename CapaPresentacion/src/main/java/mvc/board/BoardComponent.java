@@ -18,6 +18,11 @@ public class BoardComponent {
 
     public BoardComponent() {
         this.boardModel = new BoardModel();
+        boardModel.setAnchoTablero(976);
+        boardModel.setLargoTablero(542);
+        boardModel.setCoordenadaX(0);
+        boardModel.setCoordenadaY(200);
+        
         this.boardView = new BoardView(boardModel);
         this.boardController = new BoardController(boardView, boardModel);
     }
@@ -45,6 +50,12 @@ public class BoardComponent {
     public void setBoardView(BoardView boardView) {
         this.boardView = boardView;
     }
+    
+    public void refresh() {
+        this.boardController.refreshBoard();
+    }
+    
+    
 
     public static BoardComponent getInstance() {
         if (boardComponent == null) {
