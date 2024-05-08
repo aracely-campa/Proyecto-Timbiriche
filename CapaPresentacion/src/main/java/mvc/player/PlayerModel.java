@@ -14,28 +14,39 @@ import enums.ImagesSourcers;
 public class PlayerModel {
 
     private Player player;
-    private String avatarPath;
 
-    private String name;
+    private String playerAvatarPath;
 
-    public int turn;
+    private String playerName;
 
+    public int playerTurn;
+
+    private Integer coordenadaX;
+
+    private Integer coordenadaY;
+
+    private Integer coordenadaNombreX;
+
+    private Integer coordenadaNombreY;
+    
+    private Integer anchoImagenJugador;
+    
+    private Integer largoImagenJugador;
+    
     public PlayerModel() {
         this.player = new Player();
     }
 
-    public PlayerModel(Player player, String avatarPath, String name, int turn) {
+    public PlayerModel(Player player, String playerAvatarPath, String playerName, Integer coordenadaX, Integer coordenadaY, Integer coordenadaNombreX, Integer coordenadaNombreY, Integer anchoImagenJugador, Integer largoImagenJugador) {
         this.player = player;
-        this.avatarPath = avatarPath;
-        this.name = name;
-        this.turn = turn;
-    }
-
-    public PlayerModel(Player player, String avatarSelected) {
-        this.player = player;
-        this.name = avatarSelected;
-        //this.avatarPath = getAvatarImage(this.name);
-        this.avatarPath = avatarSelected;
+        this.playerAvatarPath = playerAvatarPath;
+        this.playerName = playerName;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
+        this.coordenadaNombreX = coordenadaNombreX;
+        this.coordenadaNombreY = coordenadaNombreY;
+        this.anchoImagenJugador = anchoImagenJugador;
+        this.largoImagenJugador = largoImagenJugador;
     }
 
     public static String getAvatarImage(String name) {
@@ -62,24 +73,98 @@ public class PlayerModel {
     }
 
     public void setAvatarPath(String avatarPath) {
-        this.avatarPath = avatarPath;
+        this.playerAvatarPath = avatarPath;
     }
 
     public String getAvatarPath() {
-        return avatarPath;
+        return playerAvatarPath;
     }
 
     public String getName() {
-        return name;
+        return playerName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.playerName = name;
     }
+
+    public String getPlayerAvatarPath() {
+        return playerAvatarPath;
+    }
+
+    public void setPlayerAvatarPath(String playerAvatarPath) {
+        this.playerAvatarPath = playerAvatarPath;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public int getPlayerTurn() {
+        return playerTurn;
+    }
+
+    public void setPlayerTurn(int playerTurn) {
+        this.playerTurn = playerTurn;
+    }
+
+    public Integer getCoordenadaX() {
+        return coordenadaX;
+    }
+
+    public void setCoordenadaX(Integer coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
+    public Integer getCoordenadaY() {
+        return coordenadaY;
+    }
+
+    public void setCoordenadaY(Integer coordenadaY) {
+        this.coordenadaY = coordenadaY;
+    }
+
+    public Integer getCoordenadaNombreX() {
+        return coordenadaNombreX;
+    }
+
+    public void setCoordenadaNombreX(Integer coordenadaNombreX) {
+        this.coordenadaNombreX = coordenadaNombreX;
+    }
+
+    public Integer getCoordenadaNombreY() {
+        return coordenadaNombreY;
+    }
+
+    public void setCoordenadaNombreY(Integer coordenadaNombreY) {
+        this.coordenadaNombreY = coordenadaNombreY;
+    }
+
+    public Integer getAnchoImagenJugador() {
+        return anchoImagenJugador;
+    }
+
+    public void setAnchoImagenJugador(Integer anchoImagenJugador) {
+        this.anchoImagenJugador = anchoImagenJugador;
+    }
+
+    public Integer getLargoImagenJugador() {
+        return largoImagenJugador;
+    }
+
+    public void setLargoImagenJugador(Integer largoImagenJugador) {
+        this.largoImagenJugador = largoImagenJugador;
+    }
+
+
 
     @Override
     public String toString() {
-        return "PlayerModel{" + "player=" + player + ", avatarPath=" + avatarPath + ", name=" + name + ", turn=" + turn + '}';
+        return "PlayerModel{" + "player=" + player + ", avatarPath=" + playerAvatarPath + ", name=" + playerName + ", turn=" + playerTurn + '}';
     }
 
 }

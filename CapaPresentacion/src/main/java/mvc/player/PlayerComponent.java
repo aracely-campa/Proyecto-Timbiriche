@@ -1,31 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package mvc.player;
 
 import domain.game.Player;
 
-/**
- *
- * @author luis-
- */
 public class PlayerComponent {
 
-    private PlayerModel playerModel = new PlayerModel();
-    private PlayerView playerView = new PlayerView(playerModel);
+    private PlayerModel playerModel;
+    private PlayerView playerView;
 
-    private PlayerController playerController = new PlayerController(playerModel, playerView);
+    private PlayerController playerController;
 
     private static PlayerComponent playerComponent;
 
     public PlayerComponent() {
-    }
-
-    public PlayerComponent(PlayerController playerController, PlayerModel playerModel, PlayerView playerView) {
-        this.playerController = playerController;
-        this.playerModel = playerModel;
-        this.playerView = playerView;
+        this.playerModel = new PlayerModel();
+        this.playerView = new PlayerView(playerModel);
+        this.playerController = new PlayerController(playerModel, playerView);
     }
 
     public PlayerController getPlayerController() {
@@ -63,15 +52,7 @@ public class PlayerComponent {
         return playerComponent;
     }
 
-    public void updatePlayerInfo(String name, String avatarPath) {
-        playerModel.setName(name);
-        playerModel.setAvatarPath(avatarPath);
-        playerView.refresh();
+     public void setPlayerInfo(Player player, String avatarPath) {
+        playerComponent.setPlayerInfo(player, avatarPath);
     }
-
-    @Override
-    public String toString() {
-        return "PlayerComponent{" + "playerController=" + playerController + ", playerModel=" + playerModel + ", playerView=" + playerView + '}';
-    }
-
 }

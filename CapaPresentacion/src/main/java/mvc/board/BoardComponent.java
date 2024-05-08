@@ -10,18 +10,16 @@ package mvc.board;
  */
 public class BoardComponent {
 
-    private BoardModel boardModel = new BoardModel();
-    private BoardView boardView = new BoardView(boardModel);
-    private BoardController boardController = new BoardController(boardView, boardModel);
+    private BoardModel boardModel;
+    private BoardView boardView;
+    private BoardController boardController;
+    
     private static BoardComponent boardComponent;
 
     public BoardComponent() {
-    }
-
-    public BoardComponent(BoardController boardController, BoardModel boardModel, BoardView boardView) {
-        this.boardController = boardController;
-        this.boardModel = boardModel;
-        this.boardView = boardView;
+        this.boardModel = new BoardModel();
+        this.boardView = new BoardView(boardModel);
+        this.boardController = new BoardController(boardView, boardModel);
     }
 
     public BoardController getBoardController() {

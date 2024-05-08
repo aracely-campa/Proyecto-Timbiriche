@@ -1,7 +1,7 @@
 package frm;
 
+import domain.game.Player;
 import enums.ImagesSourcers;
-import factory.MVCFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerComponent;
@@ -96,14 +96,25 @@ public class FrmPersonalization extends javax.swing.JFrame {
 
     }
 
-    public void btnJoin() {
-        String namePlayer = txtNamePlayer.getText();
+    private boolean validarNombreEnTextField(String namePlayer) {
         if (namePlayer == null || namePlayer.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "The text field is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
+    public void btnJoin() {
+
+        if (validarNombreEnTextField(txtNamePlayer.getText())) {
             return;
         }
 
-        PlayerComponent.getInstance().updatePlayerInfo(namePlayer, selectedAvatarPath);
+        String namePlayer = txtNamePlayer.getText();
+
+        PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
+
         FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath);
         v.setVisible(true);
         this.dispose();

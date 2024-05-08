@@ -33,10 +33,11 @@ public class FrmGame extends javax.swing.JFrame {
         PlayerComponent playerComponent = PlayerComponent.getInstance();
         PlayerView playerView = playerComponent.getPlayerView();
         jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-        
+
         playerComponent.refresh();
     }
- public void btnReturn() {
+
+    public void btnReturn() {
         int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (exit == JOptionPane.YES_OPTION) {
             FrmWelcome v = new FrmWelcome();
@@ -45,6 +46,7 @@ public class FrmGame extends javax.swing.JFrame {
         }
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +58,6 @@ public class FrmGame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnReturn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game");
@@ -82,26 +83,24 @@ public class FrmGame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnReturn)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addContainerGap(901, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 420, Short.MAX_VALUE)
-                .addComponent(btnReturn))
+                .addContainerGap(684, Short.MAX_VALUE)
+                .addComponent(btnReturn)
+                .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 430, 470));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/desingFrm/frmBoardGame.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -60, -1, 613));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 740));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-    btnReturn();
+        btnReturn();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     /**
@@ -141,7 +140,6 @@ public class FrmGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

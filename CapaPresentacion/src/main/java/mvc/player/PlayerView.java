@@ -19,7 +19,7 @@ public class PlayerView extends JPanel {
     public PlayerView(PlayerModel playerModel) {
         this.playerModel = playerModel;
         loadBoardImage();
-        setPreferredSize(new Dimension(120, 150)); 
+        setPreferredSize(new Dimension(120, 150));
         setLayout(new FlowLayout());
     }
 
@@ -29,13 +29,13 @@ public class PlayerView extends JPanel {
                 playerImage = ImageIO.read(new File(playerModel.getAvatarPath()));
             } catch (IOException ex) {
                 ex.printStackTrace();
-                
+
             }
         }
     }
 
     public void refresh() {
-        loadBoardImage(); 
+        loadBoardImage();
         revalidate();
         repaint();
     }
@@ -46,14 +46,12 @@ public class PlayerView extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         if (playerImage != null) {
-            g2d.drawImage(playerImage, 0, 0, 120, 130, this);
+            g2d.drawImage(playerImage, playerModel.getCoordenadaX(), playerModel.getCoordenadaY(), playerModel.getAnchoImagenJugador(), playerModel.getLargoImagenJugador(), this);
         }
 
-        
         if (playerModel.getName() != null) {
-            g2d.setColor(Color.BLACK); 
-            g2d.drawString(playerModel.getName(), 30, 140);
+            g2d.setColor(Color.BLACK);
+            g2d.drawString(playerModel.getName(), playerModel.getCoordenadaNombreX(), playerModel.getCoordenadaNombreY());
         }
     }
 }
-
