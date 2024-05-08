@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domainClasses;
 
 import domain.game.Game;
 import domain.game.Player;
 import exceptions.GameException;
 
-/**
- *
- * @author luis-
- */
 public class DomainGame {
+
+    private static DomainGame domainGame;
 
     private final Game game;
 
@@ -37,8 +31,14 @@ public class DomainGame {
         game.deletePlayer(player);
     }
 
-    public Player[] getPlayersOnGame(){
+    public Player[] getPlayersOnGame() {
         return this.game.getPlayerList();
     }
-    
+
+    public static DomainGame getInstance() {
+        if (domainGame == null) {
+            domainGame = new DomainGame();
+        }
+        return domainGame;
+    }
 }

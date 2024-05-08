@@ -4,9 +4,8 @@ import factory.MVCFactory;
 
 public class FrmWelcome extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmWelcome
-     */
+    private static FrmWelcome frmWelcomeInstance;
+
     public FrmWelcome() {
         initComponents();
         MVCFactory.getInstance();
@@ -66,6 +65,13 @@ public class FrmWelcome extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public static FrmWelcome getInstance() {
+        if (frmWelcomeInstance == null) {
+            frmWelcomeInstance = new FrmWelcome();
+        }
+        return frmWelcomeInstance;
+    }
+
     private void btnJoinGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinGameActionPerformed
         FrmJoinGame v = new FrmJoinGame();
         v.setVisible(true);
@@ -82,6 +88,8 @@ public class FrmWelcome extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -99,13 +107,13 @@ public class FrmWelcome extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmWelcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -116,7 +124,8 @@ public class FrmWelcome extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateGame;
     private javax.swing.JButton btnExit;

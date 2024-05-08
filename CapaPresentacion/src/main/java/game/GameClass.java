@@ -9,28 +9,17 @@ import mvc.board.BoardView;
 import mvc.game.GameComponent;
 import mvc.player.PlayerView;
 
-
-
-
 public class GameClass {
-    
+
     public GameComponent gameComponent;
- 
+
     private Player player;
-    
+
     public GameClass(Player player) {
         this.player = player;
         this.gameComponent = new GameComponent();
     }
-     
- 
-    
-//    public void buildGame() throws PoolException {
-//        this.matchesComponent.buildGame();
-//    }
-//    
-//  
-//
+
 //    //Suscripcion a los eventos
 //    public void suscribeToBoardView() {
 //        this.gameComponent.suscribeToBoard(this);
@@ -43,28 +32,17 @@ public class GameClass {
 //    public void suscribeToPlayerView() {
 //        this.gameComponent.suscribeToPlayer(this);
 //    }
-
     public Player[] getPlayersOnGame() {
         return this.gameComponent.getPlayersOnGame();
     }
-    
 
-
-    
-//    public Boolean getTurn() {
-//        return matchesComponent.getTurn();
-//    }
-    
     public BoardView getBoardView() {
         return gameComponent.getBoardComponent().getBoardView();
-        
+
     }
 
-    
     public PlayerView getPlayerView() {
         return gameComponent.getPlayerComponent().getPlayerView();
     }
-    
- 
-    
+
 }
