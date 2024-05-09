@@ -47,7 +47,7 @@ public class FrmCreateGame extends javax.swing.JFrame {
     }
 
     private void showPersonalizationFrm() {
-        FrmPersonalization v = new FrmPersonalization(playerComponent.getPlayerModel());
+        FrmPersonalization v = new FrmPersonalization();
         v.setVisible(true);
         dispose();
     }

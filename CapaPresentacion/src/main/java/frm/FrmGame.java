@@ -19,10 +19,11 @@ import mvc.player.PlayerView;
 public class FrmGame extends javax.swing.JFrame {
 
     public GameClass gc = new GameClass(new Player("Bv", 1, 2));
-
-    public FrmGame() {
+    public PlayerComponent playerComponent;
+    
+    public FrmGame(PlayerComponent playerComponent) {
         initComponents();
-
+        this.playerComponent=playerComponent;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         paintPoolOnGamePanel();
         pintarTablero();
@@ -40,7 +41,6 @@ public class FrmGame extends javax.swing.JFrame {
     }
 
     public void paintPoolOnGamePanel() {
-        PlayerComponent playerComponent = PlayerComponent.getInstance();
         PlayerView playerView = playerComponent.getPlayerView();
         jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
 
@@ -50,7 +50,7 @@ public class FrmGame extends javax.swing.JFrame {
     public void pintarTablero() {
         BoardComponent boardComponent = BoardComponent.getInstance();
         BoardView boardView = boardComponent.getBoardView();
-        jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 966, 742));
+        jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 700, 700));
 
     }
 
@@ -120,40 +120,6 @@ public class FrmGame extends javax.swing.JFrame {
         btnReturn();
     }//GEN-LAST:event_btnReturnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmGame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturn;

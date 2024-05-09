@@ -16,12 +16,12 @@ import resources.AvatarSelector;
  */
 public class FrmPersonalization extends javax.swing.JFrame {
 
-    private PlayerModel playerModel;
+    private PlayerComponent playerComponent;
     private AvatarSelector avatarSelector;
 
-    public FrmPersonalization(PlayerModel playerModel) {
+    public FrmPersonalization() {
         initComponents();
-        this.playerModel = playerModel;
+        this.playerComponent =new PlayerComponent();
         this.avatarSelector = new AvatarSelector();
         displayCurrentAvatar();
     }
@@ -76,7 +76,7 @@ private void showNextAvatar() {
 
     public void asignarInformacionAUsuario(String namePlayer) {
         String selectedAvatarPath = avatarSelector.getSelectedAvatarPath();
-        PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
+      playerComponent.setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
 
     }
 
@@ -87,12 +87,12 @@ private void showNextAvatar() {
         }
 
         asignarInformacionAUsuario(txtNamePlayer.getText().trim());
-        abrirPantallaLobbyConDatos(PlayerComponent.getInstance());
+        abrirPantallaLobbyConDatos(playerComponent);
 
     }
 
     public void abrirPantallaLobbyConDatos(PlayerComponent playerComponent) {
-        FrmLobby v = new FrmLobby(PlayerComponent.getInstance());
+        FrmLobby v = new FrmLobby(playerComponent);
         v.setVisible(true);
         cerrarPantalla();
     }

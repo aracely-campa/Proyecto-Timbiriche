@@ -9,11 +9,7 @@ public class BoardComponent {
     private static BoardComponent boardComponent;
 
     private BoardComponent() {
-        boardModel.setAnchoTablero(976);
-        boardModel.setLargoTablero(542);
-        boardModel.setCoordenadaX(0);
-        boardModel.setCoordenadaY(200);
-
+     boardModel.inicializarValores();
     }
 
     public BoardController getBoardController() {

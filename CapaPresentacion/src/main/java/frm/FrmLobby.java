@@ -5,19 +5,23 @@ import javax.swing.JOptionPane;
 import mvc.player.PlayerComponent;
 
 /**
- * Cumple de con el princpio de responsabilidad unica y  el de dependencias ya que
- * maneja la interfaz grafica y la navegacion entre las pantallas, y el de dependencias
- * por que recibe parametros del player model 
+ * Cumple de con el princpio de responsabilidad unica y el de dependencias ya
+ * que maneja la interfaz grafica y la navegacion entre las pantallas, y el de
+ * dependencias por que recibe parametros del player model
+ *
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
 
+    public PlayerComponent playerComponent;
     private final String avatarPath;
     private final String namePlayer;
 
     public FrmLobby(PlayerComponent playerComponent) {
+        this.playerComponent = playerComponent;
         this.avatarPath = playerComponent.getPlayerModel().getAvatarPath();
         this.namePlayer = playerComponent.getPlayerModel().getName();
+
         initComponents();
         lblNamePlayer.setText(namePlayer);
         lblAvatar.setIcon(new ImageIcon(avatarPath));
@@ -37,11 +41,10 @@ public class FrmLobby extends javax.swing.JFrame {
     }
 
     private void showLobbyFrm() {
-        FrmGame v = new FrmGame();
+        FrmGame v = new FrmGame(playerComponent);
         v.setVisible(true);
         this.dispose();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

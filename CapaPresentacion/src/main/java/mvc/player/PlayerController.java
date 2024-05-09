@@ -56,5 +56,9 @@ public class PlayerController {
         playerModel.setAvatarPath(avatarPath);
         playerView.refresh();
     }
+    
+    public void notificarJugador(){
+        
+    }
 
 }

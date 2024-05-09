@@ -37,6 +37,12 @@ public class PlayerModel {
         this.player = new Player();
     }
 
+    public PlayerModel(Player player, String playerAvatarPath) {
+        this.player = player;
+        this.playerAvatarPath = playerAvatarPath;
+        this.playerName=this.player.getName();
+    }
+
     public PlayerModel(Player player, String playerAvatarPath, String playerName, Integer coordenadaX, Integer coordenadaY, Integer coordenadaNombreX, Integer coordenadaNombreY, Integer anchoImagenJugador, Integer largoImagenJugador) {
         this.player = player;
         this.playerAvatarPath = playerAvatarPath;
@@ -47,19 +53,21 @@ public class PlayerModel {
         this.coordenadaNombreY = coordenadaNombreY;
         this.anchoImagenJugador = anchoImagenJugador;
         this.largoImagenJugador = largoImagenJugador;
-        
-    }
-public void inicializarValores() {
 
-    this.anchoImagenJugador = 100;
-    this.largoImagenJugador =100;
-    
-    this.coordenadaX =50;
-    this.coordenadaY =  80;
-    this.coordenadaNombreX = 100;
-    this.coordenadaNombreY = 50;
-   
-}
+    }
+
+    public void inicializarValores() {
+
+        this.anchoImagenJugador = 100;
+        this.largoImagenJugador = 100;
+
+        this.coordenadaX = 50;
+        this.coordenadaY = 80;
+        this.coordenadaNombreX = 100;
+        this.coordenadaNombreY = 50;
+
+    }
+
     public static String getAvatarImage(String name) {
         return switch (name) {
             case "Among_us_Blue" ->
@@ -171,5 +179,4 @@ public void inicializarValores() {
         this.largoImagenJugador = largoImagenJugador;
     }
 
-    
 }
