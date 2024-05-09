@@ -6,14 +6,14 @@ import java.util.Scanner;
  *
  * @author arace
  */
-public class ChatBroker implements Runnable {
+public class Chat implements Runnable {
 
     static Scanner tec = new Scanner(System.in);
     static String nombre, mensaje, ip;
-    static ProxyCliente proxyCliente = new ProxyCliente();
+    static ProxyPlayer proxyPlayer = new ProxyPlayer();
 
     public static void main(String[] args) {
-        Thread chat = new Thread(new ChatBroker());
+        Thread chat = new Thread(new Chat());
         chat.start();
     }
 
@@ -23,18 +23,18 @@ public class ChatBroker implements Runnable {
         System.out.println("Ingresa tu nombre para poder chatear: ");
         nombre = tec.nextLine();
         System.out.println("Envia mensaje: ");
-        proxyCliente.iniciarSocket();
-        proxyCliente.iniciarHilo();
+        proxyPlayer.iniciarSocket();
+        proxyPlayer.iniciarHilo();
         do {
             System.out.print(nombre + ": ");
             mensaje = tec.nextLine();
             if (mensaje.equalsIgnoreCase("desconectar")) {
                 break;
             }
-            proxyCliente.empaquetarParametros(nombre, mensaje, Mensaje.CLIENTE);
-            proxyCliente.enviarDatos();
+            proxyPlayer.empaquetarParametros(nombre, mensaje, EnumMensaje.CLIENTE);
+            proxyPlayer.enviarDatos();
         } while (true);
-        proxyCliente.cerrarSocket();
+        proxyPlayer.cerrarSocket();
     }
 
 }

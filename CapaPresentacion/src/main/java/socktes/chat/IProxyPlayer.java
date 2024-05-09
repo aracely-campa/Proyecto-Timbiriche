@@ -4,9 +4,9 @@ package socktes.chat;
  *
  * @author arace
  */
-public interface IProxyCliente {
+public interface IProxyPlayer {
 
-    public void empaquetarParametros(String nombre, String mensaje, Mensaje tipo);
+    public void empaquetarParametros(String nombre, String mensaje, EnumMensaje tipo);
 
     public void iniciarSocket();
 

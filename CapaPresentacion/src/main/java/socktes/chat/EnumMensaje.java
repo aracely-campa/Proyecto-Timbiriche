@@ -4,6 +4,6 @@ package socktes.chat;
  *
  * @author arace
  */
-public enum Mensaje {
+public enum EnumMensaje {
     SERVER, CLIENTE
 }

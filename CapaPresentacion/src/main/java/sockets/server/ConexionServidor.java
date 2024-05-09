@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import socktes.chat.Mensaje;
+import socktes.chat.EnumMensaje;
 
 import socktes.chat.PaqueteDatos;
 
@@ -23,6 +23,7 @@ public class ConexionServidor implements Runnable, IProxyServidor {
     public ConexionServidor() {
     }
 
+    @Override
     public void empaquetarParametros(String nombre, String mensaje, String ip) {
         paqueteEnvioDatos = new PaqueteDatos(nombre, mensaje, ip);
     }
@@ -31,7 +32,7 @@ public class ConexionServidor implements Runnable, IProxyServidor {
     public void iniciarSocket() {
         try {
             servidorSocket = new Socket(ip, puerto);
-            PaqueteDatos paquete = new PaqueteDatos(Mensaje.SERVER);
+            PaqueteDatos paquete = new PaqueteDatos(EnumMensaje.SERVER);
             ObjectOutputStream paqueteDatos = new ObjectOutputStream(servidorSocket.getOutputStream());
             paqueteDatos.writeObject(paquete);
         } catch (IOException ex) {

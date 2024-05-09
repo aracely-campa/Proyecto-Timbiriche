@@ -9,26 +9,26 @@ import java.net.Socket;
  *
  * @author arace
  */
-public class ConexionCliente implements Runnable, IProxyCliente {
+public class ConexionPlayer implements Runnable, IProxyPlayer {
 
     PaqueteDatos paqueteEnvioDatos;
     PaqueteDatos paqueteReciboDatos;
     int puerto = 9091;
-    Socket clienteSocket;
+    Socket playerSocket;
     final String ip = "localhost";
 
-    public ConexionCliente() {
+    public ConexionPlayer() {
     }
 
     @Override
-    public void empaquetarParametros(String nombre, String mensaje, Mensaje tipo) {
+    public void empaquetarParametros(String nombre, String mensaje, EnumMensaje tipo) {
         paqueteEnvioDatos = new PaqueteDatos(nombre, mensaje, ip, tipo);
     }
 
     @Override
     public void iniciarSocket() {
         try {
-            clienteSocket = new Socket(ip, puerto);
+            playerSocket = new Socket(ip, puerto);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -37,7 +37,7 @@ public class ConexionCliente implements Runnable, IProxyCliente {
     @Override
     public void enviarDatos() {
         try {
-            ObjectOutputStream paqueteDatos = new ObjectOutputStream(clienteSocket.getOutputStream());
+            ObjectOutputStream paqueteDatos = new ObjectOutputStream(playerSocket.getOutputStream());
             paqueteDatos.writeObject(paqueteEnvioDatos);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -47,7 +47,7 @@ public class ConexionCliente implements Runnable, IProxyCliente {
     @Override
     public void cerrarSocket() {
         try {
-            clienteSocket.close();
+            playerSocket.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -57,7 +57,7 @@ public class ConexionCliente implements Runnable, IProxyCliente {
     public void recibirDatos() {
         try {
             while (true) {
-                ObjectInputStream paqueteDatos = new ObjectInputStream(clienteSocket.getInputStream());
+                ObjectInputStream paqueteDatos = new ObjectInputStream(playerSocket.getInputStream());
                 paqueteReciboDatos = (PaqueteDatos) paqueteDatos.readObject();
                 desempaquetarDatos();
             }
