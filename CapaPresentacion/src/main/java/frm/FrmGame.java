@@ -4,6 +4,8 @@
  */
 package frm;
 
+import domain.game.Player;
+import game.GameClass;
 import javax.swing.JOptionPane;
 import mvc.board.BoardComponent;
 import mvc.board.BoardView;
@@ -15,36 +17,37 @@ import mvc.player.PlayerView;
  * @author arace
  */
 public class FrmGame extends javax.swing.JFrame {
-    
-    
-    
-    
+    public GameClass gc = new GameClass(new Player("Bv", 1, 2));
     public FrmGame() {
         initComponents();
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         paintPoolOnGamePanel();
         pintarTablero();
+        gc.suscribirTablero();
 
     }
 
     public void pintarJugadorTest() {
+        
+    }
 
+    public void eventsOnBoard() {
+        BoardComponent boardComponent = BoardComponent.getInstance();
+        boardComponent.refresh();
     }
 
     public void paintPoolOnGamePanel() {
-//        PlayerComponent playerComponent = PlayerComponent.getInstance();
-//        PlayerView playerView = playerComponent.getPlayerView();
-//        jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-//
-//        playerComponent.refresh();
+        PlayerComponent playerComponent = PlayerComponent.getInstance();
+        PlayerView playerView = playerComponent.getPlayerView();
+        jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+
+        playerComponent.refresh();
     }
 
     public void pintarTablero() {
         BoardComponent boardComponent = BoardComponent.getInstance();
         BoardView boardView = boardComponent.getBoardView();
         jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 966, 742));
-        boardComponent.refresh();
 
     }
 
