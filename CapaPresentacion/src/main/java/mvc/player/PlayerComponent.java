@@ -9,9 +9,8 @@ public class PlayerComponent {
 
     private PlayerController playerController;
 
-    private static PlayerComponent playerComponent;
-
     public PlayerComponent() {
+
         this.playerModel = new PlayerModel();
         this.playerView = new PlayerView(playerModel);
         this.playerController = new PlayerController(playerModel, playerView);
@@ -46,14 +45,7 @@ public class PlayerComponent {
         this.playerController.refresh();
     }
 
-    public static PlayerComponent getInstance() {
-        if (playerComponent == null) {
-            playerComponent = new PlayerComponent();
-        }
-        return playerComponent;
-    }
-
     public void setPlayerInfo(Player player, String avatarPath) {
-       this.playerController.setPlayerInfo(player, avatarPath);
+        this.playerController.setPlayerInfo(player, avatarPath);
     }
 }

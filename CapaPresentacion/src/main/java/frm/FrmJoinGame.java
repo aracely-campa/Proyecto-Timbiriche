@@ -3,6 +3,7 @@ package frm;
 
 import factory.MVCFactory;
 import javax.swing.JOptionPane;
+import mvc.player.PlayerComponent;
 
 /**
  * Este frame cumple con el principio de responsabilidad unica
@@ -11,14 +12,15 @@ import javax.swing.JOptionPane;
 public class FrmJoinGame extends javax.swing.JFrame {
 
     private String code;
-
+    private PlayerComponent playerComponent;
    
     public FrmJoinGame() {
+        this.playerComponent = new PlayerComponent();
         initComponents();
     }
 
     private void showPersonalizationFrm() {
-        FrmPersonalization v = new FrmPersonalization(MVCFactory.instancePlayerComponent().getPlayerModel());
+        FrmPersonalization v = new FrmPersonalization();
         v.setVisible(true);
         dispose();
     }

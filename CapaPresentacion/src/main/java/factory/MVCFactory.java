@@ -20,12 +20,9 @@ public class MVCFactory {
          return new GameComponent();
      }
      
-     public static PlayerComponent instancePlayerComponent(){
-         return new PlayerComponent();
-     }
-     
+
      public static BoardComponent instanceBoardComponent(){
-         return new BoardComponent();
+         return BoardComponent.getInstance();
      }
      
      public static MVCFactory getInstance(){
