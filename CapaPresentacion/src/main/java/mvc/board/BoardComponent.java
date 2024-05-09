@@ -1,30 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package mvc.board;
 
-/**
- *
- * @author luis-
- */
 public class BoardComponent {
 
-    private BoardModel boardModel;
-    private BoardView boardView;
-    private BoardController boardController;
-    
+    private BoardModel boardModel = new BoardModel();
+    private BoardView boardView = new BoardView(boardModel);
+    private BoardController boardController = new BoardController(boardView, boardModel);
+
     private static BoardComponent boardComponent;
 
-    public BoardComponent() {
-        this.boardModel = new BoardModel();
+    private BoardComponent() {
         boardModel.setAnchoTablero(976);
         boardModel.setLargoTablero(542);
         boardModel.setCoordenadaX(0);
         boardModel.setCoordenadaY(200);
-        
-        this.boardView = new BoardView(boardModel);
-        this.boardController = new BoardController(boardView, boardModel);
+
     }
 
     public BoardController getBoardController() {
@@ -50,12 +39,10 @@ public class BoardComponent {
     public void setBoardView(BoardView boardView) {
         this.boardView = boardView;
     }
-    
+
     public void refresh() {
         this.boardController.refreshBoard();
     }
-    
-    
 
     public static BoardComponent getInstance() {
         if (boardComponent == null) {

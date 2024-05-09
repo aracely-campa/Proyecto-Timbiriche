@@ -3,6 +3,7 @@ package frm;
 
 import factory.MVCFactory;
 import javax.swing.JOptionPane;
+import mvc.player.PlayerComponent;
 
 /**
  * Este frame cumple con el principio de responsabilidad unica
@@ -11,14 +12,15 @@ import javax.swing.JOptionPane;
 public class FrmJoinGame extends javax.swing.JFrame {
 
     private String code;
-
+    private PlayerComponent playerComponent;
    
     public FrmJoinGame() {
+        this.playerComponent = new PlayerComponent();
         initComponents();
     }
 
-    private void showPersonalizationFrm() {
-        FrmPersonalization v = new FrmPersonalization(MVCFactory.instancePlayerComponent().getPlayerModel());
+    private void showPersonalizationFrm(PlayerComponent playerComponent) {
+        FrmPersonalization v = new FrmPersonalization(playerComponent.getPlayerModel());
         v.setVisible(true);
         dispose();
     }
@@ -102,7 +104,7 @@ public class FrmJoinGame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El código debe tener 4 letras");
           
         } else {
-            showPersonalizationFrm(); 
+            showPersonalizationFrm(playerComponent); 
         }
 
     }//GEN-LAST:event_btnJoinActionPerformed

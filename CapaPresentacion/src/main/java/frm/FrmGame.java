@@ -18,14 +18,11 @@ import mvc.player.PlayerView;
  */
 public class FrmGame extends javax.swing.JFrame {
 
-    public GameClass gc;
+    public GameClass gc = new GameClass(new Player("Bv", 1, 2));
 
     public FrmGame() {
         initComponents();
 
-        this.gc = new GameClass(new Player("Bv", 1, 2));
-        
-        
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         paintPoolOnGamePanel();
         pintarTablero();

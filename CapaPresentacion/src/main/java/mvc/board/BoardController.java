@@ -26,6 +26,7 @@ public class BoardController extends MouseAdapter {
     public void addObserver(MatchObserver observador) {
         this.observadores.add(observador);
         System.out.println("Observador añadido: " + observador.getClass().getSimpleName());
+        System.out.println("tamaño: " + observadores.size());
     }
 
     public BoardView getBoardView() {
