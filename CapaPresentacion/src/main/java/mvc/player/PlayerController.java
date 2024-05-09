@@ -5,6 +5,10 @@
 package mvc.player;
 
 import domain.game.Player;
+import game.GameClass;
+import interfaces.MatchObserver;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,7 +19,7 @@ public class PlayerController {
     private PlayerController playerController;
     private PlayerModel playerModel;
     private PlayerView playerView;
-
+private final List<MatchObserver> observers = new ArrayList<>();
     public PlayerController(PlayerModel playerModel, PlayerView playerView) {
         this.playerModel = playerModel;
         this.playerView = playerView;
@@ -36,11 +40,18 @@ public class PlayerController {
     public void refresh() {
         this.playerView.repaint();
     }
-
+public void suscribeToView(GameClass match) {
+        this.addObserver(match);
+    }
+public void addObserver(GameClass observer) {
+        observers.add(observer);
+    }
     public void setPlayerInfo(Player player, String avatarPath) {
         playerModel.setName(player.getName());
         playerModel.setPlayer(player);
         playerModel.setAvatarPath(avatarPath);
         playerView.refresh();
     }
+
+    
 }
