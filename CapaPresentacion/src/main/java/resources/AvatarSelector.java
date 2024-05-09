@@ -1,20 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package resources;
 
 import enums.ImagesSourcers;
 
-/**
- *
- * @author arace
- */
 public class AvatarSelector {
-   private String[] avatarPaths;
+
+    private String[] avatarPaths;
 
     public AvatarSelector() {
         this.avatarPaths = ImagesSourcers.getAvatarImages();
+        // Asegúrate de que avatarPaths no es null ni está vacío
+        if (avatarPaths == null || avatarPaths.length == 0) {
+            throw new IllegalStateException("No avatar images available");
+        }
     }
 
     public String getSelectedAvatarPath(String currentAvatarPath) {
@@ -22,26 +19,29 @@ public class AvatarSelector {
         return avatarPaths[index];
     }
 
-    public String getPreviousAvatarPath(String currentAvatarPath) {
-        int index = getIndex(currentAvatarPath);
-        index = (index - 1 + avatarPaths.length) % avatarPaths.length;
-        return avatarPaths[index];
-    }
+  public String getPreviousAvatarPath(String currentAvatarPath) {
+    int index = getIndex(currentAvatarPath);
+    index = (index - 1 + avatarPaths.length) % avatarPaths.length;
+    System.out.println("Prev index: " + index); // Agregar mensajes de depuración
+    return avatarPaths[index];
+}
 
-    public String getNextAvatarPath(String currentAvatarPath) {
-        int index = getIndex(currentAvatarPath);
-        index = (index + 1) % avatarPaths.length;
-        return avatarPaths[index];
-    }
+public String getNextAvatarPath(String currentAvatarPath) {
+    int index = getIndex(currentAvatarPath);
+    index = (index + 1) % avatarPaths.length;
+    System.out.println("Next index: " + index); // Agregar mensajes de depuración
+    return avatarPaths[index];
+}
 
     private int getIndex(String currentAvatarPath) {
         if (currentAvatarPath != null) {
             for (int i = 0; i < avatarPaths.length; i++) {
-                if (avatarPaths[i].equals(currentAvatarPath)) {
+                if (avatarPaths[i].equalsIgnoreCase(currentAvatarPath)) {
                     return i;
                 }
             }
         }
-        return 0;
+        // Retornar un índice neutral cuando no se encuentra, como el último índice
+        return avatarPaths.length - 1;
     }
 }

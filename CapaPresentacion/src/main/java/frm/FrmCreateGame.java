@@ -2,6 +2,7 @@
 package frm;
 
 import factory.MVCFactory;
+import javax.swing.JOptionPane;
 import mvc.game.GameComponent;
 
 /**
@@ -49,13 +50,28 @@ public class FrmCreateGame extends javax.swing.JFrame {
         dispose();
     }
 
-    private void showWelcomeFrm() {
-        FrmWelcome v = new FrmWelcome();
-        v.setVisible(true);
-        dispose();
-    }
+ 
 
  
+    public int validarSalidaUsuario() {
+        return JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+    }
+
+    public void btnReturn() {
+        if (validarSalidaUsuario() == JOptionPane.YES_OPTION) {
+            abrirPantallaBienvenida();
+            cerrarPantalla();
+        }
+    }
+
+    public void cerrarPantalla() {
+        this.dispose();
+    }
+
+    public void abrirPantallaBienvenida() {
+        FrmWelcome v = new FrmWelcome();
+        v.setVisible(true);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -124,7 +140,7 @@ public class FrmCreateGame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTwoPlayersActionPerformed
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-        showWelcomeFrm();
+        btnReturn();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnThreePlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThreePlayersActionPerformed

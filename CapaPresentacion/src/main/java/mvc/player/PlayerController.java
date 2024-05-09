@@ -19,7 +19,8 @@ public class PlayerController {
     private PlayerController playerController;
     private PlayerModel playerModel;
     private PlayerView playerView;
-private final List<MatchObserver> observers = new ArrayList<>();
+    private final List<MatchObserver> observers = new ArrayList<>();
+
     public PlayerController(PlayerModel playerModel, PlayerView playerView) {
         this.playerModel = playerModel;
         this.playerView = playerView;
@@ -40,12 +41,15 @@ private final List<MatchObserver> observers = new ArrayList<>();
     public void refresh() {
         this.playerView.repaint();
     }
-public void suscribeToView(GameClass match) {
+
+    public void suscribeToView(GameClass match) {
         this.addObserver(match);
     }
-public void addObserver(GameClass observer) {
+
+    public void addObserver(GameClass observer) {
         observers.add(observer);
     }
+
     public void setPlayerInfo(Player player, String avatarPath) {
         playerModel.setName(player.getName());
         playerModel.setPlayer(player);
@@ -53,5 +57,4 @@ public void addObserver(GameClass observer) {
         playerView.refresh();
     }
 
-    
 }

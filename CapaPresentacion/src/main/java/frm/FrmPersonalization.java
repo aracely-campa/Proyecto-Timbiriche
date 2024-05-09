@@ -9,11 +9,13 @@ import mvc.player.PlayerModel;
 import resources.AvatarSelector;
 
 /**
- * Este frame cumple con el princpio de responsabilidad unica
- *  Y cumple con el principio de dependencias
+ * Este frame cumple con el princpio de responsabilidad unica Y cumple con el
+ * principio de dependencias
+ *
  * @author arace
  */
 public class FrmPersonalization extends javax.swing.JFrame {
+
     private PlayerModel playerModel;
     private AvatarSelector avatarSelector;
 
@@ -24,55 +26,87 @@ public class FrmPersonalization extends javax.swing.JFrame {
         displayCurrentAvatar();
     }
 
-    private void displayCurrentAvatar() {
-        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath());
-        ImageIcon icon = new ImageIcon(selectedAvatarPath);
-        avatarButton.setIcon(icon);
-    }
 
-    private void showPreviousAvatar() {
-        String selectedAvatarPath = avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath());
-        ImageIcon icon = new ImageIcon(selectedAvatarPath);
-        avatarButton.setIcon(icon);
-    }
+ 
+private void displayCurrentAvatar() {        
+    avatarButton.setIcon(new ImageIcon(avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath())));
+}
 
-    private void showNextAvatar() {
-        String selectedAvatarPath = avatarSelector.getNextAvatarPath(playerModel.getAvatarPath());
-        ImageIcon icon = new ImageIcon(selectedAvatarPath);
-        avatarButton.setIcon(icon);
-    }
+//private void showPreviousAvatar() {
+//    avatarButton.setIcon(new ImageIcon(avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath())));
+//}
+//
+//private void showNextAvatar() {
+//   avatarButton.setIcon(new ImageIcon(avatarSelector.getNextAvatarPath(playerModel.getAvatarPath())));
+//}
+
+
+private void showPreviousAvatar() {
+    String prevAvatar = avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath());
+    avatarButton.setIcon(new ImageIcon(prevAvatar));
+    playerModel.setAvatarPath(prevAvatar);  // Asumiendo que existe un método setAvatarPath
+}
+
+private void showNextAvatar() {
+   String nextAvatar = avatarSelector.getNextAvatarPath(playerModel.getAvatarPath());
+   avatarButton.setIcon(new ImageIcon(nextAvatar));
+   playerModel.setAvatarPath(nextAvatar);  // Asumiendo que existe un método setAvatarPath
+}
+
 
     private boolean validatePlayerName(String namePlayer) {
         if (namePlayer == null || namePlayer.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "The player name is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            mostrarMensajeErrorNombre();
             return false;
         }
         return true;
     }
 
+    public void mostrarMensajeErrorNombre() {
+        JOptionPane.showMessageDialog(this, "The player name is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public int validarSalidaUsuario() {
+        return JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+    }
+
     public void btnReturn() {
-        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (exit == JOptionPane.YES_OPTION) {
-            FrmWelcome v = new FrmWelcome();
-            v.setVisible(true);
-            this.dispose();
+        if (validarSalidaUsuario() == JOptionPane.YES_OPTION) {
+            abrirPantallaBienvenida();
+            cerrarPantalla();
         }
+    }
+
+    public void cerrarPantalla() {
+        this.dispose();
+    }
+
+    public void abrirPantallaBienvenida() {
+        FrmWelcome v = new FrmWelcome();
+        v.setVisible(true);
+    }
+
+    public void asignarInformacionAUsuario(String namePlayer) {
+        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath());
+        PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
 
     }
 
     public void btnJoin() {
 
-       String namePlayer = txtNamePlayer.getText().trim();
-        if (!validatePlayerName(namePlayer)) {
+        if (!validatePlayerName(txtNamePlayer.getText().trim())) {
             return;
         }
 
-        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath());
-        PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
+        asignarInformacionAUsuario(txtNamePlayer.getText().trim());
+        abrirPantallaLobbyConDatos(PlayerComponent.getInstance());
 
-        FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath);
+    }
+
+    public void abrirPantallaLobbyConDatos(PlayerComponent playerComponent) {
+        FrmLobby v = new FrmLobby(PlayerComponent.getInstance());
         v.setVisible(true);
-        this.dispose();
+        cerrarPantalla();
     }
 
     @SuppressWarnings("unchecked")
