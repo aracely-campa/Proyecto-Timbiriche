@@ -31,7 +31,7 @@ public class Chat implements Runnable {
             if (mensaje.equalsIgnoreCase("desconectar")) {
                 break;
             }
-            proxyPlayer.empaquetarParametros(nombre, mensaje, EnumMensaje.CLIENTE);
+            proxyPlayer.empaquetarParametros(nombre, mensaje, EnumMensaje.PLAYER);
             proxyPlayer.enviarDatos();
         } while (true);
         proxyPlayer.cerrarSocket();

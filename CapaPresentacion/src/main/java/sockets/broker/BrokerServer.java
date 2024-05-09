@@ -57,7 +57,7 @@ public class BrokerServer implements Runnable {
             PaqueteDatos paqueteDatosRecibido;
             ObjectInputStream paqueteDatos = new ObjectInputStream(socketServidor.getInputStream());
             paqueteDatosRecibido = (PaqueteDatos) paqueteDatos.readObject();
-            if (paqueteDatosRecibido.getPara() == EnumMensaje.CLIENTE) {
+            if (paqueteDatosRecibido.getPara() == EnumMensaje.PLAYER) {
                 for (int i = 0; i < Broker.direccionesPlayerSocket.size(); i++) {
                     System.out.println(socketRemitente);
                     System.out.println(Broker.direccionesPlayerSocket.get(i));

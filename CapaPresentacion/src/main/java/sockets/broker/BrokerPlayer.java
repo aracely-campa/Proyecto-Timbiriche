@@ -51,7 +51,7 @@ public class BrokerPlayer implements Runnable {
                 while (true) {
                     BrokerServer.socketRemitente = socketCliente;
                     PaqueteDatos paqueteDatosRecibido;
-                    ObjectInputStream paqueteDatos = new ObjectInputStream(socketCliente.getInputStream());
+                    ObjectInputStream paqueteDatos = new ObjectInputStream(socketPlayer.getInputStream());
                     Socket socketEnviarServidor = Broker.direccionesServerSocket.get(0);
                     paqueteDatosRecibido = (PaqueteDatos) paqueteDatos.readObject();
                     ObjectOutputStream paqueteDatosEnvio = new ObjectOutputStream(socketEnviarServidor.getOutputStream());
