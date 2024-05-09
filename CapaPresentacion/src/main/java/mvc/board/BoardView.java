@@ -4,11 +4,13 @@
  */
 package mvc.board;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author luis-
  */
-public class BoardView {
+public class BoardView extends JPanel{
 
     private BoardModel boardModel;
 

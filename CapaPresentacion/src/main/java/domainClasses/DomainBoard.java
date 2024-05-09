@@ -5,7 +5,7 @@ import domain.game.Board;
 public class DomainBoard {
 
     private static DomainBoard domainBoard;
-
+    
     private Board board;
 
     public DomainBoard() {

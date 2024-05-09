@@ -99,10 +99,10 @@ public class FrmPersonalization extends javax.swing.JFrame {
     private boolean validarNombreEnTextField(String namePlayer) {
         if (namePlayer == null || namePlayer.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "The text field is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public void btnJoin() {

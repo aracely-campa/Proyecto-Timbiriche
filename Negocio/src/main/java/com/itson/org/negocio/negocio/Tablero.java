@@ -14,15 +14,15 @@ public class Tablero implements ITablero {
     @Override
     public Player unirNodosPorJugador(Player player, Node[] nodos) throws TableroException {
         try {
-                  
-        if(validarNodosDisponibles(player, nodos)){
-           return null;
-        }
-        
+
+            if (validarNodosDisponibles(player, nodos)) {
+                return null;
+            }
+
         } catch (validarNodosDisponiblesExceptions e) {
             throw new TableroException(e.getMessage());
         }
-        
+
         return null;
     }
 
@@ -47,9 +47,9 @@ public class Tablero implements ITablero {
             throw new validarNodosDisponiblesExceptions("");
 
         }
-        
+
         return true;
-        
+
     }
 
     public boolean validasrNodosIndividualmente(Node[] nodos) throws validarNodosDisponiblesExceptions {
