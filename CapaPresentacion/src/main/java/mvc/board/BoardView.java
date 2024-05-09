@@ -4,6 +4,7 @@
  */
 package mvc.board;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -27,8 +28,9 @@ public class BoardView extends JPanel {
     private Image boardBackground;
     public BoardView(BoardModel boardModel) {
         this.boardModel = boardModel;
-        setPreferredSize(new Dimension(966, 742));
-        setLayout(new AbsoluteLayout());
+//        setPreferredSize(new Dimension(966, 742));
+//        setLayout(new AbsoluteLayout());
+            setBackground(Color.red);
 
     }
 

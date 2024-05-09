@@ -14,7 +14,7 @@ import events.PlayerEvents;
  */
 public interface MatchObserver {
     void eventOnNodeUpdate(NodeEvents evt);
-    void eventOnBoardUpdate(BoardEvents evt);
+    void eventOnBoardUpdate();
     void eventOnPlayerUpdate(PlayerEvents evt);
 
 }

@@ -11,22 +11,26 @@ public class BoardModel {
     private Square[][] boardArray;
     private List<Node> nodeList = new ArrayList();
     private DomainBoard domainBoard;
-    
+
     private Integer coordenadaX;
 
     private Integer coordenadaY;
-    
+
     private Integer anchoTablero;
-    
+
     private Integer largoTablero;
-    
-    
-    
     
     public BoardModel() {
         this.domainBoard = new DomainBoard();
     }
-
+    
+    public void inicializarValores(){
+     this.largoTablero=700;
+     this.anchoTablero=700;
+     this.coordenadaX=0;
+     this.coordenadaY=0;
+    }
+    
     public BoardModel(Square[][] boardArray, DomainBoard domainBoard) {
         this.boardArray = boardArray;
         this.domainBoard = domainBoard;
@@ -99,7 +103,5 @@ public class BoardModel {
     public void setLargoTablero(Integer largoTablero) {
         this.largoTablero = largoTablero;
     }
-    
-    
-    
+
 }

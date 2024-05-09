@@ -2,14 +2,13 @@ package game;
 
 import domain.game.Player;
 import domain.graph.Node;
-import events.BoardEvents;
 import events.NodeEvents;
 import events.PlayerEvents;
+import factory.MVCFactory;
 import interfaces.MatchObserver;
 import javax.swing.JOptionPane;
 import mvc.board.BoardView;
 import mvc.game.GameComponent;
-import mvc.node.NodeController;
 import mvc.node.NodeView;
 import mvc.player.PlayerView;
 
@@ -49,15 +48,19 @@ public class GameClass implements MatchObserver {
     }
 
     @Override
-    public void eventOnBoardUpdate(BoardEvents evt) {
-
-    }
-
-    @Override
     public void eventOnPlayerUpdate(PlayerEvents evt) {
         if (PlayerEvents.LEFT_CLICK_ON_PLAYER_EVENT.equals(evt)) {
             JOptionPane.showMessageDialog(null, "Seleccionaste una linea ");
 
         }
+    }
+    
+    public void suscribirTablero(){
+        MVCFactory.instanceBoardComponent().getBoardController().addObserver(this);
+    }
+    
+    @Override
+    public void eventOnBoardUpdate() {
+        System.out.println("Click al board, recibido");
     }
 }

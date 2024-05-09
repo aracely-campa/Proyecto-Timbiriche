@@ -79,7 +79,7 @@ public class FrmWelcome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJoinGameActionPerformed
 
     private void btnCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateGameActionPerformed
-        FrmCreateGame v = new FrmCreateGame(MVCFactory.getInstance().instanceGameComponent());
+        FrmCreateGame v = new FrmCreateGame(MVCFactory.instanceGameComponent());
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCreateGameActionPerformed

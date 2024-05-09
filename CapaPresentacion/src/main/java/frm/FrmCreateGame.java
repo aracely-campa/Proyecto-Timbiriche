@@ -4,6 +4,7 @@ package frm;
 import factory.MVCFactory;
 import javax.swing.JOptionPane;
 import mvc.game.GameComponent;
+import mvc.player.PlayerComponent;
 
 /**
  *
@@ -12,7 +13,7 @@ import mvc.game.GameComponent;
 public class FrmCreateGame extends javax.swing.JFrame {
 
     private final GameComponent gameComponent;
-
+    private PlayerComponent playerComponent;
     /**
      * Creates new form FrmCreateGame
      *
@@ -20,6 +21,7 @@ public class FrmCreateGame extends javax.swing.JFrame {
      */
     public FrmCreateGame(GameComponent gameComponent) {
         initComponents();
+        this.playerComponent = new PlayerComponent();
         this.gameComponent = gameComponent;
     }
 
@@ -45,7 +47,7 @@ public class FrmCreateGame extends javax.swing.JFrame {
     }
 
     private void showPersonalizationFrm() {
-        FrmPersonalization v = new FrmPersonalization(MVCFactory.instancePlayerComponent().getPlayerModel());
+        FrmPersonalization v = new FrmPersonalization();
         v.setVisible(true);
         dispose();
     }

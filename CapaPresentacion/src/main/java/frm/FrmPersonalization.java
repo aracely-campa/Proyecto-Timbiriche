@@ -16,12 +16,12 @@ import resources.AvatarSelector;
  */
 public class FrmPersonalization extends javax.swing.JFrame {
 
-    private PlayerModel playerModel;
+    private PlayerComponent playerComponent;
     private AvatarSelector avatarSelector;
 
-    public FrmPersonalization(PlayerModel playerModel) {
+    public FrmPersonalization() {
         initComponents();
-        this.playerModel = playerModel;
+        this.playerComponent =new PlayerComponent();
         this.avatarSelector = new AvatarSelector();
         displayCurrentAvatar();
     }
@@ -29,29 +29,17 @@ public class FrmPersonalization extends javax.swing.JFrame {
 
  
 private void displayCurrentAvatar() {        
-    avatarButton.setIcon(new ImageIcon(avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath())));
+    avatarButton.setIcon(new ImageIcon(avatarSelector.getSelectedAvatarPath()));
 }
 
-//private void showPreviousAvatar() {
-//    avatarButton.setIcon(new ImageIcon(avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath())));
-//}
-//
-//private void showNextAvatar() {
-//   avatarButton.setIcon(new ImageIcon(avatarSelector.getNextAvatarPath(playerModel.getAvatarPath())));
-//}
-
-
 private void showPreviousAvatar() {
-    String prevAvatar = avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath());
-    avatarButton.setIcon(new ImageIcon(prevAvatar));
-    playerModel.setAvatarPath(prevAvatar);  // Asumiendo que existe un método setAvatarPath
+    avatarButton.setIcon(new ImageIcon(avatarSelector.getPreviousAvatarPath()));
 }
 
 private void showNextAvatar() {
-   String nextAvatar = avatarSelector.getNextAvatarPath(playerModel.getAvatarPath());
-   avatarButton.setIcon(new ImageIcon(nextAvatar));
-   playerModel.setAvatarPath(nextAvatar);  // Asumiendo que existe un método setAvatarPath
+   avatarButton.setIcon(new ImageIcon(avatarSelector.getNextAvatarPath()));
 }
+
 
 
     private boolean validatePlayerName(String namePlayer) {
@@ -87,8 +75,8 @@ private void showNextAvatar() {
     }
 
     public void asignarInformacionAUsuario(String namePlayer) {
-        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath());
-        PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
+        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath();
+      playerComponent.setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
 
     }
 
@@ -99,12 +87,12 @@ private void showNextAvatar() {
         }
 
         asignarInformacionAUsuario(txtNamePlayer.getText().trim());
-        abrirPantallaLobbyConDatos(PlayerComponent.getInstance());
+        abrirPantallaLobbyConDatos(playerComponent);
 
     }
 
     public void abrirPantallaLobbyConDatos(PlayerComponent playerComponent) {
-        FrmLobby v = new FrmLobby(PlayerComponent.getInstance());
+        FrmLobby v = new FrmLobby(playerComponent);
         v.setVisible(true);
         cerrarPantalla();
     }
