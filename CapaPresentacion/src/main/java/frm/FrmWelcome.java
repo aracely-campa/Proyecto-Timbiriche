@@ -1,7 +1,12 @@
 package frm;
 
 import factory.MVCFactory;
-
+/**Esta clase cumple con el SRP: principio de responsabilidad unica ya que este frame
+ * se encarga solamente se encarga de la logica de la interfaz de usuario
+ * al igual que cumple con el OCP: principio de abierto y cerrado para los metodos de los
+ * botones
+ * **/
+ 
 public class FrmWelcome extends javax.swing.JFrame {
 
     private static FrmWelcome frmWelcomeInstance;

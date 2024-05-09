@@ -6,7 +6,9 @@ import javax.swing.JOptionPane;
 import mvc.player.PlayerModel;
 
 /**
- *
+ * Cumple de con el princpio de responsabilidad unica y  el de dependencias ya que
+ * maneja la interfaz grafica y la navegacion entre las pantallas, y el de dependencias
+ * por que recibe parametros del player model 
  * @author arace
  */
 public class FrmLobby extends javax.swing.JFrame {
