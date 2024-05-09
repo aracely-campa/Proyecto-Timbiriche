@@ -5,7 +5,7 @@ import enums.ImagesSourcers;
 public class AvatarSelector {
 
     private String[] avatarPaths;
-
+    private int currentAvatarIndex = 0;
     public AvatarSelector() {
         this.avatarPaths = ImagesSourcers.getAvatarImages();
         // Asegúrate de que avatarPaths no es null ni está vacío
@@ -14,24 +14,22 @@ public class AvatarSelector {
         }
     }
 
-    public String getSelectedAvatarPath(String currentAvatarPath) {
-        int index = getIndex(currentAvatarPath);
-        return avatarPaths[index];
+    public String getSelectedAvatarPath() {
+        return avatarPaths[currentAvatarIndex];
     }
 
-  public String getPreviousAvatarPath(String currentAvatarPath) {
-    int index = getIndex(currentAvatarPath);
-    index = (index - 1 + avatarPaths.length) % avatarPaths.length;
-    System.out.println("Prev index: " + index); // Agregar mensajes de depuración
-    return avatarPaths[index];
-}
+    public String getPreviousAvatarPath() {
+       
+        currentAvatarIndex = (currentAvatarIndex - 1 + avatarPaths.length) % avatarPaths.length;
+        System.out.println("Prev index: " + currentAvatarIndex); // Agregar mensajes de depuración
+        return avatarPaths[currentAvatarIndex];
+    }
 
-public String getNextAvatarPath(String currentAvatarPath) {
-    int index = getIndex(currentAvatarPath);
-    index = (index + 1) % avatarPaths.length;
-    System.out.println("Next index: " + index); // Agregar mensajes de depuración
-    return avatarPaths[index];
-}
+    public String getNextAvatarPath() {
+        currentAvatarIndex = (currentAvatarIndex + 1) % avatarPaths.length;
+        System.out.println("Next index: " + currentAvatarIndex); // Agregar mensajes de depuración
+        return avatarPaths[currentAvatarIndex];
+    }
 
     private int getIndex(String currentAvatarPath) {
         if (currentAvatarPath != null) {
