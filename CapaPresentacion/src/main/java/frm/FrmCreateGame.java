@@ -5,7 +5,7 @@ import factory.MVCFactory;
 import mvc.game.GameComponent;
 
 /**
- * Cumple con el princpio de dependencias, Open close y de responsabilidad unica
+ *
  * @author arace
  */
 public class FrmCreateGame extends javax.swing.JFrame {

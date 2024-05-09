@@ -5,7 +5,7 @@ import factory.MVCFactory;
 import javax.swing.JOptionPane;
 
 /**
- * Este frame cumple con el principio de responsabilidad unica
+ *
  * @author arace
  */
 public class FrmJoinGame extends javax.swing.JFrame {

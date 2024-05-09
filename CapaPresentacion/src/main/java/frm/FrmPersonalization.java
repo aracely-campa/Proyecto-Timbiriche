@@ -6,48 +6,84 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerComponent;
 import mvc.player.PlayerModel;
-import resources.AvatarSelector;
 
 /**
- * Este frame cumple con el princpio de responsabilidad unica
- *  Y cumple con el principio de dependencias
+ *
  * @author arace
  */
 public class FrmPersonalization extends javax.swing.JFrame {
+
     private PlayerModel playerModel;
-    private AvatarSelector avatarSelector;
+    private String selectedAvatarPath;
 
     public FrmPersonalization(PlayerModel playerModel) {
         initComponents();
         this.playerModel = playerModel;
-        this.avatarSelector = new AvatarSelector();
         displayCurrentAvatar();
     }
 
     private void displayCurrentAvatar() {
-        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath());
-        ImageIcon icon = new ImageIcon(selectedAvatarPath);
-        avatarButton.setIcon(icon);
+
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+
+        if (avatarPaths != null && avatarPaths.length > 0) {
+
+            int index = playerModel.getAvatarPath() != null ? getSelectedAvatarIndex(new String[]{playerModel.getAvatarPath()}) : 0;
+
+            ImageIcon icon = new ImageIcon(avatarPaths[index]);
+
+            avatarButton.setIcon(icon);
+            selectedAvatarPath = avatarPaths[index];
+
+        } else {
+            System.err.println("Error: avatarPaths is null or empty");
+        }
     }
 
     private void showPreviousAvatar() {
-        String selectedAvatarPath = avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath());
-        ImageIcon icon = new ImageIcon(selectedAvatarPath);
-        avatarButton.setIcon(icon);
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+        if (avatarPaths != null && avatarPaths.length > 0) {
+            int currentIndex = getSelectedAvatarIndex(avatarPaths);
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = avatarPaths.length - 1;
+            }
+            selectedAvatarPath = avatarPaths[currentIndex];
+            ImageIcon icon = new ImageIcon(selectedAvatarPath);
+            avatarButton.setIcon(icon);
+        } else {
+            System.err.println("Error: avatarPaths is null or empty");
+        }
     }
 
     private void showNextAvatar() {
-        String selectedAvatarPath = avatarSelector.getNextAvatarPath(playerModel.getAvatarPath());
-        ImageIcon icon = new ImageIcon(selectedAvatarPath);
-        avatarButton.setIcon(icon);
+        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+        if (avatarPaths != null && avatarPaths.length > 0) {
+            int currentIndex = getSelectedAvatarIndex(avatarPaths);
+            currentIndex++;
+            if (currentIndex >= avatarPaths.length) {
+                currentIndex = 0;
+            }
+            selectedAvatarPath = avatarPaths[currentIndex];
+            ImageIcon icon = new ImageIcon(selectedAvatarPath);
+            avatarButton.setIcon(icon);
+        } else {
+            System.err.println("Error: avatarPaths is null or empty");
+        }
     }
 
-    private boolean validatePlayerName(String namePlayer) {
-        if (namePlayer == null || namePlayer.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "The player name is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+    private int getSelectedAvatarIndex(String[] avatarPaths) {
+        for (int i = 0; i < avatarPaths.length; i++) {
+            if (avatarPaths[0].equals(selectedAvatarPath)) {
+                return i;
+            } else {
+                if (avatarPaths[i].equals(selectedAvatarPath)) {
+                    return i;
+                }
+            }
+
         }
-        return true;
+        return -1;
     }
 
     public void btnReturn() {
@@ -60,14 +96,23 @@ public class FrmPersonalization extends javax.swing.JFrame {
 
     }
 
+    private boolean validarNombreEnTextField(String namePlayer) {
+        if (namePlayer == null || namePlayer.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "The text field is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+
+        return false;
+    }
+
     public void btnJoin() {
 
-       String namePlayer = txtNamePlayer.getText().trim();
-        if (!validatePlayerName(namePlayer)) {
+        if (validarNombreEnTextField(txtNamePlayer.getText())) {
             return;
         }
 
-        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath());
+        String namePlayer = txtNamePlayer.getText();
+
         PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
 
         FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath);
