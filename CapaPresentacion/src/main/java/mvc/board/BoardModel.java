@@ -20,6 +20,17 @@ public class BoardModel {
 
     private Integer largoTablero;
     
+    
+    public Integer columns=40;
+    public Integer rows=40;
+    private Integer size = (int) Math.floor(700/columns);
+    public Integer circleSize=(int) Math.floor(size/6);
+    public Integer cellSize= size;
+    private Integer origin = (int) ((700-cellSize*columns)/2);
+    public Integer originX=origin;
+    public Integer originY=origin;
+    public Integer smollCircleSize=circleSize/2;
+    
     public BoardModel() {
         this.domainBoard = new DomainBoard();
     }
@@ -27,14 +38,16 @@ public class BoardModel {
     public void inicializarValores(){
      this.largoTablero=700;
      this.anchoTablero=700;
-     this.coordenadaX=0;
-     this.coordenadaY=0;
+     this.coordenadaX=00;
+     this.coordenadaY=00;
+     
     }
     
     public BoardModel(Square[][] boardArray, DomainBoard domainBoard) {
         this.boardArray = boardArray;
         this.domainBoard = domainBoard;
     }
+
 
     public void getSquaresPlayer() {
 

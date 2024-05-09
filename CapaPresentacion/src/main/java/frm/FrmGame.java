@@ -50,7 +50,7 @@ public class FrmGame extends javax.swing.JFrame {
     public void pintarTablero() {
         BoardComponent boardComponent = BoardComponent.getInstance();
         BoardView boardView = boardComponent.getBoardView();
-        jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 700, 700));
+        jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(250,50, 725, 725));
 
     }
 
@@ -83,6 +83,7 @@ public class FrmGame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(1330, 1100));
 
         btnReturn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botones/btnExit (1).png"))); // NOI18N
         btnReturn.setBorderPainted(false);
