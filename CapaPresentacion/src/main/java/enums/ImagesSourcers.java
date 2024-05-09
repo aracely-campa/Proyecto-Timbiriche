@@ -16,6 +16,7 @@ public class ImagesSourcers {
     private static final String imgFrmCreateGame = "src/main/resources/desingFrm/frmCreateGame.png";
     private static final String imgFrmPersonalization = "src/main/resources/desingFrm/frmPersonalization.png";
     private static final String imgBtnTwoPlayers = "src/main/resources/botones/btntwoplayers.png";
+    private static final String imgFrmBoardGame = "src/main/resources/desingFrm/frmBoardGame.png";
 
     public ImagesSourcers() {
     }
@@ -25,7 +26,7 @@ public class ImagesSourcers {
     }
 
     public static String[] getFormImages() {
-        return new String[]{imgFrmLobby, imgFrmWelcome, imgFrmJoinGame, imgFrmCreateGame, imgFrmPersonalization};
+        return new String[]{imgFrmLobby, imgFrmWelcome, imgFrmJoinGame, imgFrmCreateGame, imgFrmPersonalization,imgFrmBoardGame };
     }
 
     public static String[] getBtnImages() {
@@ -71,5 +72,11 @@ public class ImagesSourcers {
     public static String getImgBtnTwoPlayers() {
         return imgBtnTwoPlayers;
     }
+
+    public static String getImgFrmBoardGame() {
+        return imgFrmBoardGame;
+    }
+    
+    
 
 }
