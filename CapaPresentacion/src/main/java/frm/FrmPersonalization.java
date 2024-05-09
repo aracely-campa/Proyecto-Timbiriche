@@ -6,118 +6,107 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerComponent;
 import mvc.player.PlayerModel;
+import resources.AvatarSelector;
 
 /**
+ * Este frame cumple con el princpio de responsabilidad unica Y cumple con el
+ * principio de dependencias
  *
  * @author arace
  */
 public class FrmPersonalization extends javax.swing.JFrame {
 
     private PlayerModel playerModel;
-    private String selectedAvatarPath;
+    private AvatarSelector avatarSelector;
 
     public FrmPersonalization(PlayerModel playerModel) {
         initComponents();
         this.playerModel = playerModel;
+        this.avatarSelector = new AvatarSelector();
         displayCurrentAvatar();
     }
 
-    private void displayCurrentAvatar() {
 
-        String[] avatarPaths = ImagesSourcers.getAvatarImages();
+ 
+private void displayCurrentAvatar() {        
+    avatarButton.setIcon(new ImageIcon(avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath())));
+}
 
-        if (avatarPaths != null && avatarPaths.length > 0) {
+//private void showPreviousAvatar() {
+//    avatarButton.setIcon(new ImageIcon(avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath())));
+//}
+//
+//private void showNextAvatar() {
+//   avatarButton.setIcon(new ImageIcon(avatarSelector.getNextAvatarPath(playerModel.getAvatarPath())));
+//}
 
-            int index = playerModel.getAvatarPath() != null ? getSelectedAvatarIndex(new String[]{playerModel.getAvatarPath()}) : 0;
 
-            ImageIcon icon = new ImageIcon(avatarPaths[index]);
+private void showPreviousAvatar() {
+    String prevAvatar = avatarSelector.getPreviousAvatarPath(playerModel.getAvatarPath());
+    avatarButton.setIcon(new ImageIcon(prevAvatar));
+    playerModel.setAvatarPath(prevAvatar);  // Asumiendo que existe un método setAvatarPath
+}
 
-            avatarButton.setIcon(icon);
-            selectedAvatarPath = avatarPaths[index];
+private void showNextAvatar() {
+   String nextAvatar = avatarSelector.getNextAvatarPath(playerModel.getAvatarPath());
+   avatarButton.setIcon(new ImageIcon(nextAvatar));
+   playerModel.setAvatarPath(nextAvatar);  // Asumiendo que existe un método setAvatarPath
+}
 
-        } else {
-            System.err.println("Error: avatarPaths is null or empty");
+
+    private boolean validatePlayerName(String namePlayer) {
+        if (namePlayer == null || namePlayer.trim().isEmpty()) {
+            mostrarMensajeErrorNombre();
+            return false;
         }
+        return true;
     }
 
-    private void showPreviousAvatar() {
-        String[] avatarPaths = ImagesSourcers.getAvatarImages();
-        if (avatarPaths != null && avatarPaths.length > 0) {
-            int currentIndex = getSelectedAvatarIndex(avatarPaths);
-            currentIndex--;
-            if (currentIndex < 0) {
-                currentIndex = avatarPaths.length - 1;
-            }
-            selectedAvatarPath = avatarPaths[currentIndex];
-            ImageIcon icon = new ImageIcon(selectedAvatarPath);
-            avatarButton.setIcon(icon);
-        } else {
-            System.err.println("Error: avatarPaths is null or empty");
-        }
+    public void mostrarMensajeErrorNombre() {
+        JOptionPane.showMessageDialog(this, "The player name is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    private void showNextAvatar() {
-        String[] avatarPaths = ImagesSourcers.getAvatarImages();
-        if (avatarPaths != null && avatarPaths.length > 0) {
-            int currentIndex = getSelectedAvatarIndex(avatarPaths);
-            currentIndex++;
-            if (currentIndex >= avatarPaths.length) {
-                currentIndex = 0;
-            }
-            selectedAvatarPath = avatarPaths[currentIndex];
-            ImageIcon icon = new ImageIcon(selectedAvatarPath);
-            avatarButton.setIcon(icon);
-        } else {
-            System.err.println("Error: avatarPaths is null or empty");
-        }
-    }
-
-    private int getSelectedAvatarIndex(String[] avatarPaths) {
-        for (int i = 0; i < avatarPaths.length; i++) {
-            if (avatarPaths[0].equals(selectedAvatarPath)) {
-                return i;
-            } else {
-                if (avatarPaths[i].equals(selectedAvatarPath)) {
-                    return i;
-                }
-            }
-
-        }
-        return -1;
+    public int validarSalidaUsuario() {
+        return JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
     }
 
     public void btnReturn() {
-        int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (exit == JOptionPane.YES_OPTION) {
-            FrmWelcome v = new FrmWelcome();
-            v.setVisible(true);
-            this.dispose();
+        if (validarSalidaUsuario() == JOptionPane.YES_OPTION) {
+            abrirPantallaBienvenida();
+            cerrarPantalla();
         }
-
     }
 
-    private boolean validarNombreEnTextField(String namePlayer) {
-        if (namePlayer == null || namePlayer.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "The text field is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return true;
-        }
+    public void cerrarPantalla() {
+        this.dispose();
+    }
 
-        return false;
+    public void abrirPantallaBienvenida() {
+        FrmWelcome v = new FrmWelcome();
+        v.setVisible(true);
+    }
+
+    public void asignarInformacionAUsuario(String namePlayer) {
+        String selectedAvatarPath = avatarSelector.getSelectedAvatarPath(playerModel.getAvatarPath());
+        PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
+
     }
 
     public void btnJoin() {
 
-        if (validarNombreEnTextField(txtNamePlayer.getText())) {
+        if (!validatePlayerName(txtNamePlayer.getText().trim())) {
             return;
         }
 
-        String namePlayer = txtNamePlayer.getText();
+        asignarInformacionAUsuario(txtNamePlayer.getText().trim());
+        abrirPantallaLobbyConDatos(PlayerComponent.getInstance());
 
-        PlayerComponent.getInstance().setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
+    }
 
-        FrmLobby v = new FrmLobby(PlayerComponent.getInstance().getPlayerModel(), namePlayer, selectedAvatarPath);
+    public void abrirPantallaLobbyConDatos(PlayerComponent playerComponent) {
+        FrmLobby v = new FrmLobby(PlayerComponent.getInstance());
         v.setVisible(true);
-        this.dispose();
+        cerrarPantalla();
     }
 
     @SuppressWarnings("unchecked")

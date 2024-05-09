@@ -16,5 +16,5 @@ public interface MatchObserver {
     void eventOnNodeUpdate(NodeEvents evt);
     void eventOnBoardUpdate(BoardEvents evt);
     void eventOnPlayerUpdate(PlayerEvents evt);
-//    void eventOnPlayerClickedTile(PlayerEvents evt, TileComponent tile);
+
 }

@@ -1,5 +1,7 @@
 package domainClasses;
 
+import com.itson.org.negocio.excepciones.PartidaException;
+import com.itson.org.negocio.negocio.Partida;
 import domain.game.Game;
 import domain.game.Player;
 import exceptions.GameException;
@@ -10,17 +12,14 @@ public class DomainGame {
 
     private final Game game;
 
+    private Partida partida;
+
     public DomainGame() {
         this.game = Game.getInstance();
     }
 
-    public void addPlayer(Player player) throws GameException {
-        game.addPlayer(player);
-    }
-
-    public void comprobarEspacioEnPartida() throws GameException {
-        game.comprobarEspacioEnPartida();
-
+    public void addPlayer(Player player) throws PartidaException {
+        partida.anadirJugadorALaLista(player);
     }
 
     public void createPlayerListWithSize(Integer size) throws GameException {

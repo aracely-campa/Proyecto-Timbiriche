@@ -4,10 +4,9 @@
  */
 package frm;
 
-import enums.ImagesSourcers;
-import factory.MVCFactory;
-import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import mvc.board.BoardComponent;
+import mvc.board.BoardView;
 import mvc.player.PlayerComponent;
 import mvc.player.PlayerView;
 
@@ -16,12 +15,16 @@ import mvc.player.PlayerView;
  * @author arace
  */
 public class FrmGame extends javax.swing.JFrame {
-
+    
+    
+    
+    
     public FrmGame() {
         initComponents();
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         paintPoolOnGamePanel();
+        pintarTablero();
 
     }
 
@@ -30,11 +33,19 @@ public class FrmGame extends javax.swing.JFrame {
     }
 
     public void paintPoolOnGamePanel() {
-        PlayerComponent playerComponent = PlayerComponent.getInstance();
-        PlayerView playerView = playerComponent.getPlayerView();
-        jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+//        PlayerComponent playerComponent = PlayerComponent.getInstance();
+//        PlayerView playerView = playerComponent.getPlayerView();
+//        jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
+//
+//        playerComponent.refresh();
+    }
 
-        playerComponent.refresh();
+    public void pintarTablero() {
+        BoardComponent boardComponent = BoardComponent.getInstance();
+        BoardView boardView = boardComponent.getBoardView();
+        jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 966, 742));
+        boardComponent.refresh();
+
     }
 
     public void btnReturn() {
@@ -83,17 +94,17 @@ public class FrmGame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnReturn)
-                .addContainerGap(901, Short.MAX_VALUE))
+                .addContainerGap(1061, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(684, Short.MAX_VALUE)
+                .addContainerGap(744, Short.MAX_VALUE)
                 .addComponent(btnReturn)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 740));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1130, 800));
 
         pack();
         setLocationRelativeTo(null);

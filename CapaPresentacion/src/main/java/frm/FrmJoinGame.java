@@ -70,10 +70,28 @@ public class FrmJoinGame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+    public int validarSalidaUsuario() {
+        return JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
+    }
+
+    public void btnReturn() {
+        if (validarSalidaUsuario() == JOptionPane.YES_OPTION) {
+            abrirPantallaBienvenida();
+            cerrarPantalla();
+        }
+    }
+
+    public void cerrarPantalla() {
+        this.dispose();
+    }
+
+    public void abrirPantallaBienvenida() {
         FrmWelcome v = new FrmWelcome();
         v.setVisible(true);
-        this.dispose();
+    }
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        abrirPantallaBienvenida();
+        cerrarPantalla();
     }//GEN-LAST:event_btnReturnActionPerformed
 
     private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
