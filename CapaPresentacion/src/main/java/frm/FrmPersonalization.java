@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mvc.player.PlayerComponent;
 import mvc.player.PlayerModel;
-import resources.AvatarSelector;
+import enums.AvatarSelector;
 
 /**
  * Este frame cumple con el princpio de responsabilidad unica Y cumple con el
@@ -19,29 +19,46 @@ public class FrmPersonalization extends javax.swing.JFrame {
     private PlayerComponent playerComponent;
     private AvatarSelector avatarSelector;
 
+    /**
+     * Constructor de FrmPersonalization que inicializa los componentes de la
+     * interfaz gráfica, crea un nuevo PlayerComponent y un AvatarSelector, y
+     * muestra el avatar actualmente seleccionado.
+     */
     public FrmPersonalization() {
         initComponents();
-        this.playerComponent =new PlayerComponent();
+        this.playerComponent = new PlayerComponent();
         this.avatarSelector = new AvatarSelector();
         displayCurrentAvatar();
     }
 
+    /**
+     * Muestra el avatar actualmente seleccionado en la interfaz.
+     */
+    private void displayCurrentAvatar() {
+        avatarButton.setIcon(new ImageIcon(avatarSelector.getSelectedAvatarPath()));
+    }
 
- 
-private void displayCurrentAvatar() {        
-    avatarButton.setIcon(new ImageIcon(avatarSelector.getSelectedAvatarPath()));
-}
+    /**
+     * Muestra el avatar anterior disponible para selección.
+     */
+    private void showPreviousAvatar() {
+        avatarButton.setIcon(new ImageIcon(avatarSelector.getPreviousAvatarPath()));
+    }
 
-private void showPreviousAvatar() {
-    avatarButton.setIcon(new ImageIcon(avatarSelector.getPreviousAvatarPath()));
-}
+    /**
+     * Muestra el siguiente avatar disponible para selección.
+     */
+    private void showNextAvatar() {
+        avatarButton.setIcon(new ImageIcon(avatarSelector.getNextAvatarPath()));
+    }
 
-private void showNextAvatar() {
-   avatarButton.setIcon(new ImageIcon(avatarSelector.getNextAvatarPath()));
-}
-
-
-
+    /**
+     * Valida si el nombre del jugador ingresado es válido y no está vacío.
+     *
+     * @param namePlayer El nombre del jugador a validar.
+     * @return true si el nombre no es nulo ni está vacío, de lo contrario
+     * false.
+     */
     private boolean validatePlayerName(String namePlayer) {
         if (namePlayer == null || namePlayer.trim().isEmpty()) {
             mostrarMensajeErrorNombre();
@@ -50,14 +67,29 @@ private void showNextAvatar() {
         return true;
     }
 
+    /**
+     * Muestra un mensaje de error cuando el campo del nombre del jugador está
+     * vacío.
+     */
     public void mostrarMensajeErrorNombre() {
         JOptionPane.showMessageDialog(this, "The player name is empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Solicita confirmación al usuario antes de salir y volver a la pantalla de
+     * inicio.
+     *
+     * @return int que representa la opción seleccionada por el usuario en el
+     * diálogo de confirmación.
+     */
     public int validarSalidaUsuario() {
         return JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Gestiona la acción del botón de retorno verificando la confirmación del
+     * usuario antes de cerrar esta ventana y abrir la pantalla de bienvenida.
+     */
     public void btnReturn() {
         if (validarSalidaUsuario() == JOptionPane.YES_OPTION) {
             abrirPantallaBienvenida();
@@ -65,21 +97,38 @@ private void showNextAvatar() {
         }
     }
 
+    /**
+     * Cierra esta ventana de personalización.
+     */
     public void cerrarPantalla() {
         this.dispose();
     }
 
+    /**
+     * Abre la pantalla de bienvenida.
+     */
     public void abrirPantallaBienvenida() {
         FrmWelcome v = new FrmWelcome();
         v.setVisible(true);
     }
 
+    /**
+     * Asigna la información del usuario al componente de jugador, incluyendo el
+     * nombre y el avatar seleccionado.
+     *
+     * @param namePlayer El nombre del jugador.
+     */
     public void asignarInformacionAUsuario(String namePlayer) {
         String selectedAvatarPath = avatarSelector.getSelectedAvatarPath();
-      playerComponent.setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
+        playerComponent.setPlayerInfo(new Player(namePlayer, 0, 1), selectedAvatarPath);
 
     }
 
+    /**
+     * Gestiona la acción del botón de unirse. Verifica el nombre del jugador
+     * antes de asignar la información y abrir la pantalla del lobby con los
+     * datos del jugador.
+     */
     public void btnJoin() {
 
         if (!validatePlayerName(txtNamePlayer.getText().trim())) {
@@ -91,6 +140,12 @@ private void showNextAvatar() {
 
     }
 
+    /**
+     * Abre la pantalla del lobby con la información actualizada del jugador.
+     *
+     * @param playerComponent El componente del jugador con la información
+     * actualizada.
+     */
     public void abrirPantallaLobbyConDatos(PlayerComponent playerComponent) {
         FrmLobby v = new FrmLobby(playerComponent);
         v.setVisible(true);

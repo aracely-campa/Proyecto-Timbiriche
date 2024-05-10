@@ -6,25 +6,30 @@ import javax.swing.JOptionPane;
 import mvc.player.PlayerComponent;
 
 /**
- *
- * @author arace
+ * Clase FrmJoinGame que extiende de JFrame, diseñada para proporcionar una interfaz gráfica
+ * donde los usuarios pueden ingresar un código para unirse a un juego existente.
  */
 public class FrmJoinGame extends javax.swing.JFrame {
 
     private String code;
     private PlayerComponent playerComponent;
    
+     /**
+     * Constructor para FrmJoinGame. Inicializa los componentes de la ventana.
+     */
     public FrmJoinGame() {
         this.playerComponent = new PlayerComponent();
         initComponents();
     }
 
+    /**
+     * Muestra la ventana de personalización y cierra la ventana actual.
+     */
     private void showPersonalizationFrm() {
         FrmPersonalization v = new FrmPersonalization();
         v.setVisible(true);
         dispose();
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,11 +76,19 @@ public class FrmJoinGame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Solicita confirmación al usuario antes de cerrar la ventana y retornar a la pantalla principal.
+     * 
+     * @return el resultado de la confirmación del usuario.
+     */
     public int validarSalidaUsuario() {
         return JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Maneja el evento del botón de retorno verificando primero la decisión del usuario.
+     * Si el usuario confirma, cierra la ventana actual y abre la pantalla de bienvenida.
+     */
     public void btnReturn() {
         if (validarSalidaUsuario() == JOptionPane.YES_OPTION) {
             abrirPantallaBienvenida();
@@ -83,10 +96,16 @@ public class FrmJoinGame extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Cierra esta ventana.
+     */
     public void cerrarPantalla() {
         this.dispose();
     }
 
+    /**
+     * Abre la pantalla de bienvenida.
+     */
     public void abrirPantallaBienvenida() {
         FrmWelcome v = new FrmWelcome();
         v.setVisible(true);

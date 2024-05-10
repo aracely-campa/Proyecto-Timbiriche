@@ -1,4 +1,3 @@
-
 package frm;
 
 import factory.MVCFactory;
@@ -14,10 +13,13 @@ public class FrmCreateGame extends javax.swing.JFrame {
 
     private final GameComponent gameComponent;
     private PlayerComponent playerComponent;
+
     /**
-     * Creates new form FrmCreateGame
+     * Constructor de FrmCreateGame. Inicializa los componentes de la ventana y
+     * establece las dependencias necesarias.
      *
-     * @param gameComponent
+     * @param gameComponent El componente de juego utilizado para gestionar la
+     * lógica y el estado del juego.
      */
     public FrmCreateGame(GameComponent gameComponent) {
         initComponents();
@@ -25,17 +27,26 @@ public class FrmCreateGame extends javax.swing.JFrame {
         this.gameComponent = gameComponent;
     }
 
+    /**
+     * Crea un juego utilizando los parámetros especificados por la interfaz de
+     * usuario. Captura y maneja excepciones relacionadas con la creación del
+     * juego.
+     */
     public void createGame() {
         try {
             this.gameComponent.getGameModel().setTamanoDePartida(getPlayerGameSize());
             this.gameComponent.getGameModel().createGame();
-            //gameModel.setGame(new Game(new Board(), getPlayerGameSize()));
         } catch (Exception e) {
             e.getMessage();
         }
-
     }
 
+    /**
+     * Obtiene el tamaño del juego basado en la selección del usuario en la
+     * interfaz gráfica.
+     *
+     * @return el número de jugadores seleccionados.
+     */
     public int getPlayerGameSize() {
         if (btnTwoPlayers.isSelected()) {
             return 2;
@@ -46,19 +57,29 @@ public class FrmCreateGame extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Muestra la ventana de personalización y cierra la ventana actual.
+     */
     private void showPersonalizationFrm() {
         FrmPersonalization v = new FrmPersonalization();
         v.setVisible(true);
         dispose();
     }
 
- 
-
- 
+    /**
+     * Confirma con el usuario antes de cerrar la ventana actual y retornar a la
+     * pantalla principal.
+     *
+     * @return el resultado de la confirmación del usuario.
+     */
     public int validarSalidaUsuario() {
         return JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Maneja el evento de retorno a la pantalla de bienvenida. Si el usuario
+     * confirma, cierra la ventana actual y abre la pantalla de bienvenida.
+     */
     public void btnReturn() {
         if (validarSalidaUsuario() == JOptionPane.YES_OPTION) {
             abrirPantallaBienvenida();
@@ -66,14 +87,21 @@ public class FrmCreateGame extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Cierra la ventana actual.
+     */
     public void cerrarPantalla() {
         this.dispose();
     }
 
+    /**
+     * Abre la ventana de bienvenida.
+     */
     public void abrirPantallaBienvenida() {
         FrmWelcome v = new FrmWelcome();
         v.setVisible(true);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

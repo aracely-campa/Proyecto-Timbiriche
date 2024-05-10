@@ -9,5 +9,8 @@ package events;
  * @author arace
  */
 public enum NodeEvents {
-     LEFT_CLICK_ON_NODE_EVENT, RIGHT_CLICK_ON_NODE_EVENT
+    // Constante de enumeración que representa un clic izquierdo sobre un nodo.
+     LEFT_CLICK_ON_NODE_EVENT,
+     // Constante de enumeración que representa un clic derecho sobre un nodo.
+     RIGHT_CLICK_ON_NODE_EVENT
 }

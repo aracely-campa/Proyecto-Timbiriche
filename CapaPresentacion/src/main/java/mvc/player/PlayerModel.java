@@ -12,6 +12,7 @@ import enums.ImagesSourcers;
  * @author luis-
  */
 public class PlayerModel {
+// Atributos relacionados con la posición y tamaño de la representación visual del jugador.
 
     private Player player;
 
@@ -33,16 +34,43 @@ public class PlayerModel {
 
     private Integer largoImagenJugador;
 
+    /**
+     * Constructor por defecto que crea un nuevo jugador sin información
+     * inicial.
+     */
     public PlayerModel() {
         this.player = new Player();
     }
 
+    /**
+     * Constructor que inicializa el modelo del jugador con información
+     * específica.
+     *
+     * @param player Objeto jugador.
+     * @param playerAvatarPath Ruta del avatar del jugador.
+     */
     public PlayerModel(Player player, String playerAvatarPath) {
         this.player = player;
         this.playerAvatarPath = playerAvatarPath;
-        this.playerName=this.player.getName();
+        this.playerName = this.player.getName();
     }
 
+    /**
+     * Constructor completo que inicializa todos los atributos del modelo del
+     * jugador.
+     *
+     * @param player Objeto jugador.
+     * @param playerAvatarPath Ruta del avatar del jugador.
+     * @param playerName Nombre del jugador.
+     * @param coordenadaX Posición X del jugador en la interfaz.
+     * @param coordenadaY Posición Y del jugador en la interfaz.
+     * @param coordenadaNombreX Posición X del nombre del jugador en la
+     * interfaz.
+     * @param coordenadaNombreY Posición Y del nombre del jugador en la
+     * interfaz.
+     * @param anchoImagenJugador Ancho de la imagen del jugador.
+     * @param largoImagenJugador Largo de la imagen del jugador.
+     */
     public PlayerModel(Player player, String playerAvatarPath, String playerName, Integer coordenadaX, Integer coordenadaY, Integer coordenadaNombreX, Integer coordenadaNombreY, Integer anchoImagenJugador, Integer largoImagenJugador) {
         this.player = player;
         this.playerAvatarPath = playerAvatarPath;
@@ -56,6 +84,9 @@ public class PlayerModel {
 
     }
 
+    /**
+     * Inicializa valores predeterminados para las propiedades del jugador.
+     */
     public void inicializarValores() {
 
         this.anchoImagenJugador = 100;
@@ -68,6 +99,13 @@ public class PlayerModel {
 
     }
 
+    /**
+     * Método estático para obtener la imagen del avatar basada en el nombre del
+     * avatar.
+     *
+     * @param name Nombre del avatar.
+     * @return Ruta de la imagen del avatar.
+     */
     public static String getAvatarImage(String name) {
         return switch (name) {
             case "Among_us_Blue" ->

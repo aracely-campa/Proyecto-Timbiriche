@@ -9,7 +9,10 @@ package events;
  * @author arace
  */
 public enum PlayerEvents {
-     LEFT_CLICK_ON_PLAYER_EVENT, RIGHT_CLICK_ON_PLAYER_EVENT;
+     // Constante de enumeración que representa un clic izquierdo sobre un jugador
+     LEFT_CLICK_ON_PLAYER_EVENT,
+      // Constante de enumeración que representa un clic derecho sobre un jugador
+     RIGHT_CLICK_ON_PLAYER_EVENT;
 
     
 }

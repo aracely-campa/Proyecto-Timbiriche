@@ -17,6 +17,12 @@ public class FrmLobby extends javax.swing.JFrame {
     private final String avatarPath;
     private final String namePlayer;
 
+    
+    /**
+     * Constructor para FrmLobby que inicializa la ventana con la información del jugador proporcionada.
+     *
+     * @param playerComponent Componente que contiene la información del modelo de jugador.
+     */
     public FrmLobby(PlayerComponent playerComponent) {
         this.playerComponent = playerComponent;
         this.avatarPath = playerComponent.getPlayerModel().getAvatarPath();
@@ -28,9 +34,13 @@ public class FrmLobby extends javax.swing.JFrame {
 
         setVisible(true);
 
-        System.out.println("Avatar path received in FrmLobby: " + avatarPath); // Mensaje de depuración
+        // Mensaje de depuración para verificar la ruta del avatar recibida
+        System.out.println("Avatar path received in FrmLobby: " + avatarPath);
     }
 
+    /**
+     * Muestra un diálogo de confirmación y retorna a la pantalla de bienvenida si el usuario confirma.
+     */
     private void showWelcomeFrm() {
         int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (exit == JOptionPane.YES_OPTION) {
@@ -40,12 +50,13 @@ public class FrmLobby extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Navega hacia la ventana del juego principal, pasando el componente del jugador.
+     */
     private void showLobbyFrm() {
         FrmGame v = new FrmGame(playerComponent);
         v.setVisible(true);
-        this.dispose();
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

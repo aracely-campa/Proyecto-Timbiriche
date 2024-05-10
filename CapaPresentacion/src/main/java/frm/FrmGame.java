@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package frm;
 
 import domain.game.Player;
@@ -17,43 +13,70 @@ import mvc.player.PlayerView;
  * @author arace
  */
 public class FrmGame extends javax.swing.JFrame {
+    // Componente de juego que contiene la lógica del juego y la interacción con el modelo de juego.
 
     public GameClass gc = new GameClass(new Player("Bv", 1, 2));
+
+    // Componente que gestiona las operaciones relacionadas con los jugadores en la interfaz.
     public PlayerComponent playerComponent;
-    
+
+    /**
+     * Constructor de FrmGame que inicializa la ventana con los componentes
+     * necesarios.
+     *
+     * @param playerComponent Componente responsable de la gestión de jugadores.
+     */
     public FrmGame(PlayerComponent playerComponent) {
         initComponents();
-        this.playerComponent=playerComponent;
+        this.playerComponent = playerComponent;
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         paintPoolOnGamePanel();
         pintarTablero();
         gc.suscribirTablero();
-
     }
 
+    /**
+     * Método para pintar información del jugador en la interfaz, actualmente
+     * vacío y debe ser implementado.
+     */
     public void pintarJugadorTest() {
 
     }
 
+    /**
+     * Método para manejar eventos en el tablero de juego. Actualiza el estado
+     * visual del tablero mediante el componente de tablero.
+     */
     public void eventsOnBoard() {
         BoardComponent boardComponent = BoardComponent.getInstance();
         boardComponent.refresh();
     }
 
+    /**
+     * Pinta la vista del jugador en el panel del juego. Añade la vista del
+     * jugador al panel jPanel1 y actualiza la interfaz.
+     */
     public void paintPoolOnGamePanel() {
         PlayerView playerView = playerComponent.getPlayerView();
         jPanel1.add(playerView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 180));
-
         playerComponent.refresh();
     }
 
+    /**
+     * Pinta el tablero en la interfaz. Añade la vista del tablero al panel
+     * jPanel1 en una posición específica.
+     */
     public void pintarTablero() {
         BoardComponent boardComponent = BoardComponent.getInstance();
         BoardView boardView = boardComponent.getBoardView();
-        jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(250,50, 725, 725));
-
+        jPanel1.add(boardView, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 725, 725));
     }
 
+    /**
+     * Método para manejar el evento de retorno al menú principal. Muestra un
+     * diálogo de confirmación y, si se confirma, cierra la ventana actual y
+     * abre la pantalla de bienvenida.
+     */
     public void btnReturn() {
         int exit = JOptionPane.showConfirmDialog(this, "You will return to the home screen, are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (exit == JOptionPane.YES_OPTION) {
@@ -61,7 +84,6 @@ public class FrmGame extends javax.swing.JFrame {
             v.setVisible(true);
             this.dispose();
         }
-
     }
 
     /**

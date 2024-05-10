@@ -11,35 +11,61 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+/**
+ * PlayerView es una clase que extiende JPanel para representar visualmente un
+ * jugador en la interfaz de usuario. Muestra la imagen del avatar del jugador y
+ * su nombre.
+ */
 public class PlayerView extends JPanel {
 
-    private Image playerImage;
-    private PlayerModel playerModel;
+    private Image playerImage;  // Imagen del avatar del jugador.
+    private PlayerModel playerModel;  // Modelo que contiene los datos del jugador.
 
+    /**
+     * Constructor de PlayerView que inicializa la vista con un modelo de
+     * jugador específico. Configura las propiedades iniciales del panel y carga
+     * la imagen del avatar del jugador.
+     *
+     * @param playerModel El modelo del jugador que contiene los datos
+     * necesarios para la visualización.
+     */
     public PlayerView(PlayerModel playerModel) {
         this.playerModel = playerModel;
         loadBoardImage();
-        setPreferredSize(new Dimension(120, 150));
-        setLayout(new FlowLayout());
+        setPreferredSize(new Dimension(120, 150));  // Dimensiones preferidas del panel.
+        setLayout(new FlowLayout());  // Configura el layout del panel.
     }
 
+    /**
+     * Carga la imagen del avatar del jugador desde la ruta especificada en el
+     * modelo.
+     */
     private void loadBoardImage() {
         if (playerModel.getAvatarPath() != null && !playerModel.getAvatarPath().isEmpty()) {
             try {
                 playerImage = ImageIO.read(new File(playerModel.getAvatarPath()));
             } catch (IOException ex) {
-                ex.printStackTrace();
-
+                ex.printStackTrace();  // Imprime el error si la imagen no se puede cargar.
             }
         }
     }
 
+    /**
+     * Actualiza la vista del jugador cargando nuevamente la imagen del avatar y
+     * solicitando a Swing que repinte el panel.
+     */
     public void refresh() {
         loadBoardImage();
         revalidate();
         repaint();
     }
 
+    /**
+     * Sobrescribe el método paintComponent para personalizar la pintura del
+     * panel. Dibuja la imagen del avatar y el nombre del jugador en el panel.
+     *
+     * @param g El objeto Graphics que se utiliza para dibujar en el panel.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
