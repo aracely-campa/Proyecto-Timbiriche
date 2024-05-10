@@ -1,6 +1,8 @@
 package domainClasses;
 
 import domain.game.Board;
+import domain.graph.Node;
+import java.util.List;
 
 public class DomainBoard {
 
@@ -22,6 +24,10 @@ public class DomainBoard {
 
     public void createSmallBoardGraph() {
         board.createSmallBoardGraph();
+    }
+    
+    public List <Node> getNodeList(){
+        return board.getBoardNodes();
     }
 
     public static DomainBoard getInstance() {

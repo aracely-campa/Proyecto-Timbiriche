@@ -5,12 +5,13 @@
 package mvc.node;
 
 import domain.graph.Node;
+import javax.swing.JPanel;
 
 /**
  *
  * @author arace
  */
-public class NodeView {
+public class NodeView extends JPanel{
 
     private NodeModel nodeModel;
     private Node node;
